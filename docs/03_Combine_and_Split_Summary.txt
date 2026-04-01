@@ -1,0 +1,137 @@
+Notebook 03 — Combine and Split Datasets
+
+Purpose
+Combine all preprocessed datasets into a single unified dataset and create balanced, leakage-aware train/validation/test splits.
+
+Ensures:
+- Equal representation across sources and classes
+- Proper 70 / 15 / 15 split
+- No cross-split contamination
+- Clean metadata outputs for downstream feature extraction
+
+Overall Workflow
+1. Define dataset sources
+2. Load all preprocessed metadata CSVs
+3. Standardize and combine metadata
+4. Shuffle within each source
+5. Split each source independently (70/15/15)
+6. Merge splits across sources
+7. Final shuffle within each subset
+8. Save combined + split CSVs
+9. Validate counts and balance
+
+Cell-by-Cell Summary
+
+Cell 0 — Notebook Summary
+- Describes dataset combination and splitting strategy
+- Emphasizes:
+  - Balance across sources
+  - Avoiding data leakage
+
+Cell 1 — Imports
+- Loads required libraries:
+  - pandas
+  - numpy
+  - os
+
+Cell 2 — Define Dataset Paths
+- Specifies locations of:
+  - Preprocessed metadata CSVs for each dataset:
+    - ImageNet_1K_256
+    - MS_COCO_2017
+    - DiffusionDB
+    - SDXL_Generated_10K
+- Defines output paths for:
+  - combined_metadata.csv
+  - train_metadata.csv
+  - validate_metadata.csv
+  - test_metadata.csv
+
+Cell 3 — Load Metadata
+- Loads all four dataset CSVs into DataFrames
+- Adds:
+  - source_dataset column (if not already present)
+- Verifies shapes and basic structure
+
+Cell 4 — Standardize Columns
+- Ensures consistent schema across datasets:
+  - filename
+  - class_label (ai / real)
+  - source_dataset
+- Removes unnecessary or inconsistent columns if needed
+
+Cell 5 — Combine Datasets
+- Concatenates all DataFrames into a single dataset:
+  combined_df
+- Verifies:
+  - Total row count (expected: 12,000)
+  - Balanced classes and sources
+
+Cell 6 — Shuffle Within Each Source
+- Groups data by source_dataset
+- Applies shuffle independently per source
+- Prevents ordering bias
+
+Cell 7 — Split Each Source (70/15/15)
+- For each dataset:
+  - 70% -> train
+  - 15% -> validation
+  - 15% -> test
+- Ensures:
+  - Equal contribution from each source to each subset
+  - No overlap across splits
+
+Cell 8 — Combine Splits Across Sources
+- Merges per-source splits into:
+  - train_df
+  - validate_df
+  - test_df
+- Ensures:
+  - Balanced class distribution
+  - Balanced source representation
+
+Cell 9 — Final Shuffle
+- Shuffles each subset independently:
+  - train
+  - validation
+  - test
+- Removes ordering artifacts
+
+Cell 10 — Add Subset Labels
+- Adds subset column:
+  - train
+  - validate
+  - test
+- Enables traceability in combined dataset
+
+Cell 11 — Save Output CSVs
+- Saves:
+  - combined_metadata.csv
+  - train_metadata.csv
+  - validate_metadata.csv
+  - test_metadata.csv
+- Outputs stored in project directory
+
+Cell 12 — Validation Checks
+- Verifies:
+  - Total counts:
+    - Train: 8400
+    - Validation: 1800
+    - Test: 1800
+  - Class balance (ai vs real)
+  - Source balance (each dataset equally represented)
+
+Cell 13 — Distribution Reporting
+- Prints breakdown:
+  - By subset
+  - By class
+  - By source_dataset
+- Confirms proper stratification
+
+Key Design Features
+- Source-aware splitting (prevents leakage)
+- Perfect class balance (6000 ai / 6000 real)
+- Equal source representation in all subsets
+- Reproducible splitting strategy
+- Metadata-driven pipeline (no image movement required)
+- Clean separation of train/validation/test

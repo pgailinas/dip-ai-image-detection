@@ -1,0 +1,64 @@
+Notebook 02 — Preprocess Pipeline (All Sources)
+
+Purpose Preprocess raw images for a selected dataset source by: -
+Reading raw images from Google Drive - Resizing to 256×256 - Converting
+to grayscale - Saving as standardized PNG files - Generating a
+corresponding preprocessed metadata CSV
+
+Overall Workflow 1. Mount Google Drive 2. Select dataset source 3. Load
+source metadata CSV 4. Validate input paths 5. Preprocess all images 6.
+Save processed images 7. Save updated metadata CSV 8. Verify output
+consistency 9. Perform visual sanity check
+
+Cell-by-Cell Summary
+
+Cell 0 — Notebook Summary - Describes notebook purpose and pipeline -
+Defines preprocessing goals and outputs
+
+Cell 1 — Mount Google Drive - Mounts Google Drive at: /content/drive -
+Enables access to raw datasets and storage
+
+Cell 2 — Imports - Loads required libraries: - os, glob - pandas,
+numpy - PIL (image processing) - matplotlib (visualization) - tqdm
+(progress tracking)
+
+Cell 3 — Select Target - Specifies dataset to preprocess: TARGET_NAME =
+“DiffusionDB” - Supported options: - DiffusionDB - SDXL_Generated_10K -
+ImageNet_1K_256 - MS_COCO_2017
+
+Cell 4 — Target Configuration - Defines directory structure: - Source
+images (raw) - Source metadata CSV - Output images (preprocessed) -
+Output metadata CSV - Uses centralized project root:
+/content/drive/MyDrive/DIP_Project
+
+Cell 5 — Validate Inputs & Create Output Folder - Confirms: - Source
+image directory exists - Source metadata CSV exists - Creates output
+directory if needed
+
+Cell 6 — Load Source Metadata - Loads source CSV into DataFrame -
+Displays: - File path - Shape - Sample rows
+
+Cell 7 — Image Preprocessing Utilities - Defines preprocessing
+function: - Load image - Resize to 256×256 - Convert to grayscale - Save
+as PNG - Ensures consistent format across datasets
+
+Cell 8 — Run Preprocessing - Iterates through all metadata entries - For
+each image: - Loads input file - Applies preprocessing - Saves output
+image - Records metadata - Tracks failures for debugging
+
+Cell 9 — Save Preprocessed Metadata CSV - Creates new DataFrame from
+processed rows - Saves to: OUTPUT_METADATA_CSV - Reports: - Output
+shape - Any failures
+
+Cell 10 — Validation - Verifies: - Number of processed rows - Number of
+output images - Confirms 1:1 consistency between CSV and files
+
+Cell 11 — Visual Sanity Check - Randomly samples processed images -
+Displays them using matplotlib - Confirms: - Correct resizing -
+Grayscale conversion - Image integrity
+
+Key Design Features - Drive-based workflow (persistent storage) -
+Dataset-specific configuration (modular) - Consistent preprocessing
+(256×256 grayscale) - Metadata-driven processing (CSV-controlled) -
+Failure tracking for robustness - End-to-end validation (counts +
+visualization)

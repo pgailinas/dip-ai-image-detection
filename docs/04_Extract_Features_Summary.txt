@@ -1,0 +1,140 @@
+Notebook 04 — Feature Extraction (Gradient, Spatial, Frequency)
+
+Purpose
+Extract handcrafted Digital Image Processing (DIP) features from training images to build fixed-length feature vectors for machine learning (MLP classifier).
+
+This stage consists of three separate notebooks:
+1. Gradient-Based Features
+2. Spatial Features
+3. Frequency-Domain Features
+
+All notebooks operate on the same training dataset and produce CSV files that extend metadata with computed features.
+
+------------------------------------------------------------
+
+Overall Workflow (All Three Notebooks)
+1. Load training metadata (train_metadata.csv)
+2. Access preprocessed images (/content/images)
+3. Select sample images for sanity check
+4. Extract feature set (domain-specific)
+5. Store results in structured CSV
+6. Validate output shape and distributions
+
+------------------------------------------------------------
+
+Common Inputs
+- Training metadata CSV:
+  /content/train_metadata.csv
+- Image directory:
+  /content/images
+- Number of training samples:
+  8400 images
+
+------------------------------------------------------------
+
+Notebook 04A — Gradient-Based Features
+
+Purpose
+Capture edge and gradient structure characteristics using first-order derivatives.
+
+Features Extracted
+- Mean Gradient
+- Std Gradient
+- Max Gradient
+- Gradient Entropy
+- Edge Density
+- Orientation Mean
+- Orientation Std
+- Orientation Entropy
+
+Key Processing Steps
+- Compute gradients (Sobel or Scharr)
+- Derive magnitude and orientation
+- Compute statistical descriptors
+- Aggregate into feature vector
+
+Output
+- train_gradient_features.csv
+- Shape: (8400, ~30 columns)
+
+------------------------------------------------------------
+
+Notebook 04B — Spatial Features
+
+Purpose
+Capture pixel intensity statistics, texture, and local structure.
+
+Features Extracted
+- Global Entropy
+- Local Entropy Mean / Std
+- Intensity Mean / Std
+- Laplacian Variance (focus/blur)
+- Patch Variance Mean / Std
+- Noise Residual Energy
+
+Key Processing Steps
+- Compute entropy (optimized using skimage.rank.entropy)
+- Apply Laplacian filter
+- Compute patch-level statistics
+- Estimate noise residual
+
+Performance Note
+- Significant speed improvement using optimized entropy function
+
+Output
+- train_spatial_features.csv
+- Shape: (8400, ~30+ columns)
+
+------------------------------------------------------------
+
+Notebook 04C — Frequency-Domain Features
+
+Purpose
+Capture spectral characteristics and frequency distribution patterns.
+
+Features Extracted
+- Low Frequency Energy Ratio
+- Mid Frequency Energy Ratio
+- High Frequency Energy Ratio
+- Radial Mean / Std / Entropy
+- Spectral Centroid
+- Spectral Bandwidth
+- Log Spectrum Std
+
+Key Processing Steps
+- Compute FFT
+- Generate magnitude and log spectrum
+- Compute radial profile
+- Extract frequency band energies
+
+Output
+- train_frequency_features.csv
+- Shape: (8400, ~30+ columns)
+
+------------------------------------------------------------
+
+Validation and Sanity Checks (All Notebooks)
+- Random image selection and visualization
+- Feature distribution comparison (AI vs Real)
+- Output shape verification (8400 rows)
+- CSV integrity checks
+
+------------------------------------------------------------
+
+Key Design Features
+- Domain-specific feature extraction (gradient, spatial, frequency)
+- Consistent input pipeline (same metadata + images)
+- Modular design (separate notebooks per feature domain)
+- Scalable processing (batch-based, extensible)
+- Reusable outputs (CSV files for model training)
+- Optimized computation (entropy acceleration, efficient loops)
+
+------------------------------------------------------------
+
+Final Output of Step 04
+Three feature CSV files:
+- train_gradient_features.csv
+- train_spatial_features.csv
+- train_frequency_features.csv
+
+These will later be merged into a unified feature vector for classifier training.
