@@ -7,11 +7,13 @@ theme:
 
 nav:
   - Overview: index.md
-  - Dataset Builder: dataset-builder.md
-  - Preprocessing: preprocessing.md
-  - Gradient Features: gradient-features.md
-  - Spatial Features: spatial-features.md
-  - Frequency Features: frequency-features.md
-  - Feature Vectors: feature-vectors.md
-  - MLP Training: mlp-training.md
-  - Evaluation: evaluation.md
+  - 01 Build Dataset: 01_Build_Dataset_Summary.md
+  - 02 Preprocess Images: 02_Preprocess_Images_Summary.md
+  - 03 Combine and Split: 03_Combine_and_Split_Summary.md
+  - 04A Gradient Features: 04A_Extract_Gradient_Features_Summary.md
+  - 04B Spatial Features: 04B_Extract_Spatial_Features_Summary.md
+  - 04C Frequency Features: 04C_Extract_Frequency_Features_Summary.md
+  - 05 Build Feature Vectors: 05_Build_Feature_Vectors_Summary.md
+  - 06 Normalize and Prepare Inputs: 06_Normalize_and_Prepare_Inputs_Summary.md
+  - 07 MLP Training: 07_Train_Neural_Network_Summary.md
+  - 08 Evaluation: 08_Validate_and_Tune_Model_Summary.md
