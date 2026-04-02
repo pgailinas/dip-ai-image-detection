@@ -1,0 +1,17 @@
+site_name: DIP-Based AI Image Detection
+site_description: Tutorial and documentation for a feature-driven neural network approach to AI-generated image detection
+site_author: Phil Gailinas
+
+theme:
+  name: mkdocs
+
+nav:
+  - Overview: index.md
+  - Dataset Builder: dataset-builder.md
+  - Preprocessing: preprocessing.md
+  - Gradient Features: gradient-features.md
+  - Spatial Features: spatial-features.md
+  - Frequency Features: frequency-features.md
+  - Feature Vectors: feature-vectors.md
+  - MLP Training: mlp-training.md
+  - Evaluation: evaluation.md
