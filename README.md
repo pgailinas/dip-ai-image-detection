@@ -215,8 +215,7 @@ A full tutorial-style documentation site will be available via GitHub Pages, inc
 ## 👤 Author
 
 **Phil Gailinas**
-MS Computer Engineering (Machine Learning focus)
-University of New Mexico
+MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
 
 ---
 
