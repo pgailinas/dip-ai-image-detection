@@ -6,9 +6,9 @@
 
 ## Overview
 
-This notebook validates baseline Multi-Layer Perceptron (MLP) models and performs limited hyperparameter tuning to identify the best-performing classifier configuration before final test evaluation.
+This notebook validates baseline Multi-Layer Perceptron (MLP) models and performs limited hyperparameter tuning to identify an optimal classifier configuration prior to final testing.
 
-It serves as the model selection stage of the pipeline, using the validation dataset to compare baseline and tuned models in a controlled and reproducible manner.
+It also includes a controlled comparison between full feature models and single-feature models to evaluate the contribution of individual DIP features.
 
 ---
 
@@ -16,24 +16,27 @@ It serves as the model selection stage of the pipeline, using the validation dat
 
 * Load prepared training and validation datasets
 * Load baseline trained MLP models
-* Evaluate baseline validation performance
+* Evaluate baseline model performance
 * Define a limited hyperparameter tuning space
 * Train and evaluate tuned models
-* Compare all candidate models
-* Select and save the best overall model configuration
+* Compare baseline and tuned models
+* Select and save the best model configuration
+* Compare full-feature models against single-feature models
 
 ---
 
 ## Workflow
 
-1. Load normalized training and validation datasets
-2. Perform consistency and sanity checks
-3. Load baseline models from Notebook 07
-4. Evaluate baseline model performance
+1. Load normalized datasets
+2. Perform sanity checks
+3. Load baseline models
+4. Evaluate baseline performance
 5. Define tuning configurations
-6. Train and evaluate tuned models
-7. Combine and compare results
-8. Select best model and save configuration
+6. Train tuned models
+7. Evaluate tuned models
+8. Combine and compare results
+9. Select and save best model
+10. Perform single-feature comparison
 
 ---
 
@@ -41,7 +44,9 @@ It serves as the model selection stage of the pipeline, using the validation dat
 
 ### Cell 0 — Notebook Summary
 
-Describes the purpose of validation and tuning, defines the role of the notebook in the overall pipeline, and lists the expected inputs and outputs. 
+Defines the purpose of validation and tuning, describes inputs and outputs, and places the notebook within the overall pipeline.
+
+---
 
 ### Cell 1 — Imports
 
@@ -51,131 +56,136 @@ Loads required libraries, including:
 * numpy
 * joblib / pickle
 * sklearn metrics
-* sklearn `MLPClassifier` 
+* sklearn `MLPClassifier`
+
+---
 
 ### Cell 2 — Load Data
 
-Loads the prepared training and validation datasets, separates features and labels, and confirms expected dataset shapes:
+Loads the training and validation datasets, separates feature matrices and labels, and confirms dataset structure.
 
-* Train: (8400, 26)
-* Validation: (1800, 26) 
+---
 
 ### Cell 3 — Sanity Checks
 
-Verifies that:
+Verifies:
 
-* training and validation feature columns match
-* there are no missing values
-* label encoding is correct
+* matching feature columns between datasets
+* absence of missing values
+* correct label encoding
 
-This cell ensures both datasets are ready for fair model comparison. 
+Ensures datasets are consistent and suitable for evaluation.
+
+---
 
 ### Cell 4 — Load Baseline Models
 
-Loads the baseline MLP models saved in Notebook 07.
-These models differ primarily by architecture (for example, small, medium, and large network sizes) and are checked for successful loading. 
+Loads previously trained MLP models from Notebook 07 and confirms successful loading.
+
+---
 
 ### Cell 5 — Evaluate Baseline Models
 
-Runs each baseline model on the validation dataset and computes performance metrics, including:
+Runs baseline models on the validation dataset and computes standard classification metrics.
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* ROC AUC (optional/when available)
+Stores results in a structured format for comparison.
 
-Results are stored in a structured format for later comparison. 
+---
 
 ### Cell 6 — Define Tuning Configurations
 
-Defines the limited hyperparameter search space used for tuning.
-This includes selected variations of:
+Defines a limited set of hyperparameter variations, including:
 
-* hidden layer sizes
+* hidden layer configurations
 * regularization strength (`alpha`)
-* early stopping option
+* early stopping settings
 
-The search space is intentionally kept small to limit complexity and runtime. 
+This forms the search space for model tuning.
+
+---
 
 ### Cell 7 — Train and Evaluate Tuned Models
 
-Trains new MLP models using the tuning configurations defined in Cell 6, then evaluates each tuned model on the validation dataset.
-For each model, it computes:
+Trains new MLP models using the configurations defined in Cell 6 and evaluates them on the validation dataset.
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* ROC AUC
+Stores performance metrics for each model.
 
-The resulting metrics are stored in a structured DataFrame for comparison. 
+---
 
 ### Cell 7 (continued) — Combine Results
 
-Merges the baseline and tuned model results into a single comparison table.
-This combined table is sorted by validation accuracy so that the top-performing model can be identified clearly. 
+Merges baseline and tuned model results into a single comparison table.
+
+Sorts models by performance metric to enable consistent selection.
+
+---
 
 ### Cell 8 — Select Best Model and Save Configuration
 
-Selects the best-performing model from the combined results and reports its key validation metrics:
+Selects the best-performing model based on validation results.
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* ROC AUC
+Extracts and saves:
 
-This cell also extracts and saves the chosen configuration, including:
-
-* hidden-layer architecture
+* model architecture
 * hyperparameters
-* feature column order
+* feature column ordering
 * label class definitions
 
-Outputs saved include:
+Writes outputs such as:
 
-* `best_model_config.json`
-* `tuned_model_results.csv`
-* selected model `.pkl` file in the models directory 
+* model file (`.pkl`)
+* configuration JSON
+* results CSV
+
+---
+
+### Cell 9 — Single-Feature Performance Comparison
+
+Trains and evaluates models using individual features only.
+
+Compares these single-feature models against the full feature model to assess the contribution of individual features.
+
+Results are structured for comparison but not used for model selection.
 
 ---
 
 ## Outputs
 
-* `best_model_config.json`
-* `tuned_model_results.csv`
 * Selected trained model (`.pkl`)
+* Model configuration (`.json`)
+* Model comparison results (`.csv`)
+* Optional single-feature comparison outputs
 
 ---
 
 ## Validation Checks
 
-This notebook verifies:
+This notebook ensures:
 
-* consistent feature dimensions between train and validation datasets
-* absence of missing or invalid values
-* correct label encoding
-* fair comparison across baseline and tuned models
-* consistent metric computation across all candidates 
+* consistent feature structure across datasets
+* no missing or invalid values
+* proper label handling
+* consistent evaluation metrics across all models
+* fair comparison between baseline and tuned configurations
 
 ---
 
 ## Key Design Features
 
-* Clear separation of baseline evaluation and tuning
-* Structured comparison across multiple models
-* Lightweight and efficient hyperparameter tuning
-* Reproducible model selection via saved configuration
-* Preservation of feature ordering for downstream test evaluation 
+* Separation of baseline evaluation and tuning
+* Controlled and limited hyperparameter search
+* Structured comparison of multiple models
+* Reproducible model selection process
+* Preservation of feature ordering for downstream evaluation
+* Inclusion of single-feature analysis for interpretability
 
 ---
 
 ## Role in Pipeline
 
-This notebook serves as the **model validation and selection stage** of the pipeline.
+This notebook performs model validation and selection, identifying a finalized classifier configuration based on validation performance.
 
-It identifies the best-performing classifier configuration based on validation performance and saves the finalized model artifacts required for independent evaluation on the test dataset.
+The selected model and configuration are passed forward for independent evaluation on the test dataset.
 
 ---
 
