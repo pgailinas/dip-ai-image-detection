@@ -146,8 +146,7 @@ Then follow the pipeline sequentially through each stage.
 ## 👤 Author
 
 **Phil Gailinas**
-MS Computer Engineering (Machine Learning focus) candidate
-University of New Mexico
+MS Computer Engineering (Machine Learning focus) candidate at University of New Mexico
 
 ---
 
