@@ -96,5 +96,5 @@ Exports finalized datasets if needed.
 
 ## Next Step
 
-➡️ [07 Train Neural Network](07_Train_Neural_Network.md)
+➡️ [07 Classifier Selection](07_Classifier_Selection.md)
 
