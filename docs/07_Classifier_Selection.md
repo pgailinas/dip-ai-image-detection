@@ -1,5 +1,5 @@
 ---
-title: Classifier Selection
+title: 07 Classifier Selection
 nav_order: 7
 ---
 
