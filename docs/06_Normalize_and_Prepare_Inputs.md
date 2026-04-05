@@ -1,5 +1,5 @@
 ---
-title: Normalize and Prepare Inputs
+title: 06 Normalize and Prepare Inputs
 nav_order: 6
 ---
 
