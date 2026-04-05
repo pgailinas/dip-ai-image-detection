@@ -103,5 +103,6 @@ Establishes baseline model performance for further tuning.
 
 ## Next Step
 
-➡️ **08 Evaluation**
+➡️ [09 Validate and Tune Model](09_Validate_and_Tune_Model.md)
+
 
