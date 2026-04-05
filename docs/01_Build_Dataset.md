@@ -284,5 +284,5 @@ Errors here (such as dataset imbalance or leakage) can lead to misleading model 
 
 The dataset produced here is passed to the preprocessing stage:
 
-➡️ **02 Preprocess Images**
+➡️ [02 Preprocess Images](02_Preprocess_Images.md)
 
