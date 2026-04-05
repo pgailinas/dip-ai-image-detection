@@ -1,4 +1,9 @@
-# 08 Validate and Tune Model
+---
+title: Validate and Tune Model
+nav_order: 9
+---
+
+# 09 Validate and Tune Model
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/08_Validate_and_Tune_Model.ipynb)
 
