@@ -1,3 +1,8 @@
+---
+title: Normalize and Prepare Inputs
+nav_order: 6
+---
+
 # 06 Normalize and Prepare Inputs
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/06_Normalize_and_Prepare_Inputs.ipynb)
