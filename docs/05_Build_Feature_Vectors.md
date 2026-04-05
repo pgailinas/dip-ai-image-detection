@@ -112,5 +112,5 @@ Verifies shapes and scaling correctness.
 ## Next Step
 
 ➡️ **06 Normalize and Prepare Inputs**
-
+➡️ [06 Normalize and Prepare Inputs](06_Normalize_and_Prepare_Inputs.md)
 
