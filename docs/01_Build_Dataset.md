@@ -1,3 +1,8 @@
+---
+title: Dataset Builder
+nav_order: 1
+---
+
 # 01 Build Dataset
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/01_Build_Dataset.ipynb)
