@@ -1,5 +1,5 @@
 ---
-title: Preprocess Images
+title: 02 Preprocess Images
 nav_order: 2
 ---
 
