@@ -1,3 +1,8 @@
+---
+title: Build Feature Vectors
+nav_order: 5
+---
+
 # 05 Build Feature Vectors
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/05_Build_Feature_Vectors.ipynb)
