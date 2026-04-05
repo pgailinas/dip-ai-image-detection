@@ -1,6 +1,6 @@
 ---
 title: Train Neural Network
-nav_order: 7
+nav_order: 8
 ---
 
 # 07 Train Neural Network
