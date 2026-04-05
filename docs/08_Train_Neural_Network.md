@@ -3,7 +3,7 @@ title: Train Neural Network
 nav_order: 8
 ---
 
-# 07 Train Neural Network
+# 08 Train Neural Network
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/07_Train_Neural_Network.ipynb)
 
