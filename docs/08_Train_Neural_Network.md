@@ -1,5 +1,5 @@
 ---
-title: Train Neural Network
+title: 08 Train Neural Network
 nav_order: 8
 ---
 
