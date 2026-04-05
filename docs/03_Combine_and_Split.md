@@ -1,3 +1,8 @@
+---
+title: Combine and Split
+nav_order: 3
+---
+
 # 03 Combine and Split
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/03_Combine_and_Split.ipynb)
