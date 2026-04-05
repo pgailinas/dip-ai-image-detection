@@ -1,3 +1,8 @@
+---
+title: Classifier Selection
+nav_order: 7
+---
+
 # 07 Classifier Selection
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/07_Classifier_Selection.ipynb)
