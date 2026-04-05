@@ -1,0 +1,9 @@
+theme: just-the-docs
+
+title: DIP-Based AI Image Detection
+description: Feature-based AI image detection using DIP and MLP
+
+url: https://pgailinas.github.io
+baseurl: /dip-ai-image-detection
+
+nav_enabled: true
