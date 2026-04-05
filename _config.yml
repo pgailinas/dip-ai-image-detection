@@ -1,7 +1,7 @@
 title: DIP-Based AI Image Detection
 description: Feature-based AI image detection using DIP and MLP
 
-remote_theme: just-the-docs/just-the-docs@v0.12.0
+remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-remote-theme
 
