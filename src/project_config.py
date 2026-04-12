@@ -11,7 +11,7 @@ BASE_DIR = "/content/drive/MyDrive/DIP_Project"
 
 DATA_DIR = f"{BASE_DIR}/data"
 RAW_DATA_DIR = f"{DATA_DIR}/raw"
-PROCESSED_DATA_DIR = f"{DATA_DIR}/processed"
+PROCESSED_DATA_DIR = f"{DATA_DIR}/preprocessed"
 METADATA_DIR = f"{DATA_DIR}/metadata"
 MODELS_DIR = f"{BASE_DIR}/models"
 SRC_DIR = f"{BASE_DIR}/src"
@@ -171,12 +171,12 @@ PREPROCESSED_METADATA_COLUMNS = [
 # Feature extraction
 # ------------------------------------------------------------
 
-NUM_FEATURES = 26
+NUM_FEATURES = 25
 
 FEATURE_GROUPS = {
     "gradient": 8,
-    "spatial": 8,
-    "frequency": 10,
+    "spatial": 9,
+    "frequency": 8,
 }
 
 # ------------------------------------------------------------
