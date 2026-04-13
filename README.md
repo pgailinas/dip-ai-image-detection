@@ -1,93 +1,167 @@
 # DIP-Based AI Image Detection
 
-A feature-driven approach for detecting AI-generated images using **Digital Image Processing (DIP)** and machine learning.
+This project presents a feature-driven approach for detecting AI-generated images using Digital Image Processing (DIP) techniques combined with machine learning classifiers.
 
 ---
 
 ## 🔍 Overview
 
-Modern generative models produce highly realistic images, making detection increasingly difficult.  
-This project addresses that challenge by focusing on **statistical image characteristics** rather than generator-specific artifacts.
+Modern generative models produce highly realistic images, making it increasingly difficult to distinguish synthetic content from real-world imagery. This project addresses that challenge by focusing on **statistical image characteristics** rather than generator-specific artifacts.
 
-Each image is represented using a **25-dimensional DIP feature vector**, capturing:
-
-- Gradient structure  
-- Spatial statistics  
-- Frequency-domain behavior  
-
-These features are used to train classifiers that generalize across multiple datasets.
+The approach extracts a fixed set of **25 Digital Image Processing (DIP) features** from each image and uses these features as input to machine learning classifiers, including a **Multi-Layer Perceptron (MLP)** and a **Radial Basis Function Support Vector Machine (RBF SVM)**.
 
 ---
 
 ## 🧠 Key Idea
 
-Instead of identifying artifacts from specific generative models, this method detects:
+Instead of detecting artifacts specific to a particular generative model, this method identifies **generalizable statistical differences** between real and AI-generated images.
 
-> **generalizable statistical differences between real and AI-generated images**
+These differences are captured through:
 
----
-
-## 🧱 Pipeline
-
-The project is implemented as a modular notebook-based pipeline:
-
-| Stage | Notebook |
-|------|--------|
-| Dataset Construction | `01_Build_Dataset.ipynb` |
-| Preprocessing | `02_Preprocess_Images.ipynb` |
-| Combine & Split | `03_Combine_and_Split.ipynb` |
-| Feature Extraction | `04–06_*_Features.ipynb` |
-| Classifier Selection | `07_Classifier_Selection.ipynb` |
-| Model Training | `08_Train_Two_Classifiers.ipynb` |
-| Final Evaluation | `09_Evaluate_Top_Two_Classifiers.ipynb` |
-| Further Analysis | `10_Further_Results.ipynb` |
+* Gradient-based structure analysis
+* Spatial-domain statistics
+* Frequency-domain characteristics
 
 ---
 
-## 📊 Feature Representation
+## 🧱 Pipeline Overview
 
-Each image is mapped to a **25-feature vector**.
+The project is organized as a modular pipeline:
+
+1. **Dataset Builder**
+   * Collects and filters images from multiple datasets
+   * Ensures minimum size and removes duplicates
+
+2. **Preprocessing**
+   * Resize to 256×256
+   * Convert to grayscale
+
+3. **Feature Extraction**
+   * Gradient-Based Features
+   * Spatial Features
+   * Frequency-Domain Features
+
+4. **Feature Vector Construction**
+   * Combine all features into a 25-dimensional vector
+   * Normalize using training statistics
+
+5. **Model Selection and Training**
+   * Evaluate multiple classifiers using k-fold cross-validation
+   * Train selected models (MLP and RBF SVM)
+
+6. **Evaluation**
+   * Independent test set evaluation
+   * Accuracy, Precision, Recall, F1 Score
+   * ROC Curve and AUC
+
+7. **Further Analysis**
+   * Single-feature vs full-feature comparisons
+   * Source-pair sensitivity analysis
+
+---
+
+## 📁 Repository Structure
+
+dip-ai-image-detection/
+
+├── README.md  
+├── notebooks/ (01–10 pipeline)  
+├── docs/ (MkDocs site)  
+└── mkdocs.yml  
+
+---
+
+## ▶️ Run the Notebooks (Colab)
+
+Each stage of the pipeline can be executed independently.
+
+---
+
+## 📊 Feature Set
+
+A total of **25 features** are extracted per image.
 
 ---
 
 ## 🧪 Dataset
 
-Total: **12,000 images (balanced)**
+The dataset consists of **18,000 images**, balanced across real and AI-generated classes:
 
----
+### Real Images (9,000)
+- ImageNet  
+- MS COCO  
+- OpenImages  
 
-## 🔄 Data Strategy
+### AI-Generated Images (9,000)
+- DiffusionDB  
+- SDXL  
+- MidJourney  
 
-- Train/Test split only  
-- k-fold cross-validation on training set  
+### Data Sources
+- **6 total sources**
+  - 3 REAL
+  - 3 AI
+
+### Data Split
+
+- Training + Test split only  
+- k-fold cross-validation applied to training set  
+
+The dataset maintains balance across both class and source dataset to prevent bias and dataset leakage.
 
 ---
 
 ## 🤖 Models
 
-### ✅ Final Model: RBF SVM
-- C = 100  
-- γ = 0.01  
+* **RBF SVM (Final Model)**
+  * Kernel: RBF
+  * C = 100
+  * gamma = 0.01
 
-### Comparison Model: MLP
-- (128, 64, 32), α = 0.001  
+* **MLP (Comparison Model)**
+  * Architecture: (128, 64, 32)
+  * Alpha = 0.001
 
 ---
 
-## 📈 Final Results (Test Set)
+## 📈 Evaluation Metrics
 
-RBF SVM outperforms MLP across most metrics and is selected as the final model.
+* Accuracy
+* Precision
+* Recall
+* F1 Score
+* ROC Curve
+* Area Under Curve (AUC)
+
+---
+
+## 📌 Current Status
+
+* [x] Dataset construction
+* [x] Preprocessing
+* [x] Feature extraction (all groups)
+* [x] Feature vector construction
+* [x] Model selection (k-fold cross-validation)
+* [x] Model training (MLP and RBF SVM)
+* [x] Final evaluation on independent test set
+* [ ] Further analysis (Notebook 10)
+* [ ] Documentation site (GitHub Pages)
+
+---
+
+## 📖 Documentation
+
+A full tutorial-style documentation site is being developed using MkDocs.
 
 ---
 
 ## 👤 Author
 
-Phil Gailinas  
-MS Computer Engineering (AI/ML focus)  
-University of New Mexico  
+**Phil Gailinas**  
+MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
 
 ---
 
 ## 📄 License
 
-Academic and research use.
+This project is for academic and research purposes.
