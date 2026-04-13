@@ -1,6 +1,6 @@
-# 10 Evaluate Model
+# 10 Further Results
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/10_Evaluate_Model.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/10_Further_Results.ipynb)
 
 ---
 
