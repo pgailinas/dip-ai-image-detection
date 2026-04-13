@@ -1,6 +1,6 @@
 ---
 title: 05 Build Feature Vectors
-nav_order: 5
+nav_order: 7
 ---
 
 # 05 Build Feature Vectors
