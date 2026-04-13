@@ -1,6 +1,6 @@
-# 08 Validate and Tune Model
+# 08 Validate and Tune Two Models
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/08_Validate_and_Tune_Model.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/09_Validate_Tune_Two_Models.ipynb)
 
 ---
 
