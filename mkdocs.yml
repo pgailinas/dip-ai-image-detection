@@ -7,21 +7,16 @@ theme:
 
 nav:
   - Home: index.md
-
-  - Pipeline:
-      - 01 Build Dataset: notebooks/01_Build_Dataset.md
-      - 02 Preprocess Images: notebooks/02_Preprocess_Images.md
-      - 03 Combine and Split: notebooks/03_Combine_and_Split.md
-
-      - 04 Extract Features:
-          - Gradient-Based: notebooks/04_Gradient_Based_Feature_Extraction.md
-          - Spatial: notebooks/04_Spatial_Feature_Extraction.md
-          - Frequency-Domain: notebooks/04_Frequency_Domain_Feature_Extraction.md
-
-      - 05 Build Feature Vectors: notebooks/05_Build_Feature_Vectors.md
-      - 06 Normalize and Prepare Inputs: notebooks/06_Normalize_and_Prepare_Classifier_Input.md
-
-      - 07 Classifier Selection: notebooks/07_Classifier_Selection.md
-      - 08 Train Selected Classifier: notebooks/08_Train_Selected_Classifier.md
-      - 09 Evaluate Model: notebooks/09_Evaluate_Model.md
-      - 10 Further Results: notebooks/10_Further_Results.md
+  - 01 Build Dataset: 01_Build_Dataset.md
+  - 02 Preprocess Images: 02_Preprocess_Images.md
+  - 03 Combine and Split: 03_Combine_and_Split.md
+  - 04 Extract Features:
+      - Gradient-Based: 04_Gradient_Based_Feature_Extraction.md
+      - Spatial: 04_Spatial_Feature_Extraction.md
+      - Frequency-Domain: 04_Frequency_Domain_Feature_Extraction.md
+  - 05 Build Feature Vectors: 05_Build_Feature_Vectors.md
+  - 06 Normalize and Prepare Inputs: 06_Normalize_and_Prepare_Classifier_Input.md
+  - 07 Classifier Selection: 07_Classifier_Selection.md
+  - 08 Train Selected Classifier: 08_Train_Selected_Classifier.md
+  - 09 Evaluate Model: 09_Evaluate_Model.md
+  - 10 Further Results: 10_Further_Results.md
