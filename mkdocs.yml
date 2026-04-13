@@ -15,7 +15,7 @@ nav:
   - 04C Frequency Features: 04C_Extract_Frequency_Features.md
   - 05 Build Feature Vectors: 05_Build_Feature_Vectors.md
   - 06 Normalize and Prepare Inputs: 06_Normalize_and_Prepare_Inputs.md
-  - 07 Select Classifier: 07_Classifier_Selection.md
-  - 08 Train Neural Network: 08_Train_Neural_Network.md
-  - 09 Validate and Tune Model: 09_Validate_and_Tune_Model.md
-  - 10 Evaluate Model: 10_Evaluate_Model.md
+  - 07 Classifier Selection: 07_Classifier_Selection.md
+  - 08 Train Two Top Classifiers: 08_Train_Two_Top_Classifiers.md
+  - 09 Validate and Tune Two Models: 09_Validate_Tune_Two_Models.md
+  - 10 Further Results: 10_Further_Results.md
