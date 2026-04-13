@@ -1,3 +1,8 @@
+---
+title: 04A Extract Gradient Features
+nav_order: 4
+---
+
 # 04A Extract Gradient Features
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/04A_Extract_Gradient_Features.ipynb)
