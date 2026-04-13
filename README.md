@@ -1,224 +1,93 @@
 # DIP-Based AI Image Detection
 
-This project presents a feature-driven approach for detecting AI-generated images using Digital Image Processing (DIP) techniques combined with a neural network classifier.
+A feature-driven approach for detecting AI-generated images using **Digital Image Processing (DIP)** and machine learning.
 
 ---
 
 ## 🔍 Overview
 
-Modern generative models produce highly realistic images, making it increasingly difficult to distinguish synthetic content from real-world imagery. This project addresses that challenge by focusing on **statistical image characteristics** rather than generator-specific artifacts.
+Modern generative models produce highly realistic images, making detection increasingly difficult.  
+This project addresses that challenge by focusing on **statistical image characteristics** rather than generator-specific artifacts.
 
-The approach extracts a fixed set of **26 Digital Image Processing (DIP) features** from each image and uses these features as input to a **Multi-Layer Perceptron (MLP)** classifier.
+Each image is represented using a **25-dimensional DIP feature vector**, capturing:
+
+- Gradient structure  
+- Spatial statistics  
+- Frequency-domain behavior  
+
+These features are used to train classifiers that generalize across multiple datasets.
 
 ---
 
 ## 🧠 Key Idea
 
-Instead of detecting artifacts specific to a particular generative model, this method identifies **generalizable statistical differences** between real and AI-generated images.
+Instead of identifying artifacts from specific generative models, this method detects:
 
-These differences are captured through:
-
-* Gradient-based structure analysis
-* Spatial-domain statistics
-* Frequency-domain characteristics
+> **generalizable statistical differences between real and AI-generated images**
 
 ---
 
-## 🧱 Pipeline Overview
+## 🧱 Pipeline
 
-The project is organized as a modular pipeline:
+The project is implemented as a modular notebook-based pipeline:
 
-1. **Dataset Builder**
-
-   * Collects and filters images from multiple datasets
-   * Ensures minimum size and removes duplicates
-
-2. **Preprocessing**
-
-   * Resize to 256×256
-   * Convert to grayscale
-
-3. **Feature Extraction**
-
-   * Gradient-Based Features
-   * Spatial Features
-   * Frequency-Domain Features
-
-4. **Feature Vector Construction**
-
-   * Combine all features into a 26-dimensional vector
-   * Normalize using training statistics
-
-5. **Model Training (MLP)**
-
-   * Train neural network on fixed-length feature vectors
-
-6. **Evaluation**
-
-   * Accuracy, Precision, Recall, F1 Score
-   * ROC Curve and AUC
+| Stage | Notebook |
+|------|--------|
+| Dataset Construction | `01_Build_Dataset.ipynb` |
+| Preprocessing | `02_Preprocess_Images.ipynb` |
+| Combine & Split | `03_Combine_and_Split.ipynb` |
+| Feature Extraction | `04–06_*_Features.ipynb` |
+| Classifier Selection | `07_Classifier_Selection.ipynb` |
+| Model Training | `08_Train_Two_Classifiers.ipynb` |
+| Final Evaluation | `09_Evaluate_Top_Two_Classifiers.ipynb` |
+| Further Analysis | `10_Further_Results.ipynb` |
 
 ---
 
-## 📁 Repository Structure
+## 📊 Feature Representation
 
-```
-dip-ai-image-detection/
-│
-├── README.md
-│
-├── notebooks/
-│   ├── 01_dataset_builder.ipynb
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_gradient_features.ipynb
-│   ├── 04_spatial_features.ipynb
-│   ├── 05_frequency_features.ipynb
-│   ├── 06_feature_vectors.ipynb
-│   ├── 07_mlp_training.ipynb        (planned)
-│   └── 08_evaluation.ipynb          (planned)
-│
-├── docs/                            (documentation site - in progress)
-│   ├── index.md
-│   ├── dataset-builder.md
-│   ├── preprocessing.md
-│   ├── gradient-features.md
-│   ├── spatial-features.md
-│   ├── frequency-features.md
-│   ├── feature-vectors.md
-│   ├── mlp-training.md
-│   └── evaluation.md
-│
-└── mkdocs.yml                       (site navigation - planned)
-```
-
----
-
-## ▶️ Run the Notebooks (Colab)
-
-Each stage of the pipeline can be executed independently:
-
-| Stage              | Notebook                                                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Dataset Builder    | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/01_dataset_builder.ipynb)    |
-| Preprocessing      | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/02_preprocessing.ipynb)      |
-| Gradient Features  | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/03_gradient_features.ipynb)  |
-| Spatial Features   | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/04_spatial_features.ipynb)   |
-| Frequency Features | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/05_frequency_features.ipynb) |
-| Feature Vectors    | [Open in Colab](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/06_feature_vectors.ipynb)    |
-
----
-
-## 📊 Feature Set
-
-A total of **26 features** are extracted per image:
-
-### Gradient-Based Features
-
-* Mean Gradient
-* Std Gradient
-* Max Gradient
-* Gradient Entropy
-* Edge Density
-* Orientation Mean
-* Orientation Std
-* Orientation Entropy
-
-### Spatial Features
-
-* Global Entropy
-* Local Entropy (Mean, Std)
-* Intensity (Mean, Std)
-* Laplacian Variance
-* Patch Variance (Mean, Std)
-* Noise Residual Energy
-
-### Frequency-Domain Features
-
-* Low / Mid / High Frequency Energy Ratios
-* Radial Mean / Std / Entropy
-* Spectral Centroid
-* Spectral Bandwidth
-* Log Spectrum Std
+Each image is mapped to a **25-feature vector**.
 
 ---
 
 ## 🧪 Dataset
 
-The dataset consists of **12,000 images**, balanced across real and AI-generated classes:
-
-* **Real Images (6,000)**
-
-  * ImageNet (256×256 subset)
-  * MS COCO 2017
-
-* **AI-Generated Images (6,000)**
-
-  * DiffusionDB
-  * SDXL Generated Dataset (10K subset)
-
-### Data Split
-
-* Training: 8,400 images
-* Validation: 1,800 images
-* Test: 1,800 images
-
-Each split maintains balance across both class and source dataset to prevent bias and dataset leakage.
+Total: **12,000 images (balanced)**
 
 ---
 
-## 🤖 Model
+## 🔄 Data Strategy
 
-* **Classifier**: Multi-Layer Perceptron (MLP)
-* **Input**: 26-dimensional feature vector
-* **Training Strategy**:
-
-  * Train/Validation/Test split (70/15/15)
-  * Feature normalization based on training data
+- Train/Test split only  
+- k-fold cross-validation on training set  
 
 ---
 
-## 📈 Evaluation Metrics
+## 🤖 Models
 
-* Accuracy
-* Precision
-* Recall
-* F1 Score
-* ROC Curve
-* Area Under Curve (AUC)
+### ✅ Final Model: RBF SVM
+- C = 100  
+- γ = 0.01  
 
----
-
-## 📌 Current Status
-
-* [x] Dataset construction
-* [x] Preprocessing
-* [x] Gradient feature extraction
-* [x] Spatial feature extraction
-* [x] Frequency feature extraction
-* [x] Feature vector construction
-* [ ] Model training
-* [ ] Evaluation and analysis
-* [ ] Documentation site (GitHub Pages)
+### Comparison Model: MLP
+- (128, 64, 32), α = 0.001  
 
 ---
 
-## 📖 Documentation (Planned)
+## 📈 Final Results (Test Set)
 
-A full tutorial-style documentation site will be available via GitHub Pages, including:
-
-* Step-by-step pipeline explanation
-* Feature descriptions and visualizations
-* Links to executable notebooks
+RBF SVM outperforms MLP across most metrics and is selected as the final model.
 
 ---
 
 ## 👤 Author
 
-**Phil Gailinas**
-MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
+Phil Gailinas  
+MS Computer Engineering (AI/ML focus)  
+University of New Mexico  
 
 ---
 
 ## 📄 License
 
-This project is for academic and research purposes.
+Academic and research use.
