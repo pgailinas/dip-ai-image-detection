@@ -16,6 +16,6 @@ nav:
   - 05 Build Feature Vectors: 05_Build_Feature_Vectors.md
   - 06 Normalize and Prepare Inputs: 06_Normalize_and_Prepare_Inputs.md
   - 07 Classifier Selection: 07_Classifier_Selection.md
-  - 08 Train Two Top Classifiers: 08_Train_Two_Top_Classifiers.md
+  - 08 Train Two Classifiers: 08_Train_Two_Classifiers.md
   - 09 Validate and Tune Two Models: 09_Validate_Tune_Two_Models.md
   - 10 Further Results: 10_Further_Results.md
