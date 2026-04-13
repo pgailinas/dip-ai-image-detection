@@ -1,6 +1,6 @@
 ---
 title: 06 Normalize and Prepare Inputs
-nav_order: 6
+nav_order: 8
 ---
 
 # 06 Normalize and Prepare Inputs
