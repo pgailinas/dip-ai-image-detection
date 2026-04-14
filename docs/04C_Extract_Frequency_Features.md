@@ -63,16 +63,33 @@ Reads the training and test metadata files generated in the previous step.
 Implements functions to compute frequency-domain representations using transforms such as the Fourier Transform and to derive spectral descriptors.
 
 ### Cell 4: Extract Frequency Features
-Processes each image to compute frequency-domain descriptors, including:
-- Low frequency energy ratio
-- Mid frequency energy ratio
-- High frequency energy ratio
-- Radial mean
-- Radial standard deviation
-- Radial entropy
-- Spectral centroid
-- Spectral bandwidth
-- Log spectrum standard deviation
+Processes each image to compute frequency-domain descriptors that capture spectral energy distribution, structural patterns, and frequency complexity.
+
+The following eight frequency-domain features are extracted:
+
+- **Low Frequency Energy Ratio**  
+  Represents the proportion of spectral energy in low-frequency components, corresponding to smooth regions and gradual intensity changes.
+
+- **High Frequency Energy Ratio**  
+  Represents the proportion of spectral energy in high-frequency components, corresponding to edges, fine details, and noise-like structures.
+
+- **Radial Mean**  
+  Computes the average spectral magnitude as a function of distance from the center of the frequency spectrum.
+
+- **Radial Standard Deviation**  
+  Measures the variability of spectral magnitude across radial distances.
+
+- **Radial Entropy**  
+  Quantifies the randomness of the radial frequency distribution.
+
+- **Spectral Centroid**  
+  Represents the center of mass of the frequency spectrum, indicating whether energy is concentrated in lower or higher frequencies.
+
+- **Spectral Bandwidth**  
+  Measures the spread of frequency energy around the centroid.
+
+- **Log Spectrum Standard Deviation**  
+  Captures variation in the log-transformed spectrum, emphasizing relative differences in spectral magnitude.
 
 ### Cell 5: Build Feature Tables
 Constructs structured DataFrames containing metadata and extracted frequency features.
