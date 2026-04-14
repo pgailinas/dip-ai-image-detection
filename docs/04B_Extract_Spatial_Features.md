@@ -1,6 +1,7 @@
 ---
 title: 04B Extract Spatial Features
-nav_order: 5
+parent: 2. Model Description Tutorial
+nav_order: 2
 ---
 
 # 04B Extract Spatial Features
