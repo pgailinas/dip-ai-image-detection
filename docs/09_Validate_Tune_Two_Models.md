@@ -1,10 +1,10 @@
 ---
-title: 09 Validate Tune Two Models
+title: 09 Validate and Tune Two Models
 parent: 4. Basic Testing Tutorial
 nav_order: 1
 ---
 
-# 09 Validate Tune Two Models
+# 09 Validate and Tune Two Models
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/09_Validate_Tune_Two_Models.ipynb)
 
