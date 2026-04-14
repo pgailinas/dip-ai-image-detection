@@ -63,13 +63,33 @@ Reads the training and test metadata files generated in the previous step.
 Implements functions to compute gradient magnitude and orientation using image derivatives.
 
 ### Cell 4: Extract Gradient Features
-Processes each image to compute gradient-based descriptors, including:
-- Mean gradient magnitude
-- Standard deviation of gradient magnitude
-- Maximum gradient magnitude
-- Gradient entropy
-- Edge density
-- Orientation statistics (mean, standard deviation, entropy)
+Processes each image to compute gradient-based descriptors that capture edge strength, structural variation, and directional patterns.
+
+The following eight features are extracted:
+
+- **Mean Gradient Magnitude**  
+  Represents the average strength of edges in the image. Higher values indicate stronger overall edge presence and more pronounced structural detail.
+
+- **Standard Deviation of Gradient Magnitude**  
+  Measures variability in edge strength. High values suggest a mix of strong and weak edges, indicating complex textures or heterogeneous regions.
+
+- **Maximum Gradient Magnitude**  
+  Captures the strongest edge response in the image. This reflects the presence of sharp transitions or highly defined boundaries.
+
+- **Gradient Entropy**  
+  Quantifies the randomness or complexity of gradient magnitudes. Higher entropy indicates more diverse edge strengths, while lower entropy suggests more uniform structure.
+
+- **Edge Density**  
+  Represents the proportion of pixels classified as edges. This provides a measure of how densely edges are distributed across the image.
+
+- **Orientation Mean**  
+  Computes the average direction of gradients. This reflects dominant structural orientation within the image.
+
+- **Orientation Standard Deviation**  
+  Measures the spread of gradient directions. Low values indicate consistent directional structure, while high values suggest more varied or chaotic orientations.
+
+- **Orientation Entropy**  
+  Quantifies the randomness of gradient directions. Higher entropy indicates a wide variety of edge orientations, while lower entropy suggests more uniform directional patterns.
 
 ### Cell 5: Build Feature Tables
 Constructs structured DataFrames containing metadata and extracted gradient features.
