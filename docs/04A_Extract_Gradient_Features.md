@@ -1,6 +1,7 @@
 ---
 title: 04A Extract Gradient Features
-nav_order: 4
+parent: 2. Model Description Tutorial
+nav_order: 1
 ---
 
 # 04A Extract Gradient Features
