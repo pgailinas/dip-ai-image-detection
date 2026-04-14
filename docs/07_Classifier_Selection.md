@@ -1,6 +1,7 @@
 ---
-title: 07 Classifier Selection
-nav_order: 9
+title: 07 Compare Candidate Classifiers
+parent: 3. Model Optimization Tutorial
+nav_order: 1
 ---
 
 # 07 Classifier Selection
