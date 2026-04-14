@@ -9,105 +9,104 @@ nav_order: 7
 
 ---
 
-## Overview
+## Purpose
 
-This notebook combines extracted feature sets into unified feature vectors and prepares datasets for machine learning.
+This notebook combines the three groups of extracted features—gradient, spatial, and frequency—into unified feature vectors for each image.
 
----
+The result is a structured dataset containing a **26-dimensional DIP feature vector** per image, which serves as the input to downstream normalization and classifier training steps.
 
-## Objectives
+## Inputs
 
-* Merge feature sets
-* Align features across datasets
-* Separate features and labels
-* Normalize features
-* Prepare training inputs
+- Gradient feature CSV files:
+  - `train_gradient_features.csv`
+  - `test_gradient_features.csv`
 
----
+- Spatial feature CSV files:
+  - `train_spatial_features.csv`
+  - `test_spatial_features.csv`
 
-## Workflow
+- Frequency feature CSV files:
+  - `train_frequency_features.csv`
+  - `test_frequency_features.csv`
 
-1. Load metadata splits
-2. Load feature CSVs
-3. Merge features
-4. Separate X and y
-5. Align features
-6. Handle missing values
-7. Normalize features
-8. Save outputs
-
----
-
-## Notebook Structure
-
-### Cell 0 — Overview
-
-Defines purpose and expected outputs. 
-
-### Cell 1 — Imports
-
-Loads pandas, numpy, sklearn utilities. 
-
-### Cell 2 — Load Metadata
-
-Loads train, validation, and test metadata. 
-
-### Cell 3 — Load Feature CSVs
-
-Loads gradient, spatial, and frequency features. 
-
-### Cell 4 — Merge Feature Sets
-
-Joins feature tables into unified dataset. 
-
-### Cell 5 — Separate Features and Labels
-
-Extracts:
-
-* X (features)
-* y (labels) 
-
-### Cell 6 — Feature Alignment
-
-Ensures consistent feature ordering across datasets. 
-
-### Cell 7 — Handle Missing Values
-
-Checks and resolves NaNs or inconsistencies. 
-
-### Cell 8 — Normalize Features
-
-Applies standard scaling using training data only. 
-
-### Cell 9 — Save Scaler
-
-Stores normalization parameters for reuse. 
-
-### Cell 10 — Final Outputs
-
-Generates X_train, X_validation, X_test and labels. 
-
-### Cell 11 — Validation Checks
-
-Verifies shapes and scaling correctness. 
-
----
+- Project configuration file:
+  - `project_config.py`
 
 ## Outputs
 
-* X_train, X_validation, X_test
-* y_train, y_validation, y_test
-* Scaler parameters
+- Combined feature vector CSV files:
+  - `train_feature_vectors.csv`
+  - `test_feature_vectors.csv`
 
----
+Each CSV contains:
+- `filename`
+- `class_label`
+- `source_dataset`
+- `subset`
+- 26 DIP feature columns
 
-## Key Design Features
+## Main Tasks
 
-* Unified feature vector construction
-* Training-only normalization
-* Robust feature alignment
+- Load feature tables from all three feature groups
+- Align datasets using common identifiers
+- Merge feature sets into unified tables
+- Verify feature completeness and consistency
+- Save combined feature vector CSV files
 
----
+## Cell-by-Cell Description
+
+### Cell 0: Notebook Overview
+Provides a summary of feature vector construction, including purpose, inputs, and outputs.
+
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., Pandas, NumPy) and imports shared configuration settings.
+
+### Cell 2: Load Feature Tables
+Reads gradient, spatial, and frequency feature CSV files for both training and test datasets.
+
+### Cell 3: Verify Alignment of Feature Tables
+Ensures that all feature tables share consistent ordering and matching identifiers (filename, class label, dataset, subset).
+
+### Cell 4: Merge Feature Groups
+Combines gradient, spatial, and frequency features into a single DataFrame for each dataset (train and test).
+
+### Cell 5: Construct Final Feature Vectors
+Assembles the full feature vector representation by concatenating all feature columns into a unified structure.
+
+### Cell 6: Validate Feature Vector Tables
+Verifies:
+- Correct number of rows
+- Presence of all 26 feature columns
+- No missing or duplicated entries
+- Consistency between training and test sets
+
+### Cell 7: Save Feature Vector CSV Files
+Writes the final training and test feature vector tables to CSV files for downstream processing.
+
+## Notes and Design Choices
+
+- **Modular feature design:**  
+  Features are extracted in separate groups and combined in this step to maintain modularity and flexibility.
+
+- **Consistent alignment:**  
+  Strict alignment across feature tables ensures that all features correspond to the correct image samples.
+
+- **Fixed feature dimensionality:**  
+  Each image is represented by a 26-dimensional feature vector, enabling consistent input to machine learning models.
+
+- **Metadata preservation:**  
+  Identifiers such as filename, class label, and dataset source are retained alongside feature values.
+
+## Files Produced
+
+- `train_feature_vectors.csv` — Combined feature vectors for training set
+- `test_feature_vectors.csv` — Combined feature vectors for test set
+
+## Role in the Overall Pipeline
+
+This notebook produces the final feature representation used as input to the classifier. It serves as the bridge between feature extraction and model preparation.
+
+All subsequent steps operate directly on these feature vector tables.
 
 ## Next Step
 
