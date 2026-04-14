@@ -169,6 +169,6 @@ Displays selected images and feature behavior.
 
 ## Next Step
 
-➡️ **05 Build Feature Vectors**
+➡️ [04B Extract Spatial Features Images](04B_Extract_Spatial_Features.md)
 
 
