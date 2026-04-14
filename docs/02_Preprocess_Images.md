@@ -9,108 +9,114 @@ nav_order: 2
 
 ---
 
-## Overview
+## Purpose
 
-This notebook standardizes raw images across all datasets by resizing, converting to grayscale, and generating consistent metadata.
+This notebook performs image preprocessing for all dataset sources defined in the previous step. It standardizes image format, size, and quality to ensure consistency across all inputs prior to feature extraction.
 
-The output ensures all images share a uniform format for downstream feature extraction.
+Preprocessing is applied uniformly to both real and AI-generated images, enabling fair and comparable feature computation in later stages.
 
----
+## Inputs
 
-## Objectives
+- Metadata CSV files from dataset construction:
+  - `imgn_metadata.csv`
+  - `coco_metadata.csv`
+  - `open_metadata.csv`
+  - `diff_metadata.csv`
+  - `sdxl_metadata.csv`
+  - `mj_metadata.csv`
 
-* Load raw dataset images
-* Resize all images to **256×256**
-* Convert images to **grayscale**
-* Save standardized PNG images
-* Generate updated metadata CSV files
-* Validate output consistency
+- Raw image files referenced by metadata
 
----
+- Project configuration file:
+  - `project_config.py`
 
-## Workflow
+## Outputs
 
-1. Mount Google Drive
-2. Select dataset source
-3. Load metadata CSV
-4. Validate input paths
-5. Preprocess images
-6. Save processed images
-7. Save updated metadata
-8. Validate outputs
-9. Perform visual sanity check
+- Preprocessed image files stored in dataset-specific directories
 
----
+- Updated metadata CSV files:
+  - `imgn_preprocessed_metadata.csv`
+  - `coco_preprocessed_metadata.csv`
+  - `open_preprocessed_metadata.csv`
+  - `diff_preprocessed_metadata.csv`
+  - `sdxl_preprocessed_metadata.csv`
+  - `mj_preprocessed_metadata.csv`
 
-## Notebook Structure
+Each updated CSV maintains:
+- `filename`
+- `class_label`
+- `source_dataset`
 
-### Cell 0 — Overview
+## Main Tasks
 
-Defines preprocessing goals and expected outputs. 
+- Load metadata for each dataset
+- Read and validate input images
+- Convert images to a consistent format
+- Resize images to a standard resolution
+- Handle corrupted or unreadable files
+- Save preprocessed images
+- Update and save metadata tables
 
-### Cell 1 — Mount Google Drive
+## Cell-by-Cell Description
 
-Mounts Drive for dataset access. 
+### Cell 0: Notebook Overview
+Provides a summary of preprocessing objectives, assumptions, and expected outputs.
 
-### Cell 2 — Imports
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., PIL, NumPy, Pandas) and imports shared configuration settings for directory paths and parameters.
 
-Loads libraries for image processing and data handling. 
+### Cell 2: Load Metadata Files
+Reads metadata CSV files generated in the dataset construction step and prepares them for processing.
 
-### Cell 3 — Select Target
+### Cell 3: Define Preprocessing Function
+Implements the image preprocessing routine, including loading, format conversion, resizing, and error handling.
 
-Specifies dataset source (e.g., DiffusionDB, ImageNet). 
+### Cell 4: Process Images by Dataset
+Iterates through each dataset, applies preprocessing to all referenced images, and saves outputs to the appropriate directories.
 
-### Cell 4 — Configuration
+### Cell 5: Handle Errors and Logging
+Captures and reports issues such as unreadable or corrupted files, ensuring robustness and traceability.
 
-Defines input/output directories and metadata paths. 
+### Cell 6: Update Metadata Tables
+Updates metadata entries to reflect successfully processed images and removes invalid entries if necessary.
 
-### Cell 5 — Validation
+### Cell 7: Validate Preprocessed Outputs
+Verifies that:
+- Output image counts match expectations
+- Metadata remains consistent
+- Directory structures are correct
 
-Confirms input availability and prepares output directories. 
+### Cell 8: Save Preprocessed Metadata
+Writes updated metadata CSV files for each dataset to the metadata directory.
 
-### Cell 6 — Load Metadata
+## Notes and Design Choices
 
-Loads source CSV and verifies structure. 
+- **Uniform preprocessing:**  
+  All images are resized and formatted consistently to eliminate variability unrelated to image content.
 
-### Cell 7 — Preprocessing Utilities
+- **Error handling for robustness:**  
+  Corrupted or unreadable images are safely skipped to prevent pipeline failure.
 
-Defines image transformation pipeline. 
+- **Metadata-driven workflow:**  
+  Processing is guided entirely by metadata, preserving separation between data and logic.
 
-### Cell 8 — Execute Preprocessing
+- **Reentrancy support:**  
+  The design allows preprocessing to resume without restarting from scratch in case of interruptions.
 
-Processes all images and tracks failures. 
+## Files Produced
 
-### Cell 9 — Save Metadata
+- `imgn_preprocessed_metadata.csv` — ImageNet metadata (real)
+- `coco_preprocessed_metadata.csv` — COCO metadata (real)
+- `open_preprocessed_metadata.csv` — OpenImages metadata (real)
+- `diff_preprocessed_metadata.csv` — DiffusionDB metadata (AI)
+- `sdxl_preprocessed_metadata.csv` — SDXL metadata (AI)
+- `mj_preprocessed_metadata.csv` — MidJourney metadata (AI)
 
-Writes updated CSV for processed dataset. 
+## Role in the Overall Pipeline
 
-### Cell 10 — Validation
+This notebook standardizes all input images, ensuring that subsequent feature extraction operates on consistent and comparable data.
 
-Ensures 1:1 consistency between images and metadata. 
-
-### Cell 11 — Visual Check
-
-Displays sample outputs to verify correctness. 
-
----
-
-## Key Design Features
-
-* Standardized resolution and format
-* Metadata-driven processing pipeline
-* Robust failure tracking
-* End-to-end validation
-* Dataset-agnostic configuration
-
----
-
-## Output
-
-* Preprocessed image directories
-* Updated metadata CSV files
-* Consistent dataset representation
-
----
+It serves as a critical preparation step before combining datasets and generating feature vectors.
 
 ## Next Step
 
