@@ -9,190 +9,105 @@ nav_order: 11
 
 ---
 
-## Overview
+## Purpose
 
-This notebook validates baseline Multi-Layer Perceptron (MLP) models and performs limited hyperparameter tuning to identify an optimal classifier configuration prior to final testing.
+This notebook evaluates the performance of the two trained classifiers—**RBF SVM** and **MLP**—on the held-out test dataset.
 
-It also includes a controlled comparison between full feature models and single-feature models to evaluate the contribution of individual DIP features.
+The goal is to assess how well each model generalizes to unseen data using a fully independent test set. Performance is measured using multiple evaluation metrics and summarized through confusion matrices and ROC analysis.
 
----
+## Inputs
 
-## Objectives
+- Normalized feature vector CSV file:
+  - `test_feature_vectors_normalized.csv`
 
-* Load prepared training and validation datasets
-* Load baseline trained MLP models
-* Evaluate baseline model performance
-* Define a limited hyperparameter tuning space
-* Train and evaluate tuned models
-* Compare baseline and tuned models
-* Select and save the best model configuration
-* Compare full-feature models against single-feature models
+- Trained model files:
+  - `best_rbf_svm_model.pkl`
+  - `best_mlp_model.pkl`
 
----
-
-## Workflow
-
-1. Load normalized datasets
-2. Perform sanity checks
-3. Load baseline models
-4. Evaluate baseline performance
-5. Define tuning configurations
-6. Train tuned models
-7. Evaluate tuned models
-8. Combine and compare results
-9. Select and save best model
-10. Perform single-feature comparison
-
----
-
-## Notebook Structure
-
-### Cell 0 — Notebook Summary
-
-Defines the purpose of validation and tuning, describes inputs and outputs, and places the notebook within the overall pipeline.
-
----
-
-### Cell 1 — Imports
-
-Loads required libraries, including:
-
-* pandas
-* numpy
-* joblib / pickle
-* sklearn metrics
-* sklearn `MLPClassifier`
-
----
-
-### Cell 2 — Load Data
-
-Loads the training and validation datasets, separates feature matrices and labels, and confirms dataset structure.
-
----
-
-### Cell 3 — Sanity Checks
-
-Verifies:
-
-* matching feature columns between datasets
-* absence of missing values
-* correct label encoding
-
-Ensures datasets are consistent and suitable for evaluation.
-
----
-
-### Cell 4 — Load Baseline Models
-
-Loads previously trained MLP models from Notebook 07 and confirms successful loading.
-
----
-
-### Cell 5 — Evaluate Baseline Models
-
-Runs baseline models on the validation dataset and computes standard classification metrics.
-
-Stores results in a structured format for comparison.
-
----
-
-### Cell 6 — Define Tuning Configurations
-
-Defines a limited set of hyperparameter variations, including:
-
-* hidden layer configurations
-* regularization strength (`alpha`)
-* early stopping settings
-
-This forms the search space for model tuning.
-
----
-
-### Cell 7 — Train and Evaluate Tuned Models
-
-Trains new MLP models using the configurations defined in Cell 6 and evaluates them on the validation dataset.
-
-Stores performance metrics for each model.
-
----
-
-### Cell 7 (continued) — Combine Results
-
-Merges baseline and tuned model results into a single comparison table.
-
-Sorts models by performance metric to enable consistent selection.
-
----
-
-### Cell 8 — Select Best Model and Save Configuration
-
-Selects the best-performing model based on validation results.
-
-Extracts and saves:
-
-* model architecture
-* hyperparameters
-* feature column ordering
-* label class definitions
-
-Writes outputs such as:
-
-* model file (`.pkl`)
-* configuration JSON
-* results CSV
-
----
-
-### Cell 9 — Single-Feature Performance Comparison
-
-Trains and evaluates models using individual features only.
-
-Compares these single-feature models against the full feature model to assess the contribution of individual features.
-
-Results are structured for comparison but not used for model selection.
-
----
+- Project configuration file:
+  - `project_config.py`
 
 ## Outputs
 
-* Selected trained model (`.pkl`)
-* Model configuration (`.json`)
-* Model comparison results (`.csv`)
-* Optional single-feature comparison outputs
+- Evaluation metrics for both models:
+  - Accuracy
+  - Precision
+  - Recall
+  - F1-score
+  - ROC-AUC
 
----
+- Confusion matrices
 
-## Validation Checks
+- ROC curves (optional plots)
 
-This notebook ensures:
+- Evaluation summary file (if saved)
 
-* consistent feature structure across datasets
-* no missing or invalid values
-* proper label handling
-* consistent evaluation metrics across all models
-* fair comparison between baseline and tuned configurations
+## Main Tasks
 
----
+- Load normalized test feature vectors
+- Separate features and labels
+- Load trained models
+- Generate predictions for both models
+- Compute evaluation metrics
+- Construct confusion matrices
+- Compare model performance
+- Optionally save evaluation results
 
-## Key Design Features
+## Cell-by-Cell Description
 
-* Separation of baseline evaluation and tuning
-* Controlled and limited hyperparameter search
-* Structured comparison of multiple models
-* Reproducible model selection process
-* Preservation of feature ordering for downstream evaluation
-* Inclusion of single-feature analysis for interpretability
+### Cell 0: Notebook Overview
+Provides a summary of evaluation objectives, including the use of a held-out test set and comparison of two models.
 
----
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., scikit-learn, Pandas, NumPy, Matplotlib) and imports shared configuration settings.
 
-## Role in Pipeline
+### Cell 2: Load Test Dataset
+Reads the normalized test feature vector CSV file and prepares feature and label arrays.
 
-This notebook performs model validation and selection, identifying a finalized classifier configuration based on validation performance.
+### Cell 3: Load Trained Models
+Loads the previously saved RBF SVM and MLP models from disk.
 
-The selected model and configuration are passed forward for independent evaluation on the test dataset.
+### Cell 4: Generate Predictions
+Applies both models to the test data to obtain predicted labels and probability scores.
 
----
+### Cell 5: Compute Evaluation Metrics
+Calculates performance metrics for both models, including accuracy, precision, recall, F1-score, and ROC-AUC.
+
+### Cell 6: Generate Confusion Matrices
+Constructs confusion matrices to visualize classification performance and error types.
+
+### Cell 7: Plot ROC Curves (Optional)
+Generates ROC curves to compare model discrimination capability across thresholds.
+
+### Cell 8: Compare Model Performance
+Summarizes and compares evaluation results to identify the best-performing model.
+
+### Cell 9: Save Evaluation Results (Optional)
+Writes evaluation metrics and results to file for documentation and reporting.
+
+## Notes and Design Choices
+
+- **Independent test evaluation:**  
+  The test dataset is not used during training or tuning, ensuring an unbiased estimate of model performance.
+
+- **Multiple evaluation metrics:**  
+  A range of metrics is used to provide a comprehensive assessment of classifier performance.
+
+- **Model comparison:**  
+  Both RBF SVM and MLP are evaluated to determine which model generalizes best.
+
+- **Confusion matrix analysis:**  
+  Provides insight into classification errors, including false positives and false negatives.
+
+## Files Produced
+
+- Evaluation results (optional CSV or JSON file)
+- Confusion matrix outputs (plots or arrays)
+- ROC curve plots (if generated)
+
+## Role in the Overall Pipeline
+
+This notebook provides the final evaluation of the trained models using an independent test dataset. It represents the culmination of the pipeline and produces the performance results reported for the project.
 
 ## Next Step
 
