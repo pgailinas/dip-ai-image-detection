@@ -1,6 +1,7 @@
 ---
 title: 10 Further Results
-nav_order: 12
+parent: 6. Full Training Tutorial
+nav_order: 1
 ---
 
 # 10 Further Results
