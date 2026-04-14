@@ -1,4 +1,3 @@
-
 ---
 title: Thanks For Trying This Tutorial
 nav_order: 7
