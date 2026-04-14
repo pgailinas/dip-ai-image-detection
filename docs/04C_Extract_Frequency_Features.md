@@ -1,6 +1,7 @@
 ---
 title: 04C Extract Frequency Features
-nav_order: 6
+parent: 2. Model Description Tutorial
+nav_order: 3
 ---
 
 # 04C Extract Frequency Features
