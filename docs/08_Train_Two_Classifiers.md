@@ -1,6 +1,7 @@
 ---
 title: 08 Train Two Classifiers
-nav_order: 10
+parent: 3. Model Optimization Tutorial
+nav_order: 2
 ---
 
 # 08 Train Two Classifiers
