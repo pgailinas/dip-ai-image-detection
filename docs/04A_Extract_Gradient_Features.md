@@ -129,6 +129,6 @@ This notebook produces the first group of features used in the DIP feature vecto
 
 ## Next Step
 
-➡️ [04B Extract Spatial Features Images](04B_Extract_Spatial_Features.md)
+➡️ [04B Extract Spatial Features](04B_Extract_Spatial_Features.md)
 
 
