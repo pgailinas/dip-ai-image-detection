@@ -1,6 +1,8 @@
 
 ---
 title: Thanks For Trying This Tutorial
+nav_order: 7
+has_children: false
 ---
 
 # Thanks For Trying This Tutorial
