@@ -169,6 +169,6 @@ Displays selected images and feature behavior.
 
 ## Next Step
 
-➡️ **05 Build Feature Vectors**
+➡️ [04C Extract Frequency Features](04C_Extract_Frequency_Features.md)
 
 
