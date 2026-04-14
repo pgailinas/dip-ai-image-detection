@@ -1,6 +1,7 @@
 ---
 title: 09 Validate Tune Two Models
-nav_order: 11
+parent: 4. Basic Testing Tutorial
+nav_order: 1
 ---
 
 # 09 Validate Tune Two Models
