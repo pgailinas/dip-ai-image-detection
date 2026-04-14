@@ -1,3 +1,8 @@
+---
+title: DIP-Based AI Image Detection
+nav_order: 0
+---
+
 # DIP-Based AI Image Detection
 
 This project presents a feature-driven approach for detecting AI-generated images using Digital Image Processing (DIP) techniques combined with machine learning classifiers.
