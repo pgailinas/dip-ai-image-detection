@@ -1,6 +1,0 @@
-site_name: DIP-Based AI Image Detection
-site_description: Tutorial and documentation for a feature-driven neural network approach to AI-generated image detection
-site_author: Phil Gailinas
-
-theme:
-  name: mkdocs
