@@ -1,5 +1,6 @@
 ---
 title: 02 Preprocess Images
+parent: 1. Dataset Tutorial
 nav_order: 2
 ---
 
