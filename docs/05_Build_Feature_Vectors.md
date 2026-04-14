@@ -1,6 +1,7 @@
 ---
 title: 05 Build Feature Vectors
-nav_order: 7
+parent: 2. Model Description Tutorial
+nav_order: 4
 ---
 
 # 05 Build Feature Vectors
