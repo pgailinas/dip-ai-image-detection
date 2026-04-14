@@ -1,5 +1,5 @@
 ---
-title: DIP-Based AI Image Detection
+title: Home
 nav_order: 0
 ---
 
