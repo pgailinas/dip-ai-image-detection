@@ -9,109 +9,96 @@ nav_order: 12
 
 ---
 
-## Overview
+## Purpose
 
-This notebook evaluates the final trained model using the independent test dataset to measure true generalization performance.
-In addition to full-model evaluation, it includes a baseline comparison using single-feature models to assess the discriminative power of individual DIP features.
+This notebook explores additional experiments and analyses beyond the core pipeline to better understand the behavior and effectiveness of the DIP feature-based classification approach.
 
----
+These experiments investigate the contribution of individual features, compare simplified models to the full feature set, and provide further insight into model performance and generalization.
 
-## Objectives
+## Inputs
 
-* Evaluate final model on independent test dataset
-* Compute comprehensive performance metrics
-* Generate confusion matrix and ROC curve
-* Compare full model against single-feature baselines
-* Validate model generalization
+- Normalized feature vector CSV files:
+  - `train_feature_vectors_normalized.csv`
+  - `test_feature_vectors_normalized.csv`
 
----
+- Trained model configurations (optional reuse)
 
-## Workflow
-
-1. Load trained model
-2. Load test dataset
-3. Generate predictions
-4. Compute evaluation metrics
-5. Create confusion matrix
-6. Generate ROC curve and AUC
-7. Evaluate single-feature models
-8. Compare results
-
----
-
-## Notebook Structure
-
-### Cell 0 - Overview
-
-Defines purpose and evaluation scope.
-
-### Cell 1 - Imports
-
-Loads required libraries.
-
-### Cell 2 - Load Model
-
-Loads the trained classifier.
-
-### Cell 3 - Load Test Data
-
-Loads normalized test dataset.
-
-### Cell 4 - Generate Predictions
-
-Applies model to test data.
-
-### Cell 5 - Metrics Computation
-
-Calculates accuracy, precision, recall, F1 score, and ROC-AUC.
-
-### Cell 6 - Confusion Matrix
-
-Generates and displays confusion matrix.
-
-### Cell 7 - ROC Curve
-
-Plots ROC curve and computes AUC.
-
-### Cell 8 - Results Summary
-
-Summarizes evaluation results.
-
-### Cell 9 - Single-Feature Performance Comparison
-
-Evaluates selected individual DIP features as standalone inputs using a simple classifier.
-Each feature is independently scaled, trained, and tested to measure its standalone predictive capability.
-
-### Cell 10 - Full vs Single-Feature Comparison
-
-Compares the full 26-feature model against single-feature models using metrics such as accuracy and ROC-AUC.
-Provides visual or tabular comparison of performance differences.
-
-### Cell 11 - Optional Save
-
-Saves metrics, plots, or outputs if needed.
-
----
+- Project configuration file:
+  - `project_config.py`
 
 ## Outputs
 
-* Test set performance metrics
-* Confusion matrix
-* ROC curve and AUC
-* Single-feature comparison results
-* Final evaluation summary
+- Single-feature model evaluation results:
+  - Accuracy
+  - Precision
+  - Recall
+  - F1-score
+  - ROC-AUC
 
----
+- Comparative performance tables
 
-## Key Design Features
+- Additional plots and summaries (optional)
 
-* Strict use of independent test set
-* Comprehensive performance evaluation
-* Baseline comparison using individual features
-* Clear visualization of model effectiveness
-* Reproducible evaluation process
+## Main Tasks
 
----
+- Evaluate models using individual DIP features
+- Compare single-feature performance against full feature set
+- Analyze feature importance and discriminative power
+- Explore model behavior across different datasets
+- Summarize insights and observations
+
+## Cell-by-Cell Description
+
+### Cell 0: Notebook Overview
+Provides a summary of exploratory analysis objectives and the types of additional results generated.
+
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., scikit-learn, Pandas, NumPy, Matplotlib) and imports shared configuration settings.
+
+### Cell 2: Load Normalized Feature Vectors
+Reads training and test feature vector datasets for analysis.
+
+### Cell 3: Prepare Data for Feature-Level Evaluation
+Separates features and labels and prepares data structures for evaluating individual features.
+
+### Cell 4: Train Single-Feature Models
+Trains classifiers using one feature at a time to assess the predictive power of individual DIP features.
+
+### Cell 5: Evaluate Single-Feature Performance
+Computes evaluation metrics for each single-feature model.
+
+### Cell 6: Compare Against Full Feature Model
+Compares the performance of single-feature models with the full 26-feature model.
+
+### Cell 7: Analyze Results
+Identifies which features contribute most to classification performance and highlights trends.
+
+### Cell 8: Summarize Findings
+Presents conclusions and key insights derived from the experiments.
+
+## Notes and Design Choices
+
+- **Feature-level analysis:**  
+  Evaluating individual features provides insight into their relative importance.
+
+- **Comparison to full model:**  
+  Demonstrates the benefit of combining multiple complementary features.
+
+- **Exploratory focus:**  
+  This notebook is intended for analysis and insight rather than pipeline execution.
+
+- **Interpretability:**  
+  Results help explain why the DIP feature-based approach is effective.
+
+## Files Produced
+
+- Single-feature evaluation results (optional CSV)
+- Comparative performance summaries
+- Optional plots for visualization
+
+## Role in the Overall Pipeline
+
+This notebook extends the core pipeline by providing deeper analysis and validation of the feature design. It supports the overall conclusions of the project and strengthens the justification for the chosen methodology.
 
 ## Next Step
 
