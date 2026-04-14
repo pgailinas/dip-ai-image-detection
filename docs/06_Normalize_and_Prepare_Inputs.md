@@ -1,6 +1,7 @@
 ---
 title: 06 Normalize and Prepare Inputs
-nav_order: 8
+parent: 2. Model Description Tutorial
+nav_order: 5
 ---
 
 # 06 Normalize and Prepare Inputs
