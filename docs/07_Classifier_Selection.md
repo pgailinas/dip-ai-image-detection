@@ -99,4 +99,4 @@ Exports results if needed.
 
 ## Next Step
 
-➡️ [07 Classifier Selection](07_Classifier_Selection.md)
+➡️ [08 Train Two Classifiers](08_Train_Two_Classifiers.md)
