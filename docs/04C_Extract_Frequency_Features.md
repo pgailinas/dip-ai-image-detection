@@ -169,6 +169,6 @@ Displays selected images and feature behavior.
 
 ## Next Step
 
-➡️ **05 Build Feature Vectors**
+➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
 
 
