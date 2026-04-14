@@ -9,163 +9,108 @@ nav_order: 6
 
 ---
 
-## Overview
+## Purpose
 
-This stage extracts handcrafted Digital Image Processing (DIP) features from training images to form the basis of the classification model.
+This notebook extracts frequency-domain features from preprocessed images. These features capture spectral characteristics such as energy distribution across frequency bands and structural patterns in the frequency domain.
 
-Feature extraction is divided into three domains:
+Frequency-domain descriptors form the third group of the 26-dimensional DIP feature vector used for classification.
 
-* Gradient-Based
-* Spatial
-* Frequency-Domain
+## Inputs
 
----
+- Training and test metadata:
+  - `train_metadata.csv`
+  - `test_metadata.csv`
 
-## Objectives
+- Preprocessed image files referenced by metadata
 
-* Load training dataset metadata
-* Access preprocessed images
-* Extract domain-specific features
-* Store features in structured CSV files
-* Validate feature outputs
-
----
-
-## Workflow
-
-1. Load training metadata
-2. Access image directory
-3. Perform sanity checks
-4. Extract features (per domain)
-5. Save feature CSVs
-6. Validate outputs
-
----
-
-## Notebook Structure
-
-### Cell 0 — Overview
-
-Defines feature extraction goals and outputs. 
-
-### Cell 1 — Imports
-
-Loads required libraries for image processing and analysis. 
-
-### Cell 2 — Load Training Metadata
-
-Loads `train_metadata.csv` and verifies dataset size (8400). 
-
-### Cell 3 — Image Access Setup
-
-Defines image directory (`/content/images`) and access methods. 
-
-### Cell 4 — Sample Image Selection
-
-Selects sample images for sanity checks and visualization. 
-
----
-
-## Gradient Feature Extraction
-
-### Cell 5 — Gradient Setup
-
-Prepares gradient computation (Sobel/Scharr filters). 
-
-### Cell 6 — Compute Gradient Features
-
-Calculates:
-
-* Mean Gradient
-* Std Gradient
-* Max Gradient
-* Gradient Entropy
-* Edge Density
-* Orientation statistics 
-
-### Cell 7 — Save Gradient Features
-
-Writes `train_gradient_features.csv`. 
-
----
-
-## Spatial Feature Extraction
-
-### Cell 8 — Spatial Setup
-
-Prepares entropy, variance, and Laplacian calculations. 
-
-### Cell 9 — Compute Spatial Features
-
-Calculates:
-
-* Global entropy
-* Local entropy (mean/std)
-* Intensity statistics
-* Laplacian variance
-* Patch variance
-* Noise residual energy 
-
-### Cell 10 — Save Spatial Features
-
-Writes `train_spatial_features.csv`. 
-
----
-
-## Frequency Feature Extraction
-
-### Cell 11 — Frequency Setup
-
-Prepares FFT computation and spectrum generation. 
-
-### Cell 12 — Compute Frequency Features
-
-Calculates:
-
-* Frequency energy ratios
-* Radial statistics
-* Spectral centroid
-* Spectral bandwidth
-* Log spectrum statistics 
-
-### Cell 13 — Save Frequency Features
-
-Writes `train_frequency_features.csv`. 
-
----
-
-## Validation and Checks
-
-### Cell 14 — Output Verification
-
-Confirms correct row counts (8400) and CSV integrity. 
-
-### Cell 15 — Feature Distribution Checks
-
-Compares distributions (AI vs Real). 
-
-### Cell 16 — Visual Sanity Check
-
-Displays selected images and feature behavior. 
-
----
+- Project configuration file:
+  - `project_config.py`
 
 ## Outputs
 
-* train_gradient_features.csv
-* train_spatial_features.csv
-* train_frequency_features.csv
+- Frequency feature CSV files:
+  - `train_frequency_features.csv`
+  - `test_frequency_features.csv`
 
----
+Each CSV contains:
+- `filename`
+- `class_label`
+- `source_dataset`
+- `subset`
+- Frequency-domain feature columns
 
-## Key Design Features
+## Main Tasks
 
-* Domain-specific feature extraction
-* Modular pipeline (separate feature groups)
-* Optimized computations
-* Reusable CSV outputs
+- Load training and test metadata
+- Read preprocessed images
+- Compute frequency-domain representations
+- Extract spectral and radial descriptors
+- Construct feature tables
+- Save frequency feature CSV files
 
----
+## Cell-by-Cell Description
+
+### Cell 0: Notebook Overview
+Provides a summary of frequency feature extraction, including purpose, inputs, and outputs.
+
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., NumPy, OpenCV, SciPy, Pandas) and imports shared configuration settings.
+
+### Cell 2: Load Train and Test Metadata
+Reads the training and test metadata files generated in the previous step.
+
+### Cell 3: Define Frequency Feature Functions
+Implements functions to compute frequency-domain representations using transforms such as the Fourier Transform and to derive spectral descriptors.
+
+### Cell 4: Extract Frequency Features
+Processes each image to compute frequency-domain descriptors, including:
+- Low frequency energy ratio
+- Mid frequency energy ratio
+- High frequency energy ratio
+- Radial mean
+- Radial standard deviation
+- Radial entropy
+- Spectral centroid
+- Spectral bandwidth
+- Log spectrum standard deviation
+
+### Cell 5: Build Feature Tables
+Constructs structured DataFrames containing metadata and extracted frequency features.
+
+### Cell 6: Validate Feature Tables
+Verifies:
+- Correct number of rows
+- Presence of all expected feature columns
+- Consistency between metadata and feature values
+
+### Cell 7: Save Frequency Feature CSV Files
+Writes training and test frequency feature tables to CSV files for downstream processing.
+
+## Notes and Design Choices
+
+- **Frequency-domain analysis:**  
+  Fourier-based representations capture structural patterns not easily observable in the spatial domain.
+
+- **Energy distribution:**  
+  Energy ratios across frequency bands provide insight into image smoothness and detail.
+
+- **Radial statistics:**  
+  Radial features summarize frequency content as a function of distance from the spectrum center.
+
+- **Spectral descriptors:**  
+  Measures such as centroid and bandwidth characterize the overall distribution of frequency energy.
+
+- **Complementary feature group:**  
+  Frequency features complete the DIP feature vector by adding information not captured by gradient or spatial features.
+
+## Files Produced
+
+- `train_frequency_features.csv` — Frequency features for training set
+- `test_frequency_features.csv` — Frequency features for test set
+
+## Role in the Overall Pipeline
+
+This notebook produces the final group of features used in the DIP feature vector. These features are combined with gradient and spatial features in the next step to form the complete input representation for classifier training.
 
 ## Next Step
 
