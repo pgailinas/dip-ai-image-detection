@@ -1,5 +1,6 @@
 ---
 title: 01 Build Dataset
+parent: 1. Dataset Tutorial
 nav_order: 1
 ---
 
