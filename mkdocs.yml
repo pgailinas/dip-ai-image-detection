@@ -4,18 +4,3 @@ site_author: Phil Gailinas
 
 theme:
   name: mkdocs
-
-nav:
-  - Home: index.md
-  - 01 Build Dataset: 01_Build_Dataset.md
-  - 02 Preprocess Images: 02_Preprocess_Images.md
-  - 03 Combine and Split: 03_Combine_and_Split.md
-  - 04 Extract Features:
-      - 04A Gradient Features: 04A_Extract_Gradient_Features.md
-      - 04B Spatial Features: 04B_Extract_Spatial_Features.md
-      - 04C Frequency Features: 04C_Extract_Frequency_Features.md
-  - 05 Build Feature Vectors: 05_Build_Feature_Vectors.md
-  - 06 Normalize and Prepare Inputs: 06_Normalize_and_Prepare_Inputs.md
-  - 07 Classifier Selection: 07_Classifier_Selection.md
-  - 08 Train Two Classifiers: 08_Train_Two_Classifiers.md
-  - 09 Validate and Tune Two Models: 09_Validate_Tune_Two_Models.md
