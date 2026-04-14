@@ -9,93 +9,93 @@ nav_order: 9
 
 ---
 
-## Overview
+## Purpose
 
-This notebook evaluates multiple classifier types using normalized DIP feature vectors to identify the most effective model for distinguishing AI-generated and real images.
+This notebook evaluates a range of candidate classifiers using the normalized DIP feature vectors and selects the best-performing models based on cross-validation performance.
 
----
+The goal is to identify which classifier types are most effective at distinguishing real images from AI-generated images prior to detailed tuning and final training.
 
-## Objectives
+## Inputs
 
-* Compare multiple classifier types
-* Evaluate performance using consistent metrics
-* Identify top-performing models
-* Select candidates for final training and evaluation
+- Normalized feature vector CSV files:
+  - `train_feature_vectors_normalized.csv`
+  - `test_feature_vectors_normalized.csv`
 
----
-
-## Workflow
-
-1. Load normalized training and validation datasets
-2. Define candidate classifiers
-3. Train models using training data
-4. Evaluate on validation set
-5. Compute performance metrics
-6. Compare model results
-7. Select best-performing classifier(s)
-
----
-
-## Notebook Structure
-
-### Cell 0 - Overview
-
-Defines purpose and evaluation strategy.
-
-### Cell 1 - Imports
-
-Loads required libraries.
-
-### Cell 2 - Load Data
-
-Loads normalized training and validation datasets.
-
-### Cell 3 - Define Classifiers
-
-Specifies candidate models (linear models, SVM, tree-based methods, MLP).
-
-### Cell 4 - Training Loop
-
-Trains each classifier on the training dataset.
-
-### Cell 5 - Validation Evaluation
-
-Evaluates each model using the validation dataset.
-
-### Cell 6 - Metrics Computation
-
-Calculates performance metrics (accuracy, precision, recall, F1 score, ROC-AUC).
-
-### Cell 7 - Results Comparison
-
-Aggregates and compares classifier performance.
-
-### Cell 8 - Model Selection
-
-Identifies top-performing classifier(s).
-
-### Cell 9 - Optional Save
-
-Exports results if needed.
-
----
+- Project configuration file:
+  - `project_config.py`
 
 ## Outputs
 
-* Classifier performance comparison table
-* Selected model(s) for final training
-* Evaluation metrics for each classifier
+- Baseline classifier comparison results:
+  - `baseline_model_results.csv`
 
----
+This CSV contains performance metrics for each classifier:
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
 
-## Key Design Features
+## Main Tasks
 
-* Consistent evaluation across models
-* Metric-driven model selection
-* Modular comparison framework
-* Reproducible validation process
+- Load normalized feature vectors
+- Separate features and labels
+- Define candidate classifiers
+- Perform cross-validation
+- Evaluate models using multiple metrics
+- Rank classifiers based on performance
+- Save comparison results
 
----
+## Cell-by-Cell Description
+
+### Cell 0: Notebook Overview
+Provides a summary of classifier selection objectives, including evaluation approach and expected outputs.
+
+### Cell 1: Import Libraries and Configuration
+Loads required libraries (e.g., scikit-learn, Pandas, NumPy) and imports shared configuration settings.
+
+### Cell 2: Load Normalized Feature Vectors
+Reads the normalized training dataset and prepares feature and label arrays.
+
+### Cell 3: Prepare Training Data
+Separates input features (`X_train`) and target labels (`y_train`) for use in model evaluation.
+
+### Cell 4: Define Candidate Classifiers
+Specifies a set of candidate classifiers (e.g., MLP, RBF SVM, Random Forest, Logistic Regression) to be evaluated.
+
+### Cell 5: Perform Cross-Validation
+Applies stratified k-fold cross-validation to each classifier to ensure robust performance estimation.
+
+### Cell 6: Compute Evaluation Metrics
+Calculates performance metrics for each classifier, including accuracy, precision, recall, F1-score, and ROC-AUC.
+
+### Cell 7: Rank Classifier Performance
+Aggregates and ranks classifier results based on cross-validation metrics, typically prioritizing ROC-AUC.
+
+### Cell 8: Save Baseline Results
+Writes the classifier comparison results to a CSV file for reference and further analysis.
+
+## Notes and Design Choices
+
+- **Cross-validation approach:**  
+  Stratified k-fold cross-validation is used to ensure stable and reliable performance estimates.
+
+- **Multiple evaluation metrics:**  
+  Performance is assessed using a range of metrics to provide a comprehensive view of classifier behavior.
+
+- **ROC-AUC prioritization:**  
+  ROC-AUC is emphasized as a primary metric due to its robustness in binary classification tasks.
+
+- **Model diversity:**  
+  A variety of classifier types are evaluated to explore different modeling approaches.
+
+## Files Produced
+
+- `baseline_model_results.csv` — Cross-validation performance summary for all candidate classifiers
+
+## Role in the Overall Pipeline
+
+This notebook identifies the most promising classifier types for the DIP feature representation. The selected models are then further tuned and trained in the next stage.
 
 ## Next Step
 
