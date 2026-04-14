@@ -63,13 +63,33 @@ Reads the training and test metadata files generated in the previous step.
 Implements functions to compute spatial-domain descriptors such as intensity statistics, entropy measures, and local variance.
 
 ### Cell 4: Extract Spatial Features
-Processes each image to compute spatial descriptors, including:
-- Global entropy
-- Local entropy (mean and standard deviation)
-- Intensity mean
-- Intensity standard deviation
-- Laplacian variance
-- Patch variance (mean and standard deviation)
+Processes each image to compute spatial-domain descriptors that capture intensity distribution, texture variation, and structural complexity.
+
+The following nine features are extracted:
+
+- **Global Entropy**  
+  Measures the overall randomness of pixel intensities in the image. Higher entropy indicates greater complexity and variability, while lower entropy suggests more uniform or smooth regions.
+
+- **Local Entropy Mean**  
+  Computes the average entropy across local neighborhoods within the image. This captures typical texture complexity at a localized level.
+
+- **Local Entropy Standard Deviation**  
+  Measures the variability of local entropy across the image. High values indicate uneven texture distribution, with both simple and complex regions present.
+
+- **Intensity Mean**  
+  Represents the average pixel intensity of the image. This reflects overall brightness and can differ between datasets due to generation or capture processes.
+
+- **Intensity Standard Deviation**  
+  Measures the spread of pixel intensities. Higher values indicate greater contrast, while lower values suggest more uniform intensity levels.
+
+- **Laplacian Variance**  
+  Quantifies the variance of the Laplacian (second-order derivative) of the image. This serves as a measure of sharpness and fine detail, with higher values indicating more high-frequency content.
+
+- **Patch Variance Mean**  
+  Computes the average variance of small image patches. This captures typical local intensity variation and texture strength.
+
+- **Patch Variance Standard Deviation**  
+  Measures how much patch variance varies across the image. High values indicate regions with differing texture intensity.
 
 ### Cell 5: Build Feature Tables
 Constructs structured DataFrames containing metadata and extracted spatial features.
