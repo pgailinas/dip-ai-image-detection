@@ -109,5 +109,5 @@ This notebook produces the final trained models used for independent evaluation.
 
 ## Next Step
 
-➡️ [09 Validate Tune Two Models](09_Validate_Tune_Two_Models.md)
+➡️ [09 Validate and Tune Two Models](09_Validate_and_Tune_Two_Models.md)
 
