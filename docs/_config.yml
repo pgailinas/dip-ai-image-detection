@@ -8,3 +8,5 @@ plugins:
 
 url: https://pgailinas.github.io
 baseurl: /dip-ai-image-detection
+
+toc: false
