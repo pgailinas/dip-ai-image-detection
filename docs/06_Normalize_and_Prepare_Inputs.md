@@ -6,7 +6,12 @@ nav_order: 5
 
 # 06 Normalize and Prepare Inputs
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/06_Normalize_and_Prepare_Inputs.ipynb)
+<p>
+  <strong>Open Notebook in Google Colab ➡️</strong>
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/06_Normalize_and_Prepare_Inputs.ipynb" target="_blank" rel="noopener noreferrer">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
+  </a>
+</p>
 
 ---
 
