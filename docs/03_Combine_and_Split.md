@@ -75,7 +75,7 @@ Each CSV contains:
 
 ## Cell-by-Cell Description
 
-### Cell 0: Startup (Environment + Verification)
+### Startup (Environment + Verification)
 
 * Clone the GitHub repository into the Colab runtime
 * Configure access to `src/project_config.py`
