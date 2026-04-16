@@ -3,9 +3,83 @@ title: Home
 nav_order: 0
 ---
 
+---
+title: Home
+nav_order: 1
+---
+
 # DIP-Based AI Image Detection
 
-This project presents a feature-driven approach for detecting AI-generated images using Digital Image Processing (DIP) techniques combined with machine learning classifiers.
+This project presents a tutorial and implementation for detecting AI-generated images using a feature-driven Digital Image Processing (DIP) pipeline. The method emphasizes engineered image statistics derived from gradient-based, spatial, and frequency-domain features rather than end-to-end deep image classification.
+
+The repository is organized so that the complete tutorial can be followed through GitHub Pages and executed through Google Colab using files hosted through this GitHub project.
+
+---
+
+## Repository Structure
+
+The GitHub repository is organized into the following major directories:
+
+- **docs/**  
+  GitHub Pages documentation for the tutorial, including one page for each notebook stage, project explanations, workflow notes, and supporting figures.
+
+- **notebooks/**  
+  Google Colab notebooks that implement each stage of the DIP pipeline.
+
+- **src/**  
+  Reusable Python source code, helper functions, feature extraction routines, model utilities, and shared configuration logic.
+
+- **resources/**  
+  Smaller support files such as metadata templates, example outputs, and configuration examples.
+
+- **data/**  
+  Documentation and references for dataset-related content. Large datasets and zip archives are not stored directly in the repository when they exceed practical repository size limits.
+
+- **GitHub Releases**  
+  Large downloadable assets, such as image zip files, preprocessed datasets, and other packaged artifacts used by the Colab notebooks.
+
+---
+
+## Intended Colab Workflow
+
+The project is designed so that required notebook inputs can be obtained from GitHub rather than Google Drive. Depending on the notebook stage, inputs may come from:
+
+1. files stored directly in this repository,
+2. downloadable assets attached to GitHub Releases, or
+3. optional user-downloaded zip files referenced by this tutorial.
+
+This approach keeps the workflow portable, reproducible, and easier to distribute to students.
+
+---
+
+## High-Level Tutorial Sequence
+
+1. Build Dataset  
+2. Preprocess Images  
+3. Combine and Split Metadata  
+4. Extract Gradient Features  
+5. Extract Spatial Features  
+6. Extract Frequency Features  
+7. Build Feature Vectors  
+8. Normalize and Prepare Inputs  
+9. Train Selected Classifier  
+10. Train and Compare Two Classifiers  
+11. Evaluate Final Model  
+12. Further Results and Analysis
+
+---
+
+## Notes on Project Assets
+
+Small project files such as notebooks, markdown pages, and Python modules are stored directly in the repository.
+
+Large assets such as zip archives of images or preprocessed datasets are intended to be distributed through GitHub Releases so that the repository remains lightweight while still supporting a complete Colab-based workflow.
+
+---
+
+## Getting Started
+
+Begin with the tutorial pages in the left navigation menu. Each page explains the purpose of the corresponding notebook, expected inputs, produced outputs, and a link to open that notebook in Google Colab.
 
 ---
 
