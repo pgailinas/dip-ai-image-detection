@@ -3,11 +3,6 @@ title: Home
 nav_order: 0
 ---
 
----
-title: Home
-nav_order: 1
----
-
 # DIP-Based AI Image Detection
 
 This project presents a tutorial and implementation for detecting AI-generated images using a feature-driven Digital Image Processing (DIP) pipeline. The method emphasizes engineered image statistics derived from gradient-based, spatial, and frequency-domain features rather than end-to-end deep image classification.
