@@ -7,7 +7,7 @@ nav_order: 0
 
 This project presents a tutorial and implementation for detecting AI-generated images using a feature-driven Digital Image Processing (DIP) pipeline. The method emphasizes engineered image statistics derived from gradient-based, spatial, and frequency-domain features rather than end-to-end deep image classification.
 
-The repository is organized so that the complete tutorial can be followed through GitHub Pages and executed through Google Colab using files hosted through this GitHub project.
+👉 Use the navigation menu on the left to follow the tutorial step-by-step.
 
 ---
 
@@ -16,22 +16,31 @@ The repository is organized so that the complete tutorial can be followed throug
 The GitHub repository is organized into the following major directories:
 
 - **docs/**  
-  GitHub Pages documentation for the tutorial, including one page for each notebook stage, project explanations, workflow notes, and supporting figures.
+  GitHub Pages site containing the full tutorial and documentation.
 
 - **notebooks/**  
-  Google Colab notebooks that implement each stage of the DIP pipeline.
+  Google Colab notebooks implementing each stage of the DIP pipeline.
 
 - **src/**  
-  Reusable Python source code, helper functions, feature extraction routines, model utilities, and shared configuration logic.
+  Reusable Python code including:
+  - `project_config.py` (used across most notebooks)
+  - dataset target modules used for dataset acquisition (Notebook 01)
 
-- **resources/**  
-  Smaller support files such as metadata templates, example outputs, and configuration examples.
+- **metadata/**  
+  Structured data artifacts used throughout the pipeline, including:
+  - original metadata
+  - preprocessed metadata
+  - train/test splits
+  - extracted features
+  - feature vectors
+  - model artifacts
+  - evaluation results
 
 - **data/**  
-  Documentation and references for dataset-related content. Large datasets and zip archives are not stored directly in the repository when they exceed practical repository size limits.
+  Dataset guidance and references. Large datasets are not stored directly in the repository.
 
-- **GitHub Releases**  
-  Large downloadable assets, such as image zip files, preprocessed datasets, and other packaged artifacts used by the Colab notebooks.
+- **releases/**  
+  Documentation for GitHub Releases, used to distribute large assets when needed.
 
 ---
 
@@ -44,31 +53,6 @@ The project is designed so that required notebook inputs can be obtained from Gi
 3. optional user-downloaded zip files referenced by this tutorial.
 
 This approach keeps the workflow portable, reproducible, and easier to distribute to students.
-
----
-
-## High-Level Tutorial Sequence
-
-1. Build Dataset  
-2. Preprocess Images  
-3. Combine and Split Metadata  
-4. Extract Gradient Features  
-5. Extract Spatial Features  
-6. Extract Frequency Features  
-7. Build Feature Vectors  
-8. Normalize and Prepare Inputs  
-9. Train Selected Classifier  
-10. Train and Compare Two Classifiers  
-11. Evaluate Final Model  
-12. Further Results and Analysis
-
----
-
-## Notes on Project Assets
-
-Small project files such as notebooks, markdown pages, and Python modules are stored directly in the repository.
-
-Large assets such as zip archives of images or preprocessed datasets are intended to be distributed through GitHub Releases so that the repository remains lightweight while still supporting a complete Colab-based workflow.
 
 ---
 
@@ -134,29 +118,6 @@ The project is organized as a modular pipeline:
 
 ---
 
-## 📁 Repository Structure
-
-dip-ai-image-detection/
-
-├── README.md  
-├── notebooks/ (01–10 pipeline)  
-├── docs/ (MkDocs site)  
-└── mkdocs.yml  
-
----
-
-## ▶️ Run the Notebooks (Colab)
-
-Each stage of the pipeline can be executed independently.
-
----
-
-## 📊 Feature Set
-
-A total of **25 features** are extracted per image.
-
----
-
 ## 🧪 Dataset
 
 The dataset consists of **18,000 images**, balanced across real and AI-generated classes:
@@ -170,11 +131,6 @@ The dataset consists of **18,000 images**, balanced across real and AI-generated
 - DiffusionDB  
 - SDXL  
 - MidJourney  
-
-### Data Sources
-- **6 total sources**
-  - 3 REAL
-  - 3 AI
 
 ### Data Split
 
@@ -225,7 +181,7 @@ The dataset maintains balance across both class and source dataset to prevent bi
 
 ## 📖 Documentation
 
-A full tutorial-style documentation site is being developed using MkDocs.
+A full tutorial-style documentation site is provided through GitHub Pages.
 
 ---
 
