@@ -4,9 +4,9 @@ This project presents a feature-driven Digital Image Processing (DIP) approach f
 
 ---
 
-## 📘 Project Website
+## 📘 Tutorial and Documentation
 
-The full tutorial and documentation are available here:
+The full tutorial and step-by-step workflow are available here:
 
 👉 https://pgailinas.github.io/dip-ai-image-detection/
 
@@ -20,14 +20,6 @@ The full tutorial and documentation are available here:
 * `metadata/` – structured data artifacts used throughout the pipeline
 * `data/` – dataset guidance
 * `releases/` – large downloadable assets (via GitHub Releases)
-
----
-
-## 🚀 Getting Started
-
-Start with the project website and follow the tutorial step-by-step:
-
-👉 https://pgailinas.github.io/dip-ai-image-detection/
 
 ---
 
