@@ -6,7 +6,12 @@ nav_order: 3
 
 # 04C Extract Frequency Features
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/04C_Extract_Frequency_Features.ipynb)
+<p>
+  <strong>Open Notebook in Google Colab ➡️</strong>
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/04C_Extract_Frequency_Features.ipynb" target="_blank" rel="noopener noreferrer">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
+  </a>
+</p>
 
 ---
 
