@@ -6,7 +6,12 @@ nav_order: 1
 
 # 07 Classifier Selection
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/07_Classifier_Selection.ipynb)
+<p>
+  <strong>Open Notebook in Google Colab ➡️</strong>
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/07_Classifier_Selection.ipynb" target="_blank" rel="noopener noreferrer">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
+  </a>
+</p>
 
 ---
 
