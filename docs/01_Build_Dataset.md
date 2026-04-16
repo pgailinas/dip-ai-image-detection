@@ -7,9 +7,9 @@ nav_order: 1
 # 01 Build Dataset
 
 <p>
-  <strong style="font-size: 1.1em;">Open Notebook in Google Colab →</strong>
+  <strong style="font-size: 1.1em;">Open Notebook in Google Colab ➡️</strong>
   <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/01_Build_Dataset.ipynb" target="_blank" rel="noopener noreferrer">
-    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 10px;"/>
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
 
