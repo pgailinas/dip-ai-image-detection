@@ -1,0 +1,8 @@
+{
+    "best_classifier": "RBF SVM",
+    "best_roc_auc": 0.8789567901234567,
+    "best_params": {
+        "C": 10,
+        "gamma": "scale"
+    }
+}
