@@ -24,8 +24,8 @@ Normalization ensures that all features are on a comparable scale, which is esse
 ## Inputs
 
 - Feature vector CSV files:
-  - `train_feature_vectors.csv`
-  - `test_feature_vectors.csv`
+  - `metadata/vectors/train_feature_vectors.csv`
+  - `metadata/vectors/test_feature_vectors.csv`
 
 - Project configuration file:
   - `project_config.py`
@@ -33,18 +33,18 @@ Normalization ensures that all features are on a comparable scale, which is esse
 ## Outputs
 
 - Normalized feature vector CSV files:
-  - `train_feature_vectors_normalized.csv`
-  - `test_feature_vectors_normalized.csv`
+  - `metadata/vectors/train_feature_vectors_normalized.csv`
+  - `metadata/vectors/test_feature_vectors_normalized.csv`
 
 - Fitted scaler object:
-  - `scaler.pkl`
+  - `metadata/models/scaler.pkl`
 
 Each normalized CSV contains:
 - `filename`
 - `class_label`
 - `source_dataset`
 - `subset`
-- 26 normalized DIP feature columns
+- 25 normalized DIP feature columns
 
 ## Main Tasks
 
@@ -64,29 +64,35 @@ Provides a summary of normalization and input preparation, including purpose, in
 ### Cell 1: Import Libraries and Configuration
 Loads required libraries (e.g., Pandas, NumPy, scikit-learn) and imports shared configuration settings.
 
-### Cell 2: Load Feature Vector Tables
+### Cell 2: Define Input and Output Paths
+Defines file paths for input feature vectors, normalized outputs, and scaler storage.
+
+### Cell 3: Load Feature Vector Tables
 Reads the training and test feature vector CSV files produced in the previous step.
 
-### Cell 3: Separate Metadata and Feature Columns
+### Cell 4: Validate Structure and Define Columns
+Validates dataset structure, defines metadata columns, and identifies feature columns.
+
+### Cell 5: Separate Metadata and Feature Columns
 Splits metadata fields (filename, class label, dataset source, subset) from the numeric feature columns to ensure normalization is applied only to classifier inputs.
 
-### Cell 4: Fit Scaler on Training Features
+### Cell 6: Fit Scaler on Training Features
 Fits the normalization transform (e.g., StandardScaler) using only the training feature data to avoid information leakage.
 
-### Cell 5: Transform Training and Test Features
+### Cell 7: Transform Training and Test Features
 Applies the fitted scaler to both training and test feature sets.
 
-### Cell 6: Recombine Metadata with Normalized Features
+### Cell 8: Recombine Metadata with Normalized Features
 Reattaches metadata columns to the normalized feature values, restoring the complete dataset structure.
 
-### Cell 7: Validate Normalized Outputs
+### Cell 9: Save Normalized Feature Vectors and Scaler
+Writes normalized CSV files and saves the fitted scaler object for reuse in evaluation and future inference.
+
+### Cell 10: Validate Normalized Outputs
 Verifies:
 - Correct number of rows and columns
 - Presence of all expected feature columns
 - Consistency between training and test datasets
-
-### Cell 8: Save Normalized Feature Vectors and Scaler
-Writes normalized CSV files and saves the fitted scaler object for reuse in evaluation and future inference.
 
 ## Notes and Design Choices
 
@@ -104,9 +110,9 @@ Writes normalized CSV files and saves the fitted scaler object for reuse in eval
 
 ## Files Produced
 
-- `train_feature_vectors_normalized.csv` — Normalized training features
-- `test_feature_vectors_normalized.csv` — Normalized test features
-- `scaler.pkl` — Saved normalization model
+- `metadata/vectors/train_feature_vectors_normalized.csv` — Normalized training features
+- `metadata/vectors/test_feature_vectors_normalized.csv` — Normalized test features
+- `metadata/models/scaler.pkl` — Saved normalization model
 
 ## Role in the Overall Pipeline
 
