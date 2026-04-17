@@ -157,5 +157,31 @@ Saves:
 ## Files Produced
 
 All outputs are saved under:
+    metadata/models
+
+
+Files include:
+
+- `final_test_results.csv` — final performance summary  
+- `final_test_results.json` — metrics in structured format  
+- `confusion_matrix_mlp.csv` — MLP confusion matrix  
+- `confusion_matrix_rbf_svm.csv` — RBF SVM confusion matrix  
+- `roc_points_mlp.csv` — ROC curve points (MLP)  
+- `roc_points_rbf_svm.csv` — ROC curve points (RBF SVM)  
+
+---
+
+## Role in the Overall Pipeline
+
+This notebook represents the **final evaluation stage** of the pipeline.
+
+It uses the trained models from Notebook 08 and evaluates them on an independent test dataset to produce the final performance results reported in the project.
+
+---
+
+## Next Step
+
+➡️ [10 Further Results](10_Further_Results.md)
+
 
 
