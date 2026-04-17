@@ -1,10 +1,10 @@
 ---
-title: 09 Validate and Compare Models
+title: 09 Validate and Tune Two Models
 parent: 4. Basic Testing Tutorial
 nav_order: 1
 ---
 
-# 09 Validate and Compare Models
+# 09 Validate and Tune Two Models
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
