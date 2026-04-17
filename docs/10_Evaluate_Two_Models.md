@@ -1,7 +1,7 @@
 ---
 title: 10 Evaluate Two Models
-parent: 3. Model Optimization Tutorial
-nav_order: 4
+parent: 6. Full Training Tutorial
+nav_order: 1
 ---
 
 # 10 Evaluate Two Models
