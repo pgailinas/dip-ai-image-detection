@@ -1,14 +1,14 @@
 ---
 title: 09 Validate and Tune Two Models
-parent: 4. Basic Testing Tutorial
-nav_order: 1
+parent: 3. Model Optimization Tutorial
+nav_order: 3
 ---
 
 # 09 Validate and Tune Two Models
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/09_Validate_and_Compare_Models.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/09_Validate_and_Tune_Two_Models.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -17,171 +17,130 @@ nav_order: 1
 
 ## Purpose
 
-This notebook performs the **final independent evaluation** of the trained classifiers—**RBF SVM** and **MLP**—on the held-out test dataset.
+This notebook performs **validation and comparison** of the two selected  
+classifiers using the normalized Digital Image Processing (DIP) feature vectors.
 
-The goal is to assess how well each model generalizes to unseen data using a fully independent test set. Performance is measured using multiple evaluation metrics and visualized through confusion matrices and ROC curves.
+The focus is on evaluating the retained models:
+
+- RBF Support Vector Machine (RBF SVM)  
+- Multi-Layer Perceptron (MLP)  
+
+Both classifiers are evaluated using a consistent stratified cross-validation  
+framework to compare their performance prior to final independent testing.
 
 ---
 
 ## Inputs
 
-- Normalized feature vector CSV file:
-  - `test_feature_vectors_normalized.csv`
-
-- Trained model files (from Notebook 08):
-  - `model_rbf_svm.pkl`
-  - `model_mlp.pkl`
-
-- Supporting model artifacts:
-  - `trained_model_configs.json`
-  - `cross_validation_results.csv`
+- Normalized training feature vectors:
+  - `metadata/vectors/train_feature_vectors_normalized.csv`
 
 - Project configuration file:
   - `project_config.py`
+
+Classifier configurations are defined within this notebook based on  
+results from Notebook 07 and the finalized model design.
 
 ---
 
 ## Outputs
 
-- Final evaluation metrics for both models:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-score
-  - ROC-AUC
+All outputs are saved to `metadata/results/`:
 
-- Confusion matrices (raw and normalized)
-
-- ROC curve comparison
-
-- Saved evaluation outputs (in `metadata/models/`):
-
-  - `final_test_results.csv`
-  - `final_test_results.json`
-  - `confusion_matrix_mlp.csv`
-  - `confusion_matrix_rbf_svm.csv`
-  - `roc_points_mlp.csv`
-  - `roc_points_rbf_svm.csv`
+- `cross_validation_results.csv` — Full cross-validation performance summary  
+- `classifier_comparison_tuned.csv` — Condensed comparison of key metrics  
 
 ---
 
 ## Main Tasks
 
-- Load normalized test feature vectors
-- Validate dataset integrity
-- Separate features and labels
-- Load trained classifier models
-- Generate predictions and probability scores
-- Compute evaluation metrics
-- Construct confusion matrices (side-by-side comparison)
-- Generate ROC curves
-- Summarize model performance
-- Save evaluation results for reporting
+- Load normalized training feature vectors  
+- Validate dataset integrity  
+- Separate features and labels  
+- Define selected classifier configurations  
+- Perform stratified k-fold cross-validation  
+- Evaluate models using multiple performance metrics  
+- Compare validation performance  
+- Save validation outputs  
 
 ---
 
 ## Cell-by-Cell Description
 
-### Cell 0: Notebook Overview
-Provides a summary of evaluation objectives and workflow.
+### Cell 0: Notebook Summary
+Provides an overview of validation objectives and workflow.
+
+### Startup Cell
+Initializes environment, sets project paths, and verifies required input files.
 
 ### Cell 1: Import Required Libraries
-Loads required libraries (NumPy, pandas, scikit-learn, matplotlib, seaborn).
+Loads required libraries including NumPy, pandas, and scikit-learn.
 
-### Cell 2: Load Test Data and Model Artifacts
-Loads normalized test dataset, trained models, and supporting metadata files.
+### Cell 2: Load Normalized Training Data
+Reads the normalized training dataset and displays structure information.
 
-### Cell 3: Validate Test Data
-Performs sanity checks:
-- metadata column verification
-- feature count validation (25 features)
-- missing value checks
-- label consistency
-- test subset validation
+### Cell 3: Validate Training Data
+Performs sanity checks including:
+- metadata column verification  
+- feature count validation (25 features)  
+- missing value checks  
+- label consistency  
+- preparation of `X_train` and `y_train`  
 
-### Cell 4: Generate Predictions
-Applies both models to the test dataset to generate:
-- predicted class labels
-- class probabilities for ROC analysis
+### Cell 4: Define Classifier Configurations
+Defines the two selected classifiers and their tuned hyperparameters.
 
-### Cell 5: Compute Evaluation Metrics
-Calculates final test-set metrics:
-- accuracy
-- precision
-- recall
-- F1-score
-- ROC-AUC
+### Cell 5: Cross-Validate Classifiers
+Evaluates both classifiers using stratified k-fold cross-validation across multiple performance metrics.
 
-### Cell 6: Confusion Matrix Analysis
-Generates and displays:
-- confusion matrices (counts)
-- normalized confusion matrices
-- side-by-side visual comparison
+### Cell 6: Summarize and Compare Results
+Aggregates and compares validation performance, prioritizing ROC-AUC.
 
-### Cell 7: ROC Curve Analysis
-Generates ROC curves for both models and compares their performance.
+### Cell 7: Save Validation Outputs
+Saves cross-validation results and comparison tables to `metadata/results/`.
 
-### Cell 8: Results Summary
-Creates summary tables:
-- model comparison table (sorted by ROC-AUC)
-- transposed metrics table (report-friendly format)
-
-### Cell 9: Save Evaluation Outputs
-Saves:
-- final evaluation metrics
-- confusion matrices
-- ROC curve points
-- summary tables for reporting
+### Cell 8: Validation Output Sanity Check
+Reloads saved files and verifies correctness of outputs.
 
 ---
 
 ## Notes and Design Choices
 
-- **Independent test evaluation:**  
-  The test dataset is never used during training or model selection, ensuring an unbiased estimate of performance.
+- **Two-model validation approach:**  
+  Both RBF SVM and MLP are evaluated to preserve a fair comparison prior to final testing.
 
-- **Two-model comparison:**  
-  Both RBF SVM and MLP are evaluated to provide a meaningful comparison between model types.
+- **In-notebook configuration:**  
+  Classifier parameters are defined directly in this notebook based on prior selection results.
 
-- **Consistent evaluation framework:**  
-  Both models are evaluated using identical data and metrics.
+- **Cross-validation framework:**  
+  Stratified k-fold cross-validation ensures consistent and unbiased evaluation.
 
-- **Side-by-side visualization:**  
-  Confusion matrices are displayed side-by-side for direct comparison of classification behavior.
-
-- **Reproducibility:**  
-  All outputs are saved for documentation and future analysis.
+- **Separation of concerns:**  
+  This notebook evaluates model behavior using training data only.  
+  Final evaluation on unseen test data is performed in a later notebook.
 
 ---
 
 ## Files Produced
 
-All outputs are saved under:
-    metadata/models
-
-
-Files include:
-
-- `final_test_results.csv` — final performance summary  
-- `final_test_results.json` — metrics in structured format  
-- `confusion_matrix_mlp.csv` — MLP confusion matrix  
-- `confusion_matrix_rbf_svm.csv` — RBF SVM confusion matrix  
-- `roc_points_mlp.csv` — ROC curve points (MLP)  
-- `roc_points_rbf_svm.csv` — ROC curve points (RBF SVM)  
+### `metadata/results/`
+- `cross_validation_results.csv` — Full cross-validation performance summary  
+- `classifier_comparison_tuned.csv` — Condensed comparison table  
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook represents the **final evaluation stage** of the pipeline.
+This notebook represents the **validation and tuning stage** of the pipeline.
 
-It uses the trained models from Notebook 08 and evaluates them on an independent test dataset to produce the final performance results reported in the project.
+It evaluates the selected classifiers using consistent procedures and  
+produces performance summaries that inform interpretation of final test results.
 
 ---
 
 ## Next Step
 
-➡️ [10 Further Results](10_Further_Results.md)
+➡️ `10_Evaluate_Two_Models.md`
 
 
 
