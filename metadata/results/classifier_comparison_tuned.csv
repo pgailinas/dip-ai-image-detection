@@ -1,0 +1,4 @@
+classifier,best_roc_auc,best_params,fit_time_sec
+RBF SVM,0.8789567901234567,"{'C': 10, 'gamma': 'scale'}",269.6822407245636
+MLP,0.8668730709876543,"{'alpha': 0.001, 'hidden_layer_sizes': (64, 32), 'learning_rate_init': 0.0005}",136.0877914428711
+Random Forest,0.8487854938271605,"{'max_depth': None, 'n_estimators': 200}",50.09095358848572
