@@ -17,102 +17,132 @@ nav_order: 2
 
 ## Purpose
 
-This notebook trains and compares two selected classifiers—**Radial Basis Function Support Vector Machine (RBF SVM)** and **Multi-Layer Perceptron (MLP)**—using the normalized DIP feature vectors.
+This notebook performs **model training** for the top-performing classifiers  
+identified in Notebook 07 using the normalized DIP feature vectors.
 
-Both models are evaluated using cross-validation on the training dataset. The best-performing configuration for each classifier type is then trained on the full training set and saved for final evaluation.
+Rather than selecting a single model, this notebook trains **two classifiers**  
+(e.g., RBF SVM and MLP) using their optimized hyperparameters and prepares them  
+for final independent evaluation.
+
+---
 
 ## Inputs
 
-- Normalized feature vector CSV files:
+- Normalized feature vector CSV file:
   - `train_feature_vectors_normalized.csv`
-  - `test_feature_vectors_normalized.csv`
+
+- Classifier configuration file (from Notebook 07):
+  - `best_classifier_config.json`
 
 - Project configuration file:
   - `project_config.py`
 
+---
+
 ## Outputs
 
 - Trained model files:
-  - `best_rbf_svm_model.pkl`
-  - `best_mlp_model.pkl`
+  - `model_rbf_svm.pkl`
+  - `model_mlp.pkl`
 
 - Cross-validation results:
   - `cross_validation_results.csv`
 
-- Best model configurations:
-  - `best_model_config.json`
+- Trained model configurations:
+  - `trained_model_configs.json`
+
+---
 
 ## Main Tasks
 
-- Load normalized feature vectors
+- Load normalized training feature vectors
+- Validate dataset integrity
 - Separate features and labels
-- Define hyperparameter grids for both classifiers
-- Perform cross-validation with hyperparameter tuning
+- Load selected classifier configurations from JSON
+- Initialize classifiers with tuned hyperparameters
+- Perform cross-validation on both classifiers
 - Compare model performance
-- Select best configurations
-- Train final models on full training data
-- Save trained models and results
+- Train both models on full training data
+- Save trained models and configuration summaries
+
+---
 
 ## Cell-by-Cell Description
 
 ### Cell 0: Notebook Overview
-Provides a summary of training objectives, including comparison of two classifier types and expected outputs.
+Provides a summary of training objectives and workflow.
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., scikit-learn, Pandas, NumPy) and imports shared configuration settings.
+### Cell 1: Import Required Libraries
+Loads required libraries including NumPy, pandas, and scikit-learn.
 
-### Cell 2: Load Normalized Feature Vectors
-Reads the normalized training dataset and prepares feature and label arrays.
+### Cell 2: Load Normalized Training Data
+Reads the normalized training dataset and displays structure information.
 
-### Cell 3: Prepare Training Data
-Separates input features (`X_train`) and target labels (`y_train`) for use in model training.
+### Cell 3: Validate Training Data
+Performs sanity checks including:
+- metadata column verification
+- feature count validation (25 features)
+- missing value checks
+- label consistency
 
-### Cell 4: Define Hyperparameter Grids
-Specifies parameter grids for:
-- RBF SVM (e.g., C, gamma)
-- MLP (e.g., hidden layer sizes, regularization)
+### Cell 4: Load Classifier Configurations
+Loads the top two classifier configurations from `best_classifier_config.json`.
 
-### Cell 5: Perform Cross-Validation and Hyperparameter Tuning
-Uses GridSearchCV with stratified k-fold cross-validation to evaluate different parameter combinations for both classifiers.
+### Cell 5: Cross-Validate Classifiers
+Evaluates both classifiers using stratified k-fold cross-validation and multiple performance metrics.
 
-### Cell 6: Compare Model Performance
-Analyzes cross-validation results and identifies the best-performing configuration for each classifier type.
+### Cell 6: Summarize and Rank Results
+Aggregates and ranks classifier performance, prioritizing ROC-AUC.
 
 ### Cell 7: Train Final Models
-Retrains the best RBF SVM and MLP models using the full training dataset.
+Trains both classifiers on the full training dataset.
 
 ### Cell 8: Save Trained Models
-Saves both trained models to disk for use in final evaluation.
+Saves trained models to `.pkl` files for downstream evaluation.
 
-### Cell 9: Save Cross-Validation Results and Best Configurations
-Writes cross-validation summaries and selected hyperparameters to CSV and JSON files for documentation and reproducibility.
+### Cell 9: Save Results and Configurations
+Saves cross-validation results and trained model configurations.
+
+---
 
 ## Notes and Design Choices
 
-- **Two-model comparison:**  
-  Both RBF SVM and MLP are retained to compare different learning approaches.
+- **Two-model training approach:**  
+  Both RBF SVM and MLP are retained to enable comparative evaluation.
 
-- **Cross-validation-based tuning:**  
-  Hyperparameters are selected using stratified k-fold cross-validation to ensure robust model selection.
+- **JSON-driven configuration:**  
+  Classifier parameters are loaded directly from Notebook 07 output, ensuring consistency between selection and training stages.
+
+- **Cross-validation validation:**  
+  Both models are evaluated using stratified k-fold cross-validation prior to final training.
 
 - **Final training on full dataset:**  
-  After tuning, models are retrained on all available training data to maximize performance.
+  Models are retrained on all available training data to maximize performance.
 
 - **Model persistence:**  
-  Saving trained models allows consistent evaluation and reuse without retraining.
+  Saving trained models enables reproducible evaluation in subsequent notebooks.
+
+---
 
 ## Files Produced
 
-- `best_rbf_svm_model.pkl` — Trained RBF SVM model
-- `best_mlp_model.pkl` — Trained MLP model
-- `cross_validation_results.csv` — Summary of CV performance
-- `best_model_config.json` — Selected hyperparameters and metadata
+- `model_rbf_svm.pkl` — Trained RBF SVM model  
+- `model_mlp.pkl` — Trained MLP model  
+- `cross_validation_results.csv` — Cross-validation performance summary  
+- `trained_model_configs.json` — Model configurations and metadata  
+
+---
 
 ## Role in the Overall Pipeline
 
-This notebook produces the final trained models used for independent evaluation. It represents the transition from model selection to finalized classifier implementations.
+This notebook represents the **model training stage** of the pipeline.
+
+It takes the selected classifiers from Notebook 07, trains them using consistent procedures, and produces final models ready for independent test evaluation.
+
+---
 
 ## Next Step
 
-➡️ [09 Validate and Tune Two Models](09_Validate_and_Tune_Two_Models.md)
+➡️ [09 Validate and Compare Models](09_Validate_and_Compare_Models.md)
+
 
