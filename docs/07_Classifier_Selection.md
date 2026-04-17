@@ -17,92 +17,143 @@ nav_order: 1
 
 ## Purpose
 
-This notebook evaluates a range of candidate classifiers using the normalized DIP feature vectors and selects the best-performing models based on cross-validation performance.
+This notebook evaluates a range of candidate classifiers using the normalized DIP feature vectors and identifies the **top-performing models** based on cross-validation performance.
 
-The goal is to identify which classifier types are most effective at distinguishing real images from AI-generated images prior to detailed tuning and final training.
+Rather than selecting a single classifier, this notebook selects the **top two classifiers** and carries them forward for further training and final independent evaluation.
+
+---
 
 ## Inputs
 
-- Normalized feature vector CSV files:
+- Normalized feature vector CSV file:
   - `train_feature_vectors_normalized.csv`
-  - `test_feature_vectors_normalized.csv`
 
 - Project configuration file:
   - `project_config.py`
 
+---
+
 ## Outputs
 
 - Baseline classifier comparison results:
-  - `baseline_model_results.csv`
+  - `classifier_comparison_baseline.csv`
 
-This CSV contains performance metrics for each classifier:
-- Accuracy
-- Precision
-- Recall
-- F1-score
-- ROC-AUC
+- Tuned classifier comparison results:
+  - `classifier_comparison_tuned.csv`
+
+- Top classifier configurations:
+  - `best_classifier_config.json`
+
+---
 
 ## Main Tasks
 
 - Load normalized feature vectors
+- Validate dataset integrity
 - Separate features and labels
 - Define candidate classifiers
 - Perform cross-validation
 - Evaluate models using multiple metrics
 - Rank classifiers based on performance
-- Save comparison results
+- Apply controlled hyperparameter tuning
+- Select and save the **top two classifiers**
+
+---
 
 ## Cell-by-Cell Description
 
 ### Cell 0: Notebook Overview
-Provides a summary of classifier selection objectives, including evaluation approach and expected outputs.
+Provides a summary of classifier selection objectives, including evaluation methodology and outputs.
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., scikit-learn, Pandas, NumPy) and imports shared configuration settings.
+### Cell 1: Import Required Libraries
+Loads required libraries including NumPy, pandas, and scikit-learn classifiers.
 
-### Cell 2: Load Normalized Feature Vectors
-Reads the normalized training dataset and prepares feature and label arrays.
+### Cell 2: Load Normalized Training Data
+Reads the normalized training dataset and displays sample rows and column names.
 
-### Cell 3: Prepare Training Data
-Separates input features (`X_train`) and target labels (`y_train`) for use in model evaluation.
+### Cell 3: Validate Training Data
+Performs sanity checks including:
+- missing values
+- class distribution
+- metadata columns
+- feature count (25 features)
 
-### Cell 4: Define Candidate Classifiers
-Specifies a set of candidate classifiers (e.g., MLP, RBF SVM, Random Forest, Logistic Regression) to be evaluated.
+### Cell 4: Prepare Training Data
+Separates:
+- feature matrix (`X_train`)
+- target labels (`y_train`)
+- encodes labels for classification
 
-### Cell 5: Perform Cross-Validation
-Applies stratified k-fold cross-validation to each classifier to ensure robust performance estimation.
+### Cell 5: Define Candidate Classifiers
+Defines:
+- multiple classifier types (SVM, MLP, RF, etc.)
+- stratified k-fold cross-validation strategy
+- evaluation metrics
 
-### Cell 6: Compute Evaluation Metrics
-Calculates performance metrics for each classifier, including accuracy, precision, recall, F1-score, and ROC-AUC.
+### Cell 6: Run Baseline Classifier Comparison
+Applies cross-validation to each classifier and computes:
+- accuracy
+- precision
+- recall
+- F1-score
+- ROC-AUC
 
-### Cell 7: Rank Classifier Performance
-Aggregates and ranks classifier results based on cross-validation metrics, typically prioritizing ROC-AUC.
+### Cell 7: Compile and Rank Results
+Aggregates and ranks classifier performance, prioritizing ROC-AUC.
 
-### Cell 8: Save Baseline Results
-Writes the classifier comparison results to a CSV file for reference and further analysis.
+### Cell 8: Tune Top Classifiers
+Applies **controlled (small-grid) hyperparameter tuning** to top-performing classifiers.
+
+### Cell 9: Save Results
+Saves:
+- baseline comparison results (CSV)
+- tuned comparison results (CSV)
+- **top two classifier configurations (JSON)**
+
+### Cell 10: Summary and Recommendations
+Summarizes results and recommends the **top two classifiers** for downstream training and evaluation.
+
+---
 
 ## Notes and Design Choices
 
 - **Cross-validation approach:**  
-  Stratified k-fold cross-validation is used to ensure stable and reliable performance estimates.
+  Stratified k-fold cross-validation ensures stable and reliable performance estimates.
 
 - **Multiple evaluation metrics:**  
-  Performance is assessed using a range of metrics to provide a comprehensive view of classifier behavior.
+  Models are evaluated using accuracy, precision, recall, F1-score, and ROC-AUC.
 
 - **ROC-AUC prioritization:**  
-  ROC-AUC is emphasized as a primary metric due to its robustness in binary classification tasks.
+  ROC-AUC is used as the primary ranking metric due to its robustness in binary classification.
 
-- **Model diversity:**  
-  A variety of classifier types are evaluated to explore different modeling approaches.
+- **Controlled tuning:**  
+  Hyperparameter tuning uses small, targeted grids rather than exhaustive search.
+
+- **Multi-model selection:**  
+  The top two classifiers are selected to:
+  - reduce sensitivity to small performance differences
+  - enable comparison across model types
+  - improve experimental robustness
+
+---
 
 ## Files Produced
 
-- `baseline_model_results.csv` — Cross-validation performance summary for all candidate classifiers
+- `classifier_comparison_baseline.csv` — Cross-validation results for all classifiers  
+- `classifier_comparison_tuned.csv` — Results after hyperparameter tuning  
+- `best_classifier_config.json` — Configuration of the **top two classifiers**
+
+---
 
 ## Role in the Overall Pipeline
 
-This notebook identifies the most promising classifier types for the DIP feature representation. The selected models are then further tuned and trained in the next stage.
+This notebook identifies the strongest classifier candidates for the DIP feature representation and prepares them for final training.
+
+The selected classifiers are trained and evaluated in subsequent notebooks.
+
+---
 
 ## Next Step
 
 ➡️ [08 Train Two Classifiers](08_Train_Two_Classifiers.md)
+
