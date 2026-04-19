@@ -20,99 +20,103 @@ nav_order: 1
 This notebook constructs the initial dataset for the DIP-based AI image detection project. It defines and organizes metadata for all image sources while establishing a consistent structure used throughout the pipeline.
 
 The dataset consists of six sources:
-- **Real images (3 sources)**
-- **AI-generated images (3 sources)**
+
+* **Real images (3 sources)**
+* **AI-generated images (3 sources)**
 
 A total of **18,000 images** are referenced and prepared through metadata, without physically moving or duplicating files.
 
+---
+
 ## Inputs
 
-- Raw image directories for:
-  - ImageNet (subset)
-  - MS COCO (subset)
-  - OpenImages (subset)
-  - DiffusionDB (subset)
-  - SDXL-generated images (subset)
-  - MidJourney images (subset)
+* Raw image directories for:
 
-- Project configuration file:
-  - `project_config.py`
+  * ImageNet (subset)
+  * MS COCO (subset)
+  * OpenImages (subset)
+  * DiffusionDB (subset)
+  * SDXL-generated images (subset)
+  * MidJourney images (subset)
+
+* Project configuration file:
+
+  * `project_config.py`
+
+---
 
 ## Outputs
 
-- Individual metadata CSV files for each dataset:
-  - `imgn_metadata.csv`
-  - `coco_metadata.csv`
-  - `open_metadata.csv`
-  - `diff_metadata.csv`
-  - `sdxl_metadata.csv`
-  - `mj_metadata.csv`
+The following metadata files are generated:
 
-Each CSV contains:
-- `filename`
-- `class_label` (real or ai)
-- `source_dataset`
+* `imgn_metadata.csv`
+* `coco_metadata.csv`
+* `open_metadata.csv`
+* `diff_metadata.csv`
+* `sdxl_metadata.csv`
+* `mj_metadata.csv`
+
+Each file contains:
+
+* `filename`
+* `class_label` (real or ai)
+* `source_dataset`
+
+---
 
 ## Main Tasks
 
-- Define dataset sources and class labels
-- Enumerate image files for each dataset
-- Assign consistent naming conventions
-- Generate structured metadata tables
-- Save metadata CSV files for downstream processing
+* Define dataset sources and class labels
+* Enumerate image files for each dataset
+* Apply consistent naming conventions
+* Generate structured metadata tables
+* Save metadata CSV files for downstream processing
 
-## Cell-by-Cell Description
+---
 
-### Cell 0: Notebook Overview
-Provides a high-level summary of the dataset construction process, including inputs, outputs, and assumptions.
+## Processing Workflow
 
-### Cell 1: Import Libraries and Configuration
-Imports required Python libraries and loads shared configuration values such as directory paths and dataset definitions.
+This notebook executes a structured sequence of steps to construct the dataset metadata:
 
-### Cell 2: Define Dataset Sources
-Specifies the six dataset sources and assigns each to either the **real** or **AI-generated** class.
+1. **Environment Setup and Configuration**
+   The runtime environment is initialized, required libraries are imported, and project configuration settings are loaded.
 
-### Cell 3: Enumerate Image Files
-Scans dataset directories and collects filenames for each source. This step ensures that all images are accounted for without modifying their physical locations.
+2. **Dataset Definition**
+   Six dataset sources are defined and assigned to either the real or AI-generated class.
 
-### Cell 4: Apply Naming Convention
-Applies a consistent filename convention:
-This ensures traceability and consistency across all datasets.
+3. **Image Enumeration**
+   Image files are enumerated from each dataset directory, ensuring all available images are referenced without modifying their physical locations.
 
-### Cell 5: Create Metadata Tables
-Constructs a metadata table for each dataset containing filename, class label, and source information.
+4. **Metadata Construction**
+   Structured metadata tables are created for each dataset, capturing filename, class label, and source information.
 
-### Cell 6: Validate Metadata
-Performs validation checks to confirm:
-- Correct number of images per dataset
-- Balanced class distribution
-- Proper formatting of metadata fields
+5. **Validation**
+   Metadata is validated to ensure:
 
-### Cell 7: Save Metadata CSV Files
-Writes metadata tables to CSV files in the project metadata directory for use in subsequent pipeline steps.
+   * Correct number of images per dataset
+   * Balanced class distribution
+   * Proper formatting and consistency
+
+6. **Output Generation**
+   Metadata tables are saved as CSV files for use in all subsequent pipeline stages.
+
+---
 
 ## Notes and Design Choices
 
-- **Metadata-driven design:**  
+* **Metadata-driven design:**
   Images are not moved or duplicated; all processing is controlled through CSV files.
 
-- **Balanced dataset construction:**  
+* **Balanced dataset construction:**
   Equal representation is maintained between real and AI-generated images.
 
-- **Consistent naming convention:**  
+* **Consistent naming convention:**
   Enables traceability across preprocessing, feature extraction, and evaluation stages.
 
-- **Separation of data and logic:**  
+* **Separation of data and logic:**
   Dataset structure is defined via configuration, improving maintainability and reproducibility.
 
-## Files Produced
-
-- `imgn_metadata.csv` — ImageNet metadata (real)
-- `coco_metadata.csv` — COCO metadata (real)
-- `open_metadata.csv` — OpenImages metadata (real)
-- `diff_metadata.csv` — DiffusionDB metadata (AI)
-- `sdxl_metadata.csv` — SDXL metadata (AI)
-- `mj_metadata.csv` — MidJourney metadata (AI)
+---
 
 ## Role in the Overall Pipeline
 
@@ -127,4 +131,5 @@ All later processing stages rely exclusively on these metadata files to access a
 The dataset produced here is passed to the preprocessing stage:
 
 ➡️ [02 Preprocess Images](02_Preprocess_Images.md)
+
 
