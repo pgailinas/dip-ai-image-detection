@@ -1,10 +1,10 @@
 ---
-title: 10 Evaluate Two Models
+title: 12 Evaluate Two Models
 parent: 6. Full Training Tutorial
 nav_order: 1
 ---
 
-# 10 Evaluate Two Models
+# 12 Evaluate Two Models
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
@@ -149,5 +149,5 @@ results used for reporting, analysis, and conclusions.
 
 ## Next Step
 
-➡️ [11A Feature Level Analysis](11A_Feature_Level_Analysis.md)
+➡️ [13 Feature Level Analysis](13_Feature_Level_Analysis.md)
 
