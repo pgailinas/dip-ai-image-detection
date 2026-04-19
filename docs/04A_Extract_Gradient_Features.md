@@ -21,119 +21,136 @@ This notebook extracts gradient-based features from preprocessed images. These f
 
 Gradient-based descriptors form the first group of the 26-dimensional DIP feature vector used for classification.
 
+---
+
 ## Inputs
 
-- Training and test metadata:
-  - `train_metadata.csv`
-  - `test_metadata.csv`
+* Training and test metadata:
 
-- Preprocessed image files referenced by metadata
+  * `train_metadata.csv`
+  * `test_metadata.csv`
 
-- Project configuration file:
-  - `project_config.py`
+* Preprocessed image files referenced by metadata
+
+* Project configuration file:
+
+  * `project_config.py`
+
+---
 
 ## Outputs
 
-- Gradient feature CSV files:
-  - `train_gradient_features.csv`
-  - `test_gradient_features.csv`
+The following gradient feature datasets are generated:
 
-Each CSV contains:
-- `filename`
-- `class_label`
-- `source_dataset`
-- `subset`
-- Gradient-based feature columns
+* `train_gradient_features.csv`
+  Gradient features for the training dataset.
+
+* `test_gradient_features.csv`
+  Gradient features for the test dataset.
+
+Each dataset includes:
+
+* `filename`
+* `class_label`
+* `source_dataset`
+* `subset`
+* Gradient-based feature columns
+
+---
 
 ## Main Tasks
 
-- Load training and test metadata
-- Read preprocessed images
-- Compute gradient magnitude and orientation
-- Extract statistical descriptors from gradient data
-- Construct feature tables
-- Save gradient feature CSV files
+* Load training and test metadata
+* Read preprocessed images
+* Compute gradient magnitude and orientation
+* Extract statistical descriptors from gradient data
+* Construct feature tables
+* Save gradient feature CSV files
 
-## Cell-by-Cell Description
+---
 
-### Cell 0: Notebook Overview
-Provides a summary of gradient feature extraction, including purpose, inputs, and outputs.
+## Processing Workflow
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., NumPy, OpenCV, Pandas) and imports shared configuration settings.
+This notebook executes a structured sequence of steps to extract gradient-based image features:
 
-### Cell 2: Load Train and Test Metadata
-Reads the training and test metadata files generated in the previous step.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and training and test metadata are loaded.
 
-### Cell 3: Define Gradient Computation Functions
-Implements functions to compute gradient magnitude and orientation using image derivatives.
+2. **Image Access and Preparation**
+   Preprocessed images are accessed using metadata references, ensuring consistent input data across all samples.
 
-### Cell 4: Extract Gradient Features
-Processes each image to compute gradient-based descriptors that capture edge strength, structural variation, and directional patterns.
+3. **Gradient Computation**
+   Image gradients are computed using spatial derivatives to obtain:
+
+   * Gradient magnitude (edge strength)
+   * Gradient orientation (edge direction)
+
+4. **Feature Extraction**
+   Statistical descriptors are derived from gradient data to capture structural characteristics of each image.
+
+5. **Feature Table Construction**
+   Extracted features are combined with metadata to form structured feature tables for both training and test datasets.
+
+6. **Validation and Output Generation**
+   Feature tables are validated for consistency and completeness, then saved for downstream processing.
+
+---
+
+## Gradient Feature Definitions
 
 The following eight features are extracted:
 
-- **Mean Gradient Magnitude**  
-  Represents the average strength of edges in the image. Higher values indicate stronger overall edge presence and more pronounced structural detail.
+* **Mean Gradient Magnitude**
+  Represents the average strength of edges in the image.
 
-- **Standard Deviation of Gradient Magnitude**  
-  Measures variability in edge strength. High values suggest a mix of strong and weak edges, indicating complex textures or heterogeneous regions.
+* **Standard Deviation of Gradient Magnitude**
+  Measures variability in edge strength across the image.
 
-- **Maximum Gradient Magnitude**  
-  Captures the strongest edge response in the image. This reflects the presence of sharp transitions or highly defined boundaries.
+* **Maximum Gradient Magnitude**
+  Captures the strongest edge response.
 
-- **Gradient Entropy**  
-  Quantifies the randomness or complexity of gradient magnitudes. Higher entropy indicates more diverse edge strengths, while lower entropy suggests more uniform structure.
+* **Gradient Entropy**
+  Quantifies the randomness or complexity of gradient magnitudes.
 
-- **Edge Density**  
-  Represents the proportion of pixels classified as edges. This provides a measure of how densely edges are distributed across the image.
+* **Edge Density**
+  Represents the proportion of pixels classified as edges.
 
-- **Orientation Mean**  
-  Computes the average direction of gradients. This reflects dominant structural orientation within the image.
+* **Orientation Mean**
+  Computes the average direction of gradients.
 
-- **Orientation Standard Deviation**  
-  Measures the spread of gradient directions. Low values indicate consistent directional structure, while high values suggest more varied or chaotic orientations.
+* **Orientation Standard Deviation**
+  Measures variability in gradient directions.
 
-- **Orientation Entropy**  
-  Quantifies the randomness of gradient directions. Higher entropy indicates a wide variety of edge orientations, while lower entropy suggests more uniform directional patterns.
+* **Orientation Entropy**
+  Quantifies the randomness of gradient orientations.
 
-### Cell 5: Build Feature Tables
-Constructs structured DataFrames containing metadata and extracted gradient features.
-
-### Cell 6: Validate Feature Tables
-Verifies:
-- Correct number of rows
-- Presence of all expected feature columns
-- Consistency between metadata and feature values
-
-### Cell 7: Save Gradient Feature CSV Files
-Writes training and test gradient feature tables to CSV files for downstream processing.
+---
 
 ## Notes and Design Choices
 
-- **Edge-focused representation:**  
+* **Edge-focused representation:**
   Gradient features emphasize structural content such as edges and contours, which often differ between real and AI-generated images.
 
-- **Orientation analysis:**  
+* **Orientation analysis:**
   Gradient direction statistics provide additional discriminatory information beyond magnitude alone.
 
-- **Entropy measures:**  
+* **Entropy measures:**
   Entropy captures the complexity and variability of gradient distributions.
 
-- **Separation of feature groups:**  
+* **Separation of feature groups:**
   Gradient features are computed independently to support modular design and easier analysis of feature contributions.
 
-## Files Produced
-
-- `train_gradient_features.csv` — Gradient features for training set
-- `test_gradient_features.csv` — Gradient features for test set
+---
 
 ## Role in the Overall Pipeline
 
 This notebook produces the first group of features used in the DIP feature vector. These features are later combined with spatial and frequency-domain features to form the complete input representation for classifier training.
 
+---
+
 ## Next Step
 
 ➡️ [04B Extract Spatial Features](04B_Extract_Spatial_Features.md)
+
 
 
