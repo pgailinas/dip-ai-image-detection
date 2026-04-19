@@ -1,10 +1,10 @@
 ---
-title: 11 Basic Fine Tuning
-parent: 5. Basic Fine Tuning Tutorial
+title: 11 Basic Fine-Tuning
+parent: 5. Basic Fine-Tuning Tutorial
 nav_order: 1
 ---
 
-# 11 Basic Fine Tuning
+# 11 Basic Fine-Tuning
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
