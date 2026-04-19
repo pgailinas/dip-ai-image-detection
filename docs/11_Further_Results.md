@@ -21,91 +21,101 @@ This notebook explores additional experiments and analyses beyond the core pipel
 
 These experiments investigate the contribution of individual features, compare simplified models to the full feature set, and provide further insight into model performance and generalization.
 
+---
+
 ## Inputs
 
-- Normalized feature vector CSV files:
-  - `train_feature_vectors_normalized.csv`
-  - `test_feature_vectors_normalized.csv`
+* Normalized feature vector CSV files:
 
-- Trained model configurations (optional reuse)
+  * `train_feature_vectors_normalized.csv`
+  * `test_feature_vectors_normalized.csv`
 
-- Project configuration file:
-  - `project_config.py`
+* Trained model configurations (optional reuse)
+
+* Project configuration file:
+
+  * `project_config.py`
+
+---
 
 ## Outputs
 
-- Single-feature model evaluation results:
-  - Accuracy
-  - Precision
-  - Recall
-  - F1-score
-  - ROC-AUC
+The following exploratory analysis results are generated:
 
-- Comparative performance tables
+* Single-feature model evaluation metrics:
 
-- Additional plots and summaries (optional)
+  * Accuracy
+  * Precision
+  * Recall
+  * F1-score
+  * ROC-AUC
+
+* Comparative performance tables
+
+* Optional plots and summary visualizations
+
+---
 
 ## Main Tasks
 
-- Evaluate models using individual DIP features
-- Compare single-feature performance against full feature set
-- Analyze feature importance and discriminative power
-- Explore model behavior across different datasets
-- Summarize insights and observations
+* Evaluate models using individual DIP features
+* Compare single-feature performance against full feature set
+* Analyze feature importance and discriminative power
+* Explore model behavior across different datasets
+* Summarize insights and observations
 
-## Cell-by-Cell Description
+---
 
-### Cell 0: Notebook Overview
-Provides a summary of exploratory analysis objectives and the types of additional results generated.
+## Processing Workflow
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., scikit-learn, Pandas, NumPy, Matplotlib) and imports shared configuration settings.
+This notebook executes a structured sequence of exploratory analysis steps:
 
-### Cell 2: Load Normalized Feature Vectors
-Reads training and test feature vector datasets for analysis.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and normalized training and test datasets are loaded.
 
-### Cell 3: Prepare Data for Feature-Level Evaluation
-Separates features and labels and prepares data structures for evaluating individual features.
+2. **Data Preparation**
+   Feature matrices and labels are separated to enable both full-model and feature-level evaluations.
 
-### Cell 4: Train Single-Feature Models
-Trains classifiers using one feature at a time to assess the predictive power of individual DIP features.
+3. **Single-Feature Model Training**
+   Models are trained using one feature at a time to isolate the predictive contribution of individual DIP features.
 
-### Cell 5: Evaluate Single-Feature Performance
-Computes evaluation metrics for each single-feature model.
+4. **Performance Evaluation**
+   Each single-feature model is evaluated using standard metrics, including accuracy, precision, recall, F1-score, and ROC-AUC.
 
-### Cell 6: Compare Against Full Feature Model
-Compares the performance of single-feature models with the full 26-feature model.
+5. **Comparison with Full Feature Model**
+   Single-feature performance is compared against the full feature set to assess the benefit of combining multiple features.
 
-### Cell 7: Analyze Results
-Identifies which features contribute most to classification performance and highlights trends.
+6. **Analysis and Interpretation**
+   Results are analyzed to identify the most informative features and to understand trends in model behavior.
 
-### Cell 8: Summarize Findings
-Presents conclusions and key insights derived from the experiments.
+7. **Result Summarization**
+   Key findings are summarized, highlighting insights into feature importance and overall model effectiveness.
+
+---
 
 ## Notes and Design Choices
 
-- **Feature-level analysis:**  
+* **Feature-level analysis:**
   Evaluating individual features provides insight into their relative importance.
 
-- **Comparison to full model:**  
+* **Comparison to full model:**
   Demonstrates the benefit of combining multiple complementary features.
 
-- **Exploratory focus:**  
+* **Exploratory focus:**
   This notebook is intended for analysis and insight rather than pipeline execution.
 
-- **Interpretability:**  
+* **Interpretability:**
   Results help explain why the DIP feature-based approach is effective.
 
-## Files Produced
-
-- Single-feature evaluation results (optional CSV)
-- Comparative performance summaries
-- Optional plots for visualization
+---
 
 ## Role in the Overall Pipeline
 
 This notebook extends the core pipeline by providing deeper analysis and validation of the feature design. It supports the overall conclusions of the project and strengthens the justification for the chosen methodology.
 
+---
+
 ## Next Step
 
 ➡️ [Thanks For Trying This Tutorial](Thanks_For_Trying_This_Tutorial.md)
+
