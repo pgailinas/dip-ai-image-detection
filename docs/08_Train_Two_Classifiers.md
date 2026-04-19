@@ -136,7 +136,5 @@ It takes the selected classifiers from Notebook 07, trains them using consistent
 
 ## Next Step
 
-➡️ `09_Validate_and_Tune_Two_Models.md`
-
-
+➡️ [09 Validate and Tune Two Models](09_Validate_and_Tune_Two_Models.md)
 
