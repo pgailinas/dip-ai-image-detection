@@ -21,122 +21,136 @@ This notebook extracts frequency-domain features from preprocessed images. These
 
 Frequency-domain descriptors form the third group of the 26-dimensional DIP feature vector used for classification.
 
+---
+
 ## Inputs
 
-- Training and test metadata:
-  - `train_metadata.csv`
-  - `test_metadata.csv`
+* Training and test metadata:
 
-- Preprocessed image files referenced by metadata
+  * `train_metadata.csv`
+  * `test_metadata.csv`
 
-- Project configuration file:
-  - `project_config.py`
+* Preprocessed image files referenced by metadata
+
+* Project configuration file:
+
+  * `project_config.py`
+
+---
 
 ## Outputs
 
-- Frequency feature CSV files:
-  - `train_frequency_features.csv`
-  - `test_frequency_features.csv`
+The following frequency feature datasets are generated:
 
-Each CSV contains:
-- `filename`
-- `class_label`
-- `source_dataset`
-- `subset`
-- Frequency-domain feature columns
+* `train_frequency_features.csv`
+  Frequency-domain features for the training dataset.
+
+* `test_frequency_features.csv`
+  Frequency-domain features for the test dataset.
+
+Each dataset includes:
+
+* `filename`
+* `class_label`
+* `source_dataset`
+* `subset`
+* Frequency-domain feature columns
+
+---
 
 ## Main Tasks
 
-- Load training and test metadata
-- Read preprocessed images
-- Compute frequency-domain representations
-- Extract spectral and radial descriptors
-- Construct feature tables
-- Save frequency feature CSV files
+* Load training and test metadata
+* Read preprocessed images
+* Compute frequency-domain representations
+* Extract spectral and radial descriptors
+* Construct feature tables
+* Save frequency feature CSV files
 
-## Cell-by-Cell Description
+---
 
-### Cell 0: Notebook Overview
-Provides a summary of frequency feature extraction, including purpose, inputs, and outputs.
+## Processing Workflow
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., NumPy, OpenCV, SciPy, Pandas) and imports shared configuration settings.
+This notebook executes a structured sequence of steps to extract frequency-domain image features:
 
-### Cell 2: Load Train and Test Metadata
-Reads the training and test metadata files generated in the previous step.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and training and test metadata are loaded.
 
-### Cell 3: Define Frequency Feature Functions
-Implements functions to compute frequency-domain representations using transforms such as the Fourier Transform and to derive spectral descriptors.
+2. **Image Access and Preparation**
+   Preprocessed images are accessed using metadata references to ensure consistent input data.
 
-### Cell 4: Extract Frequency Features
-Processes each image to compute frequency-domain descriptors that capture spectral energy distribution, structural patterns, and frequency complexity.
+3. **Frequency-Domain Transformation**
+   Images are transformed into the frequency domain using techniques such as the Fourier Transform to obtain spectral representations.
 
-The following eight frequency-domain features are extracted:
+4. **Feature Extraction**
+   Statistical descriptors are derived from the frequency spectrum to capture energy distribution, structural patterns, and frequency complexity.
 
-- **Low Frequency Energy Ratio**  
-  Represents the proportion of spectral energy in low-frequency components, corresponding to smooth regions and gradual intensity changes.
+5. **Feature Table Construction**
+   Extracted features are combined with metadata to form structured datasets for both training and test subsets.
 
-- **High Frequency Energy Ratio**  
-  Represents the proportion of spectral energy in high-frequency components, corresponding to edges, fine details, and noise-like structures.
+6. **Validation and Output Generation**
+   Feature tables are validated for completeness and consistency, then saved for downstream processing.
 
-- **Radial Mean**  
-  Computes the average spectral magnitude as a function of distance from the center of the frequency spectrum.
+---
 
-- **Radial Standard Deviation**  
-  Measures the variability of spectral magnitude across radial distances.
+## Frequency Feature Definitions
 
-- **Radial Entropy**  
-  Quantifies the randomness of the radial frequency distribution.
+The following frequency-domain features are extracted:
 
-- **Spectral Centroid**  
-  Represents the center of mass of the frequency spectrum, indicating whether energy is concentrated in lower or higher frequencies.
+* **Low Frequency Energy Ratio**
+  Represents the proportion of spectral energy in low-frequency components.
 
-- **Spectral Bandwidth**  
-  Measures the spread of frequency energy around the centroid.
+* **High Frequency Energy Ratio**
+  Represents the proportion of spectral energy in high-frequency components.
 
-- **Log Spectrum Standard Deviation**  
-  Captures variation in the log-transformed spectrum, emphasizing relative differences in spectral magnitude.
+* **Radial Mean**
+  Computes average spectral magnitude as a function of radial distance.
 
-### Cell 5: Build Feature Tables
-Constructs structured DataFrames containing metadata and extracted frequency features.
+* **Radial Standard Deviation**
+  Measures variability of spectral magnitude across radial distances.
 
-### Cell 6: Validate Feature Tables
-Verifies:
-- Correct number of rows
-- Presence of all expected feature columns
-- Consistency between metadata and feature values
+* **Radial Entropy**
+  Quantifies randomness in radial frequency distribution.
 
-### Cell 7: Save Frequency Feature CSV Files
-Writes training and test frequency feature tables to CSV files for downstream processing.
+* **Spectral Centroid**
+  Indicates where energy is concentrated in the frequency spectrum.
+
+* **Spectral Bandwidth**
+  Measures spread of frequency energy around the centroid.
+
+* **Log Spectrum Standard Deviation**
+  Captures variation in the log-transformed spectrum.
+
+---
 
 ## Notes and Design Choices
 
-- **Frequency-domain analysis:**  
+* **Frequency-domain analysis:**
   Fourier-based representations capture structural patterns not easily observable in the spatial domain.
 
-- **Energy distribution:**  
+* **Energy distribution:**
   Energy ratios across frequency bands provide insight into image smoothness and detail.
 
-- **Radial statistics:**  
+* **Radial statistics:**
   Radial features summarize frequency content as a function of distance from the spectrum center.
 
-- **Spectral descriptors:**  
+* **Spectral descriptors:**
   Measures such as centroid and bandwidth characterize the overall distribution of frequency energy.
 
-- **Complementary feature group:**  
+* **Complementary feature group:**
   Frequency features complete the DIP feature vector by adding information not captured by gradient or spatial features.
 
-## Files Produced
-
-- `train_frequency_features.csv` — Frequency features for training set
-- `test_frequency_features.csv` — Frequency features for test set
+---
 
 ## Role in the Overall Pipeline
 
 This notebook produces the final group of features used in the DIP feature vector. These features are combined with gradient and spatial features in the next step to form the complete input representation for classifier training.
 
+---
+
 ## Next Step
 
 ➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
+
 
 
