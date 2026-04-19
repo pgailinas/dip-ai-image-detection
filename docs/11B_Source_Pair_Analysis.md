@@ -1,10 +1,10 @@
 ---
-title: 11B Source-Pair Analysis
+title: 14 Source-Pair Analysis
 parent: 6. Full Training Tutorial
 nav_order: 3
 ---
 
-# 11B Source-Pair Analysis
+# 14 Source-Pair Analysis
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
