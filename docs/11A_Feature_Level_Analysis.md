@@ -1,14 +1,14 @@
 ---
-title: 11 Further Results
+title: 11A Feature-Level Analysis
 parent: 6. Full Training Tutorial
 nav_order: 2
 ---
 
-# 11 Further Results
+# 11A Feature-Level Analysis
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/11_Further_Results.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/11A_Feature_Level_Analysis.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -17,9 +17,9 @@ nav_order: 2
 
 ## Purpose
 
-This notebook explores additional experiments and analyses beyond the core pipeline to better understand the behavior and effectiveness of the DIP feature-based classification approach.
+This notebook evaluates the predictive power of individual DIP features by training classifiers using one feature at a time and comparing performance against the full feature set.
 
-These experiments investigate the contribution of individual features, compare simplified models to the full feature set, and provide further insight into model performance and generalization.
+The goal is to understand the relative importance and discriminative capability of each feature.
 
 ---
 
@@ -30,8 +30,6 @@ These experiments investigate the contribution of individual features, compare s
   * `train_feature_vectors_normalized.csv`
   * `test_feature_vectors_normalized.csv`
 
-* Trained model configurations (optional reuse)
-
 * Project configuration file:
 
   * `project_config.py`
@@ -40,9 +38,9 @@ These experiments investigate the contribution of individual features, compare s
 
 ## Outputs
 
-The following exploratory analysis results are generated:
+The following analysis results are generated:
 
-* Single-feature model evaluation metrics:
+* Single-feature model performance metrics:
 
   * Accuracy
   * Precision
@@ -50,46 +48,37 @@ The following exploratory analysis results are generated:
   * F1-score
   * ROC-AUC
 
-* Comparative performance tables
-
-* Optional plots and summary visualizations
+* Comparative performance tables against full feature model
 
 ---
 
 ## Main Tasks
 
-* Evaluate models using individual DIP features
-* Compare single-feature performance against full feature set
-* Analyze feature importance and discriminative power
-* Explore model behavior across different datasets
-* Summarize insights and observations
+* Load normalized feature vectors
+* Isolate individual features
+* Train classifiers using single features
+* Evaluate model performance
+* Compare against full feature model
+* Analyze feature importance
 
 ---
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of exploratory analysis steps:
+1. **Data Loading and Preparation**
+   Load normalized datasets and separate features and labels.
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and normalized training and test datasets are loaded.
+2. **Single-Feature Model Training**
+   Train classifiers using one feature at a time.
 
-2. **Data Preparation**
-   Feature matrices and labels are separated to enable both full-model and feature-level evaluations.
+3. **Performance Evaluation**
+   Compute standard classification metrics for each feature.
 
-3. **Single-Feature Model Training**
-   Models are trained using one feature at a time to isolate the predictive contribution of individual DIP features.
+4. **Comparison with Full Feature Model**
+   Compare individual feature performance against the full feature set.
 
-4. **Performance Evaluation**
-   Each single-feature model is evaluated using standard metrics, including accuracy, precision, recall, F1-score, and ROC-AUC.
-
-5. **Comparison with Full Feature Model**
-   Single-feature performance is compared against the full feature set to assess the benefit of combining multiple features.
-
-6. **Analysis and Interpretation**
-   Results are analyzed to identify the most informative features and to understand trends in model behavior.
-
-7. **Result Summarization**
-   Key findings are summarized, highlighting insights into feature importance and overall model effectiveness.
+5. **Analysis and Interpretation**
+   Identify features with strong predictive capability and assess their contribution.
 
 ---
 
@@ -101,21 +90,19 @@ This notebook executes a structured sequence of exploratory analysis steps:
 * **Comparison to full model:**
   Demonstrates the benefit of combining multiple complementary features.
 
-* **Exploratory focus:**
-  This notebook is intended for analysis and insight rather than pipeline execution.
-
 * **Interpretability:**
-  Results help explain why the DIP feature-based approach is effective.
+  Results help explain the effectiveness of the DIP feature design.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook extends the core pipeline by providing deeper analysis and validation of the feature design. It supports the overall conclusions of the project and strengthens the justification for the chosen methodology.
+This notebook provides insight into feature importance and supports interpretation of model behavior.
 
 ---
 
 ## Next Step
 
-➡️ [Thanks For Trying This Tutorial](Thanks_For_Trying_This_Tutorial.md)
+➡️ [11B Source-Pair Analysis](11B_Source_Pair_Analysis.md)
+
 
