@@ -25,123 +25,97 @@ Rather than selecting a single classifier, this notebook selects the **top two c
 
 ## Inputs
 
-- Normalized feature vector CSV file:
-  - `train_feature_vectors_normalized.csv`
+* Normalized feature vector CSV file:
 
-- Project configuration file:
-  - `project_config.py`
+  * `train_feature_vectors_normalized.csv`
+
+* Project configuration file:
+
+  * `project_config.py`
 
 ---
 
 ## Outputs
 
-- Baseline classifier comparison results:
-  - `classifier_comparison_baseline.csv`
+The following evaluation results and model configurations are generated:
 
-- Tuned classifier comparison results:
-  - `classifier_comparison_tuned.csv`
+* `classifier_comparison_baseline.csv`
+  Cross-validation results for all candidate classifiers.
 
-- Top classifier configurations:
-  - `best_classifier_config.json`
+* `classifier_comparison_tuned.csv`
+  Performance results after controlled hyperparameter tuning.
+
+* `best_classifier_config.json`
+  Configuration details for the selected top two classifiers.
 
 ---
 
 ## Main Tasks
 
-- Load normalized feature vectors
-- Validate dataset integrity
-- Separate features and labels
-- Define candidate classifiers
-- Perform cross-validation
-- Evaluate models using multiple metrics
-- Rank classifiers based on performance
-- Apply controlled hyperparameter tuning
-- Select and save the **top two classifiers**
+* Load normalized feature vectors
+* Validate dataset integrity
+* Separate features and labels
+* Define candidate classifiers
+* Perform cross-validation
+* Evaluate models using multiple metrics
+* Rank classifiers based on performance
+* Apply controlled hyperparameter tuning
+* Select and save the **top two classifiers**
 
 ---
 
-## Cell-by-Cell Description
+## Processing Workflow
 
-### Cell 0: Notebook Overview
-Provides a summary of classifier selection objectives, including evaluation methodology and outputs.
+This notebook executes a structured sequence of steps to identify the strongest classifier candidates:
 
-### Cell 1: Import Required Libraries
-Loads required libraries including NumPy, pandas, and scikit-learn classifiers.
+1. **Environment Setup and Data Loading**
+   Required libraries are imported, and the normalized training dataset is loaded for analysis.
 
-### Cell 2: Load Normalized Training Data
-Reads the normalized training dataset and displays sample rows and column names.
+2. **Data Validation and Preparation**
+   The dataset is verified for:
 
-### Cell 3: Validate Training Data
-Performs sanity checks including:
-- missing values
-- class distribution
-- metadata columns
-- feature count (25 features)
+   * Missing values
+   * Class balance
+   * Correct feature dimensionality
+     Feature matrices and target labels are separated and prepared for model input.
 
-### Cell 4: Prepare Training Data
-Separates:
-- feature matrix (`X_train`)
-- target labels (`y_train`)
-- encodes labels for classification
+3. **Candidate Model Definition**
+   A set of diverse classifier types is defined, along with a stratified k-fold cross-validation strategy and evaluation metrics.
 
-### Cell 5: Define Candidate Classifiers
-Defines:
-- multiple classifier types (SVM, MLP, RF, etc.)
-- stratified k-fold cross-validation strategy
-- evaluation metrics
+4. **Baseline Model Evaluation**
+   Each classifier is evaluated using cross-validation, producing performance metrics including accuracy, precision, recall, F1-score, and ROC-AUC.
 
-### Cell 6: Run Baseline Classifier Comparison
-Applies cross-validation to each classifier and computes:
-- accuracy
-- precision
-- recall
-- F1-score
-- ROC-AUC
+5. **Performance Aggregation and Ranking**
+   Results are compiled and ranked, with ROC-AUC serving as the primary selection criterion.
 
-### Cell 7: Compile and Rank Results
-Aggregates and ranks classifier performance, prioritizing ROC-AUC.
+6. **Controlled Hyperparameter Tuning**
+   Top-performing classifiers are further refined using targeted, small-grid hyperparameter tuning to improve performance.
 
-### Cell 8: Tune Top Classifiers
-Applies **controlled (small-grid) hyperparameter tuning** to top-performing classifiers.
-
-### Cell 9: Save Results
-Saves:
-- baseline comparison results (CSV)
-- tuned comparison results (CSV)
-- **top two classifier configurations (JSON)**
-
-### Cell 10: Summary and Recommendations
-Summarizes results and recommends the **top two classifiers** for downstream training and evaluation.
+7. **Model Selection and Output Generation**
+   The top two classifiers are selected based on tuned performance, and all results and configurations are saved for downstream use.
 
 ---
 
 ## Notes and Design Choices
 
-- **Cross-validation approach:**  
+* **Cross-validation approach:**
   Stratified k-fold cross-validation ensures stable and reliable performance estimates.
 
-- **Multiple evaluation metrics:**  
+* **Multiple evaluation metrics:**
   Models are evaluated using accuracy, precision, recall, F1-score, and ROC-AUC.
 
-- **ROC-AUC prioritization:**  
+* **ROC-AUC prioritization:**
   ROC-AUC is used as the primary ranking metric due to its robustness in binary classification.
 
-- **Controlled tuning:**  
+* **Controlled tuning:**
   Hyperparameter tuning uses small, targeted grids rather than exhaustive search.
 
-- **Multi-model selection:**  
+* **Multi-model selection:**
   The top two classifiers are selected to:
-  - reduce sensitivity to small performance differences
-  - enable comparison across model types
-  - improve experimental robustness
 
----
-
-## Files Produced
-
-- `classifier_comparison_baseline.csv` — Cross-validation results for all classifiers  
-- `classifier_comparison_tuned.csv` — Results after hyperparameter tuning  
-- `best_classifier_config.json` — Configuration of the **top two classifiers**
+  * reduce sensitivity to small performance differences
+  * enable comparison across model types
+  * improve experimental robustness
 
 ---
 
@@ -156,4 +130,5 @@ The selected classifiers are trained and evaluated in subsequent notebooks.
 ## Next Step
 
 ➡️ [08 Train Two Classifiers](08_Train_Two_Classifiers.md)
+
 
