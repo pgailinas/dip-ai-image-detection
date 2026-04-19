@@ -42,10 +42,15 @@ Shared configuration:
 
 ## Outputs
 
-* `metadata/vectors/train_feature_vectors.csv`
-* `metadata/vectors/test_feature_vectors.csv`
+The following feature vector files are generated:
 
-Each CSV contains:
+* `metadata/vectors/train_feature_vectors.csv`
+  Training feature vectors with full feature representation.
+
+* `metadata/vectors/test_feature_vectors.csv`
+  Test feature vectors reserved for final evaluation.
+
+Each file includes:
 
 * `filename`
 * `class_label`
@@ -66,118 +71,39 @@ Each CSV contains:
 
 ---
 
-## Cell-by-Cell Description
+## Processing Workflow
 
-### Cell 0: Notebook Overview
+This notebook executes a structured sequence of steps to construct the final feature vector datasets:
 
-Provides a high-level description of feature vector construction, including purpose, inputs, and outputs.
+1. **Environment Setup and Configuration**
+   The Colab runtime is prepared, required libraries are imported, and file paths for input feature tables and output vectors are defined.
 
----
+2. **Feature Data Loading**
+   Gradient-based, spatial, and frequency-domain feature CSV files are loaded separately for both training and test subsets.
 
-### Cell 1: Imports
+3. **Data Validation and Alignment Checks**
+   Multiple validation steps ensure:
 
-* Import required libraries for:
+   * Consistent row counts across feature groups
+   * Proper alignment of metadata (filenames, labels, datasets)
+   * Presence of all required feature columns
 
-  * file handling
-  * CSV loading
-  * validation
-  * feature-vector construction
+4. **Feature Vector Construction**
+   Feature groups are combined into unified tables by:
 
----
+   * Retaining a single set of metadata columns
+   * Appending all feature columns in a fixed order
+     This results in a consistent 25-dimensional feature vector for each image.
 
-### Cell 2: Define Input and Output Paths
+5. **Final Validation**
+   The constructed feature vectors are verified for:
 
-* Define local runtime paths for:
+   * Correct dimensionality
+   * Expected row counts
+   * Absence of missing or invalid values
 
-  * input feature CSVs (`metadata/features`)
-  * output feature vectors (`metadata/vectors`)
-* Define expected row counts for training and test subsets
-
----
-
-### Cell 3: Load Feature CSVs
-
-* Load gradient, spatial, and frequency feature CSV files for:
-
-  * training subset
-  * test subset
-
----
-
-### Cell 4: Validate Row Counts and Alignment
-
-For each subset:
-
-* Confirm expected row counts
-* Confirm feature tables align by length
-
----
-
-### Cell 5: Define Metadata and Feature Columns
-
-* Define:
-
-  * metadata column list
-  * gradient feature columns
-  * spatial feature columns
-  * frequency feature columns
-
----
-
-### Cell 6: Verify Required Columns Exist
-
-* Confirm that all expected metadata and feature columns are present
-
----
-
-### Cell 7: Verify Metadata Alignment Across CSVs
-
-* Confirm metadata columns match across feature groups
-* Confirm filenames align row-by-row
-
----
-
-### Cell 8: Verify Subset Labels
-
-* Confirm training rows are labeled `train`
-* Confirm test rows are labeled `test`
-
----
-
-### Cell 9: Build Feature Vectors
-
-For both training and test subsets:
-
-* Retain one copy of metadata columns
-* Append:
-
-  * gradient-based features
-  * spatial features
-  * frequency-domain features
-
----
-
-### Cell 10: Validate Feature Vectors
-
-* Confirm final row counts
-* Confirm feature counts (25 total)
-* Confirm no unexpected missing values
-
----
-
-### Cell 11: Save Feature Vectors
-
-* Save:
-
-  * `train_feature_vectors.csv`
-  * `test_feature_vectors.csv`
-
----
-
-### Cell 12: Quick Sanity Check
-
-* Reload or inspect saved outputs
-* Confirm file integrity and expected shapes
+6. **Output Generation**
+   Final feature vector tables are saved and briefly inspected to confirm file integrity and expected structure.
 
 ---
 
@@ -200,13 +126,6 @@ For both training and test subsets:
 
 ---
 
-## Files Produced
-
-* `train_feature_vectors.csv` — Training feature vectors
-* `test_feature_vectors.csv` — Test feature vectors
-
----
-
 ## Role in the Overall Pipeline
 
 This notebook produces the final feature representation used as input to the classifier. It serves as the bridge between feature extraction and model preparation.
@@ -218,4 +137,5 @@ All subsequent steps operate directly on these feature vector tables.
 ## Next Step
 
 ➡️ [06 Normalize and Prepare Inputs](06_Normalize_and_Prepare_Inputs.md)
+
 
