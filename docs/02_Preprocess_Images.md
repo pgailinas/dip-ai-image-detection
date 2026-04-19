@@ -21,102 +21,105 @@ This notebook performs image preprocessing for all dataset sources defined in th
 
 Preprocessing is applied uniformly to both real and AI-generated images, enabling fair and comparable feature computation in later stages.
 
+---
+
 ## Inputs
 
-- Metadata CSV files from dataset construction:
-  - `imgn_metadata.csv`
-  - `coco_metadata.csv`
-  - `open_metadata.csv`
-  - `diff_metadata.csv`
-  - `sdxl_metadata.csv`
-  - `mj_metadata.csv`
+* Metadata CSV files from dataset construction:
 
-- Raw image files referenced by metadata
+  * `imgn_metadata.csv`
+  * `coco_metadata.csv`
+  * `open_metadata.csv`
+  * `diff_metadata.csv`
+  * `sdxl_metadata.csv`
+  * `mj_metadata.csv`
 
-- Project configuration file:
-  - `project_config.py`
+* Raw image files referenced by metadata
+
+* Project configuration file:
+
+  * `project_config.py`
+
+---
 
 ## Outputs
 
-- Preprocessed image files stored in dataset-specific directories
+The following preprocessed data artifacts are generated:
 
-- Updated metadata CSV files:
-  - `imgn_preprocessed_metadata.csv`
-  - `coco_preprocessed_metadata.csv`
-  - `open_preprocessed_metadata.csv`
-  - `diff_preprocessed_metadata.csv`
-  - `sdxl_preprocessed_metadata.csv`
-  - `mj_preprocessed_metadata.csv`
+* Preprocessed image files stored in dataset-specific directories
 
-Each updated CSV maintains:
-- `filename`
-- `class_label`
-- `source_dataset`
+* Updated metadata CSV files:
+
+  * `imgn_preprocessed_metadata.csv`
+  * `coco_preprocessed_metadata.csv`
+  * `open_preprocessed_metadata.csv`
+  * `diff_preprocessed_metadata.csv`
+  * `sdxl_preprocessed_metadata.csv`
+  * `mj_preprocessed_metadata.csv`
+
+Each updated metadata file maintains:
+
+* `filename`
+* `class_label`
+* `source_dataset`
+
+---
 
 ## Main Tasks
 
-- Load metadata for each dataset
-- Read and validate input images
-- Convert images to a consistent format
-- Resize images to a standard resolution
-- Handle corrupted or unreadable files
-- Save preprocessed images
-- Update and save metadata tables
+* Load metadata for each dataset
+* Read and validate input images
+* Convert images to a consistent format
+* Resize images to a standard resolution
+* Handle corrupted or unreadable files
+* Save preprocessed images
+* Update and save metadata tables
 
-## Cell-by-Cell Description
+---
 
-### Cell 0: Notebook Overview
-Provides a summary of preprocessing objectives, assumptions, and expected outputs.
+## Processing Workflow
 
-### Cell 1: Import Libraries and Configuration
-Loads required libraries (e.g., PIL, NumPy, Pandas) and imports shared configuration settings for directory paths and parameters.
+This notebook executes a structured sequence of steps to standardize all input images:
 
-### Cell 2: Load Metadata Files
-Reads metadata CSV files generated in the dataset construction step and prepares them for processing.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and metadata for all datasets is loaded.
 
-### Cell 3: Define Preprocessing Function
-Implements the image preprocessing routine, including loading, format conversion, resizing, and error handling.
+2. **Image Access and Validation**
+   Raw images are accessed using metadata references, and basic validation checks are performed to ensure files can be read.
 
-### Cell 4: Process Images by Dataset
-Iterates through each dataset, applies preprocessing to all referenced images, and saves outputs to the appropriate directories.
+3. **Image Preprocessing**
+   Each image is processed to enforce consistency, including:
 
-### Cell 5: Handle Errors and Logging
-Captures and reports issues such as unreadable or corrupted files, ensuring robustness and traceability.
+   * Format conversion
+   * Resizing to a standard resolution
+   * Basic quality normalization
 
-### Cell 6: Update Metadata Tables
-Updates metadata entries to reflect successfully processed images and removes invalid entries if necessary.
+4. **Error Handling and Logging**
+   Corrupted or unreadable images are identified, skipped, and logged to maintain pipeline robustness.
 
-### Cell 7: Validate Preprocessed Outputs
-Verifies that:
-- Output image counts match expectations
-- Metadata remains consistent
-- Directory structures are correct
+5. **Metadata Update**
+   Metadata tables are updated to reflect successfully processed images and remove invalid entries when necessary.
 
-### Cell 8: Save Preprocessed Metadata
-Writes updated metadata CSV files for each dataset to the metadata directory.
+6. **Output Generation and Validation**
+   Preprocessed images and updated metadata files are saved, and validation checks confirm dataset consistency and completeness.
+
+---
 
 ## Notes and Design Choices
 
-- **Uniform preprocessing:**  
+* **Uniform preprocessing:**
   All images are resized and formatted consistently to eliminate variability unrelated to image content.
 
-- **Error handling for robustness:**  
+* **Error handling for robustness:**
   Corrupted or unreadable images are safely skipped to prevent pipeline failure.
 
-- **Metadata-driven workflow:**  
+* **Metadata-driven workflow:**
   Processing is guided entirely by metadata, preserving separation between data and logic.
 
-- **Reentrancy support:**  
+* **Reentrancy support:**
   The design allows preprocessing to resume without restarting from scratch in case of interruptions.
 
-## Files Produced
-
-- `imgn_preprocessed_metadata.csv` — ImageNet metadata (real)
-- `coco_preprocessed_metadata.csv` — COCO metadata (real)
-- `open_preprocessed_metadata.csv` — OpenImages metadata (real)
-- `diff_preprocessed_metadata.csv` — DiffusionDB metadata (AI)
-- `sdxl_preprocessed_metadata.csv` — SDXL metadata (AI)
-- `mj_preprocessed_metadata.csv` — MidJourney metadata (AI)
+---
 
 ## Role in the Overall Pipeline
 
@@ -124,7 +127,10 @@ This notebook standardizes all input images, ensuring that subsequent feature ex
 
 It serves as a critical preparation step before combining datasets and generating feature vectors.
 
+---
+
 ## Next Step
 
 ➡️ [03 Combine and Split](03_Combine_and_Split.md)
+
 
