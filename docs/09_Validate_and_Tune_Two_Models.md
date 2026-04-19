@@ -127,8 +127,5 @@ produces performance summaries that inform interpretation of final test results.
 
 ## Next Step
 
-➡️ `10_Evaluate_Two_Models.md`
-`
-
-
+➡️ [10 Evaluate Two Models](10_Evaluate_Two_Models.md)
 
