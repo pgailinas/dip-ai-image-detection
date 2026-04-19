@@ -17,115 +17,102 @@ nav_order: 3
 
 ## Purpose
 
-This notebook performs **validation and comparison** of the two selected  
+This notebook performs **validation and comparison** of the two selected
 classifiers using the normalized Digital Image Processing (DIP) feature vectors.
 
 The focus is on evaluating the retained models:
 
-- RBF Support Vector Machine (RBF SVM)  
-- Multi-Layer Perceptron (MLP)  
+* RBF Support Vector Machine (RBF SVM)
+* Multi-Layer Perceptron (MLP)
 
-Both classifiers are evaluated using a consistent stratified cross-validation  
+Both classifiers are evaluated using a consistent stratified cross-validation
 framework to compare their performance prior to final independent testing.
 
 ---
 
 ## Inputs
 
-- Normalized training feature vectors:
-  - `metadata/vectors/train_feature_vectors_normalized.csv`
+* Normalized training feature vectors:
 
-- Project configuration file:
-  - `project_config.py`
+  * `metadata/vectors/train_feature_vectors_normalized.csv`
 
-Classifier configurations are defined within this notebook based on  
+* Project configuration file:
+
+  * `project_config.py`
+
+Classifier configurations are defined within this notebook based on
 results from Notebook 07 and the finalized model design.
 
 ---
 
 ## Outputs
 
-All outputs are saved to `metadata/results/`:
+All validation results are saved to `metadata/results/`:
 
-- `cross_validation_results.csv` — Full cross-validation performance summary  
-- `classifier_comparison_tuned.csv` — Condensed comparison of key metrics  
+* `cross_validation_results.csv`
+  Full cross-validation performance summary.
+
+* `classifier_comparison_tuned.csv`
+  Condensed comparison of key performance metrics.
 
 ---
 
 ## Main Tasks
 
-- Load normalized training feature vectors  
-- Validate dataset integrity  
-- Separate features and labels  
-- Define selected classifier configurations  
-- Perform stratified k-fold cross-validation  
-- Evaluate models using multiple performance metrics  
-- Compare validation performance  
-- Save validation outputs  
+* Load normalized training feature vectors
+* Validate dataset integrity
+* Separate features and labels
+* Define selected classifier configurations
+* Perform stratified k-fold cross-validation
+* Evaluate models using multiple performance metrics
+* Compare validation performance
+* Save validation outputs
 
 ---
 
-## Cell-by-Cell Description
+## Processing Workflow
 
-### Cell 0: Notebook Summary
-Provides an overview of validation objectives and workflow.
+This notebook executes a structured sequence of steps to validate and compare the selected classifiers:
 
-### Startup Cell
-Initializes environment, sets project paths, and verifies required input files.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and the normalized training dataset is loaded.
 
-### Cell 1: Import Required Libraries
-Loads required libraries including NumPy, pandas, and scikit-learn.
+2. **Data Validation and Preparation**
+   The dataset is verified for:
 
-### Cell 2: Load Normalized Training Data
-Reads the normalized training dataset and displays structure information.
+   * Correct metadata structure
+   * Expected feature dimensionality
+   * Absence of missing values
+     Feature matrices and labels are prepared for evaluation.
 
-### Cell 3: Validate Training Data
-Performs sanity checks including:
-- metadata column verification  
-- feature count validation (25 features)  
-- missing value checks  
-- label consistency  
-- preparation of `X_train` and `y_train`  
+3. **Classifier Configuration Definition**
+   The two selected classifiers are defined using their tuned hyperparameters established in prior steps.
 
-### Cell 4: Define Classifier Configurations
-Defines the two selected classifiers and their tuned hyperparameters.
+4. **Cross-Validation Evaluation**
+   Both classifiers are evaluated using stratified k-fold cross-validation, producing performance metrics across multiple evaluation criteria.
 
-### Cell 5: Cross-Validate Classifiers
-Evaluates both classifiers using stratified k-fold cross-validation across multiple performance metrics.
+5. **Performance Aggregation and Comparison**
+   Results are compiled and compared, with emphasis on ROC-AUC and overall consistency across folds.
 
-### Cell 6: Summarize and Compare Results
-Aggregates and compares validation performance, prioritizing ROC-AUC.
-
-### Cell 7: Save Validation Outputs
-Saves cross-validation results and comparison tables to `metadata/results/`.
-
-### Cell 8: Validation Output Sanity Check
-Reloads saved files and verifies correctness of outputs.
+6. **Output Generation and Validation**
+   Validation results are saved to disk, and checks are performed to confirm output integrity and consistency.
 
 ---
 
 ## Notes and Design Choices
 
-- **Two-model validation approach:**  
+* **Two-model validation approach:**
   Both RBF SVM and MLP are evaluated to preserve a fair comparison prior to final testing.
 
-- **In-notebook configuration:**  
+* **In-notebook configuration:**
   Classifier parameters are defined directly in this notebook based on prior selection results.
 
-- **Cross-validation framework:**  
+* **Cross-validation framework:**
   Stratified k-fold cross-validation ensures consistent and unbiased evaluation.
 
-- **Separation of concerns:**  
-  This notebook evaluates model behavior using training data only.  
+* **Separation of concerns:**
+  This notebook evaluates model behavior using training data only.
   Final evaluation on unseen test data is performed in a later notebook.
-
----
-
-## Files Produced
-
-### `metadata/results/`
-- `cross_validation_results.csv` — Full cross-validation performance summary  
-- `classifier_comparison_tuned.csv` — Condensed comparison table  
 
 ---
 
@@ -133,7 +120,7 @@ Reloads saved files and verifies correctness of outputs.
 
 This notebook represents the **validation and tuning stage** of the pipeline.
 
-It evaluates the selected classifiers using consistent procedures and  
+It evaluates the selected classifiers using consistent procedures and
 produces performance summaries that inform interpretation of final test results.
 
 ---
@@ -141,6 +128,7 @@ produces performance summaries that inform interpretation of final test results.
 ## Next Step
 
 ➡️ `10_Evaluate_Two_Models.md`
+`
 
 
 
