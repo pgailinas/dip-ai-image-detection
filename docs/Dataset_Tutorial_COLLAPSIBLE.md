@@ -1,0 +1,178 @@
+---
+has_children: true
+nav_order: 1
+title: 1. Dataset Tutorial
+---
+
+# 1. Dataset Tutorial
+
+## Assignment Requirements (Temporary Section)
+
+Provide sufficient information to define all elements of a dataset:
+
+-   Explain how to setup a dataset using Google Drive.
+-   Provide code to display images.
+-   Describe inputs and labels.
+-   Describe how to extend the dataset.
+-   Explain dataset splits.
+
+------------------------------------------------------------------------
+
+## Dataset Architecture
+
+```{=html}
+<details>
+```
+```{=html}
+<summary>
+```
+`<b>`{=html}GitHub Repository Structure (Click to expand)`</b>`{=html}
+```{=html}
+</summary>
+```
+    dip-ai-image-detection/
+    │
+    ├── README.md
+    ├── notebooks/
+    │   ├── 01_Build_Dataset.ipynb
+    │   ├── 02_Preprocess_Images.ipynb
+    │   ├── 03_Combine_and_Split.ipynb
+    │   ├── 04A_Extract_Gradient_Features.ipynb
+    │   ├── 04B_Extract_Spatial_Features.ipynb
+    │   ├── 04C_Extract_Frequency_Features.ipynb
+    │   ├── 05_Build_Feature_Vectors.ipynb
+    │   ├── 06_Normalize_and_Prepare_Inputs.ipynb
+    │   ├── 07_Classifier_Selection.ipynb
+    │   ├── 08_Train_Two_Classifiers.ipynb
+    │   ├── 09_Validate_and_Tune_Two_Models.ipynb
+    │   ├── 10_Evaluate_Two_Models.ipynb
+    │   └── 11_Further_Results.ipynb
+    │
+    ├── docs/
+    │   ├── _config.yml
+    │   ├── index.md
+    │   ├── 1. Dataset Tutorial.md
+    │   ├── 2. Model Description Tutorial.md
+    │   ├── 3. Model Optimization Tutorial.md
+    │   ├── 4. Basic Testing Tutorial.md
+    │   ├── 5. Basic Fine-Tuning Tutorial.md
+    │   ├── 6. Full Training Tutorial.md
+    │   ├── 01_Build_Dataset.md
+    │   ├── 02_Preprocess_Images.md
+    │   ├── 03_Combine_and_Split.md
+    │   ├── 04A_Extract_Gradient_Features.md
+    │   ├── 04B_Extract_Spatial_Features.md
+    │   ├── 04C_Extract_Frequency_Features.md
+    │   ├── 05_Build_Feature_Vectors.md
+    │   ├── 06_Normalize_and_Prepare_Inputs.md
+    │   ├── 07_Classifier_Selection.md
+    │   ├── 08_Train_Two_Classifiers.md
+    │   ├── 09_Validate_and_Tune_Two_Models.md
+    │   ├── 10_Evaluate_Two_Models.md
+    │   ├── 11_Further_Results.md
+    │   └── Thanks_For_Trying_This_Tutorial.md
+    │
+    ├── src/
+    │   ├── README.md
+    │   ├── project_config.py
+    │   └── datasets/
+    │       ├── __init__.py
+    │       ├── coco_target.py
+    │       ├── diffusiondb_target.py
+    │       ├── imagenet_target.py
+    │       ├── midjourney_target.py
+    │       ├── openimages_target.py
+    │       └── sdxl_target.py
+    │
+    ├── metadata/
+    │   ├── README.md
+    │   ├── original/
+    │   ├── hashes/
+    │   ├── preprocessed/
+    │   ├── splits/
+    │   ├── features/
+    │   ├── vectors/
+    │   ├── models/
+    │   └── results/
+    │
+    └── data/
+        └── README.md
+
+```{=html}
+</details>
+```
+
+------------------------------------------------------------------------
+
+```{=html}
+<details>
+```
+```{=html}
+<summary>
+```
+`<b>`{=html}Google Drive Dataset Structure (Click to
+expand)`</b>`{=html}
+```{=html}
+</summary>
+```
+    releases/
+    ├── raw/
+    │   ├── ImageNet_1K_256.zip
+    │   ├── MS_COCO_2017.zip
+    │   ├── DiffusionDB.zip
+    │   ├── SDXL_Generated_10K.zip
+    │   ├── Midjourney.zip
+    │   └── OpenImages.zip
+    │
+    └── preprocessed/
+        ├── All_Sources_preprocessed.zip
+        ├── DiffusionDB_preprocessed.zip
+        ├── ImageNet_1K_256_preprocessed.zip
+        ├── Midjourney_preprocessed.zip
+        ├── MS_COCO_2017_preprocessed.zip
+        ├── OpenImages_preprocessed.zip
+        └── SDXL_Generated_10K_preprocessed.zip
+
+```{=html}
+</details>
+```
+
+------------------------------------------------------------------------
+
+```{=html}
+<details>
+```
+```{=html}
+<summary>
+```
+`<b>`{=html}Runtime Directory (Colab)`</b>`{=html}
+```{=html}
+</summary>
+```
+    /content/data/
+    ├── raw/
+    └── preprocessed/
+
+```{=html}
+</details>
+```
+
+------------------------------------------------------------------------
+
+## Dataset Setup
+
+### Preprocessed Path
+
+    unzip All_Sources_preprocessed.zip -d /content/data/preprocessed/
+
+### Raw Path
+
+    unzip <dataset>.zip -d /content/data/raw/
+
+------------------------------------------------------------------------
+
+## Summary
+
+-   GitHub stores code and metadata
+-   Google Drive stores datasets
+-   Data extracted locally in Colab
