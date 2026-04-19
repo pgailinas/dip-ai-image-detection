@@ -17,129 +17,124 @@ nav_order: 1
 
 ## Purpose
 
-This notebook performs the **final independent evaluation** of the trained  
+This notebook performs the **final independent evaluation** of the trained
 classifiers using the normalized Digital Image Processing (DIP) feature vectors.
 
 The following models are evaluated:
 
-- RBF Support Vector Machine (RBF SVM)  
-- Multi-Layer Perceptron (MLP)  
+* RBF Support Vector Machine (RBF SVM)
+* Multi-Layer Perceptron (MLP)
 
-Both models are applied to the **held-out test dataset**, ensuring an unbiased  
+Both models are applied to the **held-out test dataset**, ensuring an unbiased
 assessment of model performance.
 
 ---
 
 ## Inputs
 
-- Normalized test feature vectors:
-  - `metadata/vectors/test_feature_vectors_normalized.csv`
+* Normalized test feature vectors:
 
-- Trained model files:
-  - `metadata/models/final_rbf_svm_model.pkl`
-  - `metadata/models/final_mlp_model.pkl`
+  * `metadata/vectors/test_feature_vectors_normalized.csv`
 
-- Project configuration file:
-  - `project_config.py`
+* Trained model files:
+
+  * `metadata/models/final_rbf_svm_model.pkl`
+  * `metadata/models/final_mlp_model.pkl`
+
+* Project configuration file:
+
+  * `project_config.py`
 
 ---
 
 ## Outputs
 
-All outputs are saved to `metadata/results/`:
+All evaluation outputs are saved to `metadata/results/`:
 
-- `final_test_results.csv` — Full evaluation metrics  
-- `final_test_results.json` — Metrics in structured format  
-- `final_confusion_matrix_mlp.csv` — MLP confusion matrix  
-- `final_confusion_matrix_rbf_svm.csv` — RBF SVM confusion matrix  
-- `final_roc_points_mlp.csv` — MLP ROC curve data  
-- `final_roc_points_rbf_svm.csv` — RBF SVM ROC curve data  
-- `final_comparison_summary.csv` — Side-by-side model comparison  
+* `final_test_results.csv`
+  Complete evaluation metrics for both models.
+
+* `final_test_results.json`
+  Structured representation of evaluation metrics.
+
+* `final_confusion_matrix_mlp.csv`
+
+* `final_confusion_matrix_rbf_svm.csv`
+
+* `final_roc_points_mlp.csv`
+
+* `final_roc_points_rbf_svm.csv`
+
+* `final_comparison_summary.csv`
+  Side-by-side comparison of model performance.
 
 ---
 
 ## Main Tasks
 
-- Load normalized test dataset  
-- Validate dataset integrity  
-- Prepare feature matrix and label vector  
-- Load trained models  
-- Generate predictions and class probabilities  
-- Compute evaluation metrics (Accuracy, Precision, Recall, F1-score, ROC-AUC)  
-- Generate confusion matrices  
-- Compute ROC curves  
-- Compare model performance  
-- Save evaluation outputs  
+* Load normalized test dataset
+* Validate dataset integrity
+* Prepare feature matrix and label vector
+* Load trained models
+* Generate predictions and class probabilities
+* Compute evaluation metrics (Accuracy, Precision, Recall, F1-score, ROC-AUC)
+* Generate confusion matrices
+* Compute ROC curves
+* Compare model performance
+* Save evaluation outputs
 
 ---
 
-## Cell-by-Cell Description
+## Processing Workflow
 
-### Cell 0: Notebook Summary
-Provides an overview of evaluation objectives and workflow.
+This notebook executes a structured sequence of steps to evaluate trained models on unseen data:
 
-### Startup Cell
-Initializes environment, sets project paths, and verifies required input files.
+1. **Environment Setup and Data Loading**
+   The runtime environment is initialized, required libraries are imported, and the normalized test dataset is loaded.
 
-### Cell 1: Import Required Libraries
-Loads required libraries including NumPy, pandas, and scikit-learn.
+2. **Data Validation and Preparation**
+   The test dataset is verified for:
 
-### Cell 2: Load Test Data
-Reads the normalized test dataset and displays structure information.
+   * Correct structure and feature dimensionality
+   * Absence of missing values
+     Feature matrices and labels are prepared for evaluation.
 
-### Cell 3: Validate Test Data
-Performs sanity checks and prepares `X_test` and `y_test`.
+3. **Model Loading**
+   Trained classifier models are loaded from stored `.pkl` files.
 
-### Cell 4: Load Trained Models
-Loads `.pkl` model files from `metadata/models/`.
+4. **Prediction Generation**
+   Each model produces predicted class labels and class probabilities for the test dataset.
 
-### Cell 5: Generate Predictions
-Computes predicted labels and class probabilities.
+5. **Metric Computation**
+   Evaluation metrics are computed, including accuracy, precision, recall, F1-score, and ROC-AUC.
 
-### Cell 6: Compute Evaluation Metrics
-Calculates accuracy, precision, recall, F1-score, and ROC-AUC.
+6. **Diagnostic Analysis**
+   Additional evaluation artifacts are generated:
 
-### Cell 7: Confusion Matrices
-Generates and visualizes confusion matrices (counts and normalized).
+   * Confusion matrices
+   * ROC curve data
 
-### Cell 8: ROC Curves
-Computes and plots ROC curves for both models.
+7. **Model Comparison**
+   Results are aggregated into comparison tables to enable direct performance assessment between classifiers.
 
-### Cell 9: Final Comparison Summary
-Builds summary tables for direct model comparison.
-
-### Cell 10: Save Outputs
-Saves all evaluation artifacts to `metadata/results/`.
+8. **Output Generation and Validation**
+   All evaluation artifacts are saved, and validation checks confirm output completeness and consistency.
 
 ---
 
 ## Notes and Design Choices
 
-- **Independent test evaluation:**  
+* **Independent test evaluation:**
   The test dataset is never used during training or validation.
 
-- **Positive class definition:**  
+* **Positive class definition:**
   The AI-generated class is treated as the positive class for all metrics.
 
-- **Two-model comparison:**  
+* **Two-model comparison:**
   Both MLP and RBF SVM are evaluated to provide a robust comparison.
 
-- **Consistent feature pipeline:**  
+* **Consistent feature pipeline:**
   The same 25 normalized DIP features are used across all stages.
-
----
-
-## Files Produced
-
-### `metadata/results/`
-
-- `final_test_results.csv`  
-- `final_test_results.json`  
-- `final_confusion_matrix_mlp.csv`  
-- `final_confusion_matrix_rbf_svm.csv`  
-- `final_roc_points_mlp.csv`  
-- `final_roc_points_rbf_svm.csv`  
-- `final_comparison_summary.csv`  
 
 ---
 
@@ -147,7 +142,7 @@ Saves all evaluation artifacts to `metadata/results/`.
 
 This notebook represents the **final evaluation stage** of the pipeline.
 
-It measures real-world model performance on unseen data and produces the  
+It measures real-world model performance on unseen data and produces the
 results used for reporting, analysis, and conclusions.
 
 ---
@@ -155,6 +150,7 @@ results used for reporting, analysis, and conclusions.
 ## Next Step
 
 ➡️ `11_Further_Results.md`
+`
 
 
 
