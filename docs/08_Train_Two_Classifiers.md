@@ -17,125 +17,112 @@ nav_order: 2
 
 ## Purpose
 
-This notebook performs **model training** for the top-performing classifiers  
+This notebook performs **model training** for the top-performing classifiers
 identified in Notebook 07 using the normalized DIP feature vectors.
 
-Rather than selecting a single model, this notebook trains **two classifiers**  
-(e.g., RBF SVM and MLP) using their optimized hyperparameters and prepares them  
+Rather than selecting a single model, this notebook trains **two classifiers**
+(e.g., RBF SVM and MLP) using their optimized hyperparameters and prepares them
 for final independent evaluation.
 
 ---
 
 ## Inputs
 
-- Normalized feature vector CSV file:
-  - `train_feature_vectors_normalized.csv`
+* Normalized feature vector CSV file:
 
-- Project configuration file:
-  - `project_config.py`
+  * `train_feature_vectors_normalized.csv`
 
-Classifier configurations are defined within this notebook based on results  
+* Project configuration file:
+
+  * `project_config.py`
+
+Classifier configurations are defined within this notebook based on results
 from Notebook 07.
 
 ---
 
 ## Outputs
 
+The following trained models, configurations, and evaluation summaries are generated:
+
 ### Model Artifacts (`metadata/models/`)
 
-- `final_rbf_svm_model.pkl`
-- `final_mlp_model.pkl`
+* `final_rbf_svm_model.pkl`
 
-- `best_rbf_svm_model_config.json`
-- `best_mlp_model_config.json`
+* `final_mlp_model.pkl`
 
-### Training/Validation Results (`metadata/results/`)
+* `best_rbf_svm_model_config.json`
 
-- `cross_validation_results.csv`
+* `best_mlp_model_config.json`
+
+### Training and Validation Results (`metadata/results/`)
+
+* `cross_validation_results.csv`
 
 ---
 
 ## Main Tasks
 
-- Load normalized training feature vectors
-- Validate dataset integrity
-- Separate features and labels
-- Define selected classifier configurations
-- Initialize classifiers with tuned hyperparameters
-- Perform cross-validation on both classifiers
-- Compare model performance
-- Train both models on full training data
-- Save trained models and configuration summaries
+* Load normalized training feature vectors
+* Validate dataset integrity
+* Separate features and labels
+* Define selected classifier configurations
+* Initialize classifiers with tuned hyperparameters
+* Perform cross-validation on both classifiers
+* Compare model performance
+* Train both models on full training data
+* Save trained models and configuration summaries
 
 ---
 
-## Cell-by-Cell Description
+## Processing Workflow
 
-### Cell 0: Notebook Overview
-Provides a summary of training objectives and workflow.
+This notebook executes a structured sequence of steps to train and prepare the selected classifiers:
 
-### Cell 1: Import Required Libraries
-Loads required libraries including NumPy, pandas, and scikit-learn.
+1. **Environment Setup and Data Loading**
+   Required libraries are imported, and the normalized training dataset is loaded.
 
-### Cell 2: Load Normalized Training Data
-Reads the normalized training dataset and displays structure information.
+2. **Data Validation and Preparation**
+   The dataset is verified for:
 
-### Cell 3: Validate Training Data
-Performs sanity checks including:
-- metadata column verification
-- feature count validation (25 features)
-- missing value checks
-- label consistency
+   * Correct metadata structure
+   * Expected feature dimensionality
+   * Absence of missing values
+     Feature matrices and labels are separated for model training.
 
-### Cell 4: Define Classifier Configurations
-Defines the two selected classifiers and their tuned hyperparameters.
+3. **Classifier Configuration Definition**
+   The two selected classifiers are defined using optimized hyperparameters derived from prior evaluation.
 
-### Cell 5: Cross-Validate Classifiers
-Evaluates both classifiers using stratified k-fold cross-validation and multiple performance metrics.
+4. **Cross-Validation Evaluation**
+   Both classifiers are evaluated using stratified k-fold cross-validation, producing performance metrics across multiple evaluation criteria.
 
-### Cell 6: Summarize and Rank Results
-Aggregates and compares classifier performance, prioritizing ROC-AUC.
+5. **Performance Comparison**
+   Cross-validation results are aggregated and compared, with emphasis on ROC-AUC and overall consistency.
 
-### Cell 7: Train Final Models
-Trains both classifiers on the full training dataset.
+6. **Final Model Training**
+   Each classifier is retrained on the full training dataset to maximize performance.
 
-### Cell 8: Save Trained Models
-Saves trained models to `.pkl` files in `metadata/models/`.
-
-### Cell 9: Save Results and Configurations
-Saves cross-validation results to `metadata/results/` and per-model configuration files to `metadata/models/`.
+7. **Model and Result Persistence**
+   Trained models, configuration details, and cross-validation results are saved for downstream evaluation and reproducibility.
 
 ---
 
 ## Notes and Design Choices
 
-- **Two-model training approach:**  
+* **Two-model training approach:**
   Both RBF SVM and MLP are retained to enable comparative evaluation.
 
-- **In-notebook configuration:**  
+* **In-notebook configuration:**
   Classifier parameters are defined directly in this notebook based on prior selection results.
 
-- **Cross-validation validation:**  
+* **Cross-validation validation:**
   Both models are evaluated using stratified k-fold cross-validation prior to final training.
 
-- **Final training on full dataset:**  
+* **Final training on full dataset:**
   Models are retrained on all available training data to maximize performance.
 
-- **Model persistence:**  
+* **Model persistence:**
   Saving trained models enables reproducible evaluation in subsequent notebooks.
-
----
-
-## Files Produced
-
-### `metadata/models/`
-- `final_rbf_svm_model.pkl` — Trained RBF SVM model  
-- `final_mlp_model.pkl` — Trained MLP model  
-- `best_rbf_svm_model_config.json` — RBF SVM configuration and metadata  
-- `best_mlp_model_config.json` — MLP configuration and metadata  
-
-### `metadata/results/`
-- `cross_validation_results.csv` — Cross-validation performance summary  
 
 ---
 
@@ -150,5 +137,6 @@ It takes the selected classifiers from Notebook 07, trains them using consistent
 ## Next Step
 
 ➡️ `09_Validate_and_Tune_Two_Models.md`
+
 
 
