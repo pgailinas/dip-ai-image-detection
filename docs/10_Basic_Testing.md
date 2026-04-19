@@ -1,14 +1,14 @@
 ---
-title: 09 Validate and Tune Two Models
-parent: 3. Model Optimization Tutorial
-nav_order: 3
+title: 10 Basic Testing
+parent: 4. Basic Testing Tutorial
+nav_order: 1
 ---
 
-# 09 Validate and Tune Two Models
+# 10 Basic Testing
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/09_Validate_and_Tune_Two_Models.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/10_Basic_Testing.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
@@ -127,5 +127,5 @@ produces performance summaries that inform interpretation of final test results.
 
 ## Next Step
 
-➡️ [10 Evaluate Two Models](10_Evaluate_Two_Models.md)
+➡️ [11 Basic Fine Tuning](11_Basic_Fine_Tuning.md)
 
