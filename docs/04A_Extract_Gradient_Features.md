@@ -25,28 +25,27 @@ Gradient-based descriptors form the first group of the 26-dimensional DIP featur
 
 ## Inputs
 
-* Training and test metadata:
+* Metadata from the GitHub repository:
 
-  * `train_metadata.csv`
-  * `test_metadata.csv`
+  * `metadata/splits/train_metadata.csv`
+  * `metadata/splits/test_metadata.csv`
 
-* Preprocessed image files referenced by metadata
+* Preprocessed image archive from Google Drive:
+
+  * `/content/drive/MyDrive/DIP_Project/releases/preprocessed/All_Sources_preprocessed.zip`
 
 * Project configuration file:
 
-  * `project_config.py`
+  * `src/project_config.py`
 
 ---
 
 ## Outputs
 
-The following gradient feature datasets are generated:
+The following gradient feature datasets are generated in the **local runtime**:
 
-* `train_gradient_features.csv`
-  Gradient features for the training dataset.
-
-* `test_gradient_features.csv`
-  Gradient features for the test dataset.
+* `metadata/features/train_gradient_features.csv`
+* `metadata/features/test_gradient_features.csv`
 
 Each dataset includes:
 
@@ -56,12 +55,15 @@ Each dataset includes:
 * `subset`
 * Gradient-based feature columns
 
+⚠️ These files are stored in local runtime storage only and are **not automatically saved to Google Drive**.
+
 ---
 
 ## Main Tasks
 
-* Load training and test metadata
-* Read preprocessed images
+* Load subset metadata (train or test)
+* Extract preprocessed images from ZIP (if needed)
+* Read images using metadata references
 * Compute gradient magnitude and orientation
 * Extract statistical descriptors from gradient data
 * Construct feature tables
@@ -71,28 +73,34 @@ Each dataset includes:
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of steps to extract gradient-based image features:
+This notebook executes a structured sequence of steps:
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and training and test metadata are loaded.
+1. **Environment Setup and Input Verification**
+   The runtime environment is initialized, the repository is cloned, Google Drive is mounted, and required inputs are verified.
 
-2. **Image Access and Preparation**
-   Preprocessed images are accessed using metadata references, ensuring consistent input data across all samples.
+2. **Image Extraction (if needed)**
+   The preprocessed image archive is extracted into the local runtime. Images are stored in a **flat directory structure** with no subfolders.
 
-3. **Gradient Computation**
-   Image gradients are computed using spatial derivatives to obtain:
+3. **Metadata Loading**
+   A single subset (`train` or `test`) is loaded based on the `SUBSET_NAME` setting.
+
+4. **Image Access**
+   Image paths are constructed directly from filenames in metadata.
+
+5. **Gradient Computation**
+   Image gradients are computed using Sobel operators to obtain:
 
    * Gradient magnitude (edge strength)
    * Gradient orientation (edge direction)
 
-4. **Feature Extraction**
-   Statistical descriptors are derived from gradient data to capture structural characteristics of each image.
+6. **Feature Extraction**
+   Statistical descriptors are derived from gradient data to capture structural characteristics.
 
-5. **Feature Table Construction**
-   Extracted features are combined with metadata to form structured feature tables for both training and test datasets.
+7. **Feature Table Construction**
+   Extracted features are combined with metadata to form a structured dataset.
 
-6. **Validation and Output Generation**
-   Feature tables are validated for consistency and completeness, then saved for downstream processing.
+8. **Validation and Output Generation**
+   Feature tables are validated and saved for downstream processing.
 
 ---
 
@@ -100,17 +108,17 @@ This notebook executes a structured sequence of steps to extract gradient-based 
 
 The following eight features are extracted:
 
-* **Mean Gradient Magnitude**
+* **Mean Gradient**
   Represents the average strength of edges in the image.
 
-* **Standard Deviation of Gradient Magnitude**
+* **Std Gradient**
   Measures variability in edge strength across the image.
 
-* **Maximum Gradient Magnitude**
+* **Max Gradient**
   Captures the strongest edge response.
 
 * **Gradient Entropy**
-  Quantifies the randomness or complexity of gradient magnitudes.
+  Quantifies the complexity of gradient magnitude distribution.
 
 * **Edge Density**
   Represents the proportion of pixels classified as edges.
@@ -118,7 +126,7 @@ The following eight features are extracted:
 * **Orientation Mean**
   Computes the average direction of gradients.
 
-* **Orientation Standard Deviation**
+* **Orientation Std**
   Measures variability in gradient directions.
 
 * **Orientation Entropy**
@@ -128,27 +136,47 @@ The following eight features are extracted:
 
 ## Notes and Design Choices
 
-* **Edge-focused representation:**
-  Gradient features emphasize structural content such as edges and contours, which often differ between real and AI-generated images.
+* **Flat image structure:**
+  All 18,000 images are stored in a single directory and accessed by filename, simplifying data handling.
 
-* **Orientation analysis:**
-  Gradient direction statistics provide additional discriminatory information beyond magnitude alone.
+* **Metadata-driven processing:**
+  Dataset membership is determined entirely from metadata, not directory structure.
+
+* **Edge-focused representation:**
+  Gradient features emphasize structural content such as edges and contours.
 
 * **Entropy measures:**
-  Entropy captures the complexity and variability of gradient distributions.
+  Capture complexity and variability in gradient distributions.
 
-* **Separation of feature groups:**
-  Gradient features are computed independently to support modular design and easier analysis of feature contributions.
+* **Modular feature design:**
+  Gradient features are computed independently from spatial and frequency features.
+
+* **Subset-based execution:**
+  The notebook processes one subset per run (`train` or `test`) to preserve strict separation.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook produces the first group of features used in the DIP feature vector. These features are later combined with spatial and frequency-domain features to form the complete input representation for classifier training.
+This notebook produces the **gradient feature group (8 features)** used in the DIP feature vector.
+
+These features are later combined with:
+
+* Spatial features (04B)
+* Frequency-domain features (04C)
+
+to form the complete 26-dimensional feature vector.
 
 ---
 
 ## Next Step
+
+Run this notebook twice:
+
+1. Set `SUBSET_NAME = TRAIN_SUBSET`
+2. Set `SUBSET_NAME = TEST_SUBSET`
+
+Then proceed to:
 
 ➡️ [04B Extract Spatial Features](04B_Extract_Spatial_Features.md)
 
