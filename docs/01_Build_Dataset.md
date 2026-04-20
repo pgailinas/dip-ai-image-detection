@@ -29,11 +29,12 @@ This notebook can also operate in a **demo mode**, where the dataset is treated 
 
 * Selected dataset source (chosen interactively):
 
-  * ImageNet
-  * MS COCO 2017
+  * ImageNet_1K_256
+  * MS_COCO_2017
   * DiffusionDB
-  * SDXL-generated images
-  * MidJourney images
+  * SDXL_Generated_10K
+  * MidJourney
+  * OpenImages
 
 * Project configuration file:
 
@@ -161,18 +162,18 @@ For the selected dataset source:
 |------------|--------------------|-------|
 | imagenet   | ImageNet_1K_256    | real  |
 | coco       | MS_COCO_2017       | real  |
+| openimages | OpenImages         | real  |
 | diffusiondb| DiffusionDB        | ai    |
 | sdxl       | SDXL Generated     | ai    |
 | midjourney | MidJourney         | ai    |
 
-**OpenImages is not supported** due to its very large size (>20 GB).
+**OpenImages is not downloadable** due to its very large size (>20 GB).
 
 ---
 
 ## Expected Size
 
 * ~3000 accepted images per dataset
-* ~15,000 images across Notebook 01 sources
 * ~18,000 images total across full project
 
 ---
