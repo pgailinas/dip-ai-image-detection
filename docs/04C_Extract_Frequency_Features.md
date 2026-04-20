@@ -25,28 +25,27 @@ Frequency-domain descriptors form the third group of the 26-dimensional DIP feat
 
 ## Inputs
 
-* Training and test metadata:
+* Metadata from the GitHub repository:
 
-  * `train_metadata.csv`
-  * `test_metadata.csv`
+  * `metadata/splits/train_metadata.csv`
+  * `metadata/splits/test_metadata.csv`
 
-* Preprocessed image files referenced by metadata
+* Preprocessed image archive from Google Drive:
+
+  * `/content/drive/MyDrive/DIP_Project/releases/preprocessed/All_Sources_preprocessed.zip`
 
 * Project configuration file:
 
-  * `project_config.py`
+  * `src/project_config.py`
 
 ---
 
 ## Outputs
 
-The following frequency feature datasets are generated:
+The following frequency feature datasets are generated in the **local runtime**:
 
-* `train_frequency_features.csv`
-  Frequency-domain features for the training dataset.
-
-* `test_frequency_features.csv`
-  Frequency-domain features for the test dataset.
+* `metadata/features/train_frequency_features.csv`
+* `metadata/features/test_frequency_features.csv`
 
 Each dataset includes:
 
@@ -56,12 +55,15 @@ Each dataset includes:
 * `subset`
 * Frequency-domain feature columns
 
+⚠️ These files are stored in local runtime storage only and are **not automatically saved to Google Drive**.
+
 ---
 
 ## Main Tasks
 
-* Load training and test metadata
-* Read preprocessed images
+* Load subset metadata (train or test)
+* Extract preprocessed images from ZIP (if needed)
+* Read images using metadata references
 * Compute frequency-domain representations
 * Extract spectral and radial descriptors
 * Construct feature tables
@@ -71,25 +73,31 @@ Each dataset includes:
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of steps to extract frequency-domain image features:
+This notebook executes a structured sequence of steps:
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and training and test metadata are loaded.
+1. **Environment Setup and Input Verification**  
+   The runtime environment is initialized, the repository is cloned, Google Drive is mounted, and required inputs are verified.
 
-2. **Image Access and Preparation**
-   Preprocessed images are accessed using metadata references to ensure consistent input data.
+2. **Image Extraction (if needed)**  
+   The preprocessed image archive is extracted into the local runtime. Images are stored in a **flat directory structure** with no subdirectories.
 
-3. **Frequency-Domain Transformation**
-   Images are transformed into the frequency domain using techniques such as the Fourier Transform to obtain spectral representations.
+3. **Metadata Loading**  
+   A single subset (`train` or `test`) is loaded based on the `SUBSET_NAME` setting.
 
-4. **Feature Extraction**
-   Statistical descriptors are derived from the frequency spectrum to capture energy distribution, structural patterns, and frequency complexity.
+4. **Image Access**  
+   Image paths are constructed directly from filenames in metadata.
 
-5. **Feature Table Construction**
-   Extracted features are combined with metadata to form structured datasets for both training and test subsets.
+5. **Frequency-Domain Transformation**  
+   Images are transformed into the frequency domain using the 2D Fourier Transform to obtain spectral representations.
 
-6. **Validation and Output Generation**
-   Feature tables are validated for completeness and consistency, then saved for downstream processing.
+6. **Feature Extraction**  
+   Statistical descriptors are derived from the frequency spectrum to capture energy distribution, structural patterns, and spectral complexity.
+
+7. **Feature Table Construction**  
+   Extracted features are combined with metadata to form a structured dataset.
+
+8. **Validation and Output Generation**  
+   Feature tables are validated and saved for downstream processing.
 
 ---
 
@@ -97,58 +105,81 @@ This notebook executes a structured sequence of steps to extract frequency-domai
 
 The following frequency-domain features are extracted:
 
-* **Low Frequency Energy Ratio**
+* **Low Frequency Energy Ratio**  
   Represents the proportion of spectral energy in low-frequency components.
 
-* **High Frequency Energy Ratio**
+* **High Frequency Energy Ratio**  
   Represents the proportion of spectral energy in high-frequency components.
 
-* **Radial Mean**
+* **Radial Mean**  
   Computes average spectral magnitude as a function of radial distance.
 
-* **Radial Standard Deviation**
+* **Radial Std**  
   Measures variability of spectral magnitude across radial distances.
 
-* **Radial Entropy**
+* **Radial Entropy**  
   Quantifies randomness in radial frequency distribution.
 
-* **Spectral Centroid**
+* **Spectral Centroid**  
   Indicates where energy is concentrated in the frequency spectrum.
 
-* **Spectral Bandwidth**
+* **Spectral Bandwidth**  
   Measures spread of frequency energy around the centroid.
 
-* **Log Spectrum Standard Deviation**
+* **Log Spectrum Std**  
   Captures variation in the log-transformed spectrum.
 
 ---
 
 ## Notes and Design Choices
 
-* **Frequency-domain analysis:**
+* **Flat image structure:**  
+  All 18,000 images are stored in a single directory and accessed by filename, simplifying data handling.
+
+* **Metadata-driven processing:**  
+  Dataset membership is determined entirely from metadata, not directory structure.
+
+* **Frequency-domain analysis:**  
   Fourier-based representations capture structural patterns not easily observable in the spatial domain.
 
-* **Energy distribution:**
-  Energy ratios across frequency bands provide insight into image smoothness and detail.
+* **Energy distribution:**  
+  Frequency energy ratios provide insight into image smoothness and fine detail.
 
-* **Radial statistics:**
+* **Radial statistics:**  
   Radial features summarize frequency content as a function of distance from the spectrum center.
 
-* **Spectral descriptors:**
-  Measures such as centroid and bandwidth characterize the overall distribution of frequency energy.
+* **Spectral descriptors:**  
+  Centroid and bandwidth characterize the overall distribution of frequency energy.
 
-* **Complementary feature group:**
-  Frequency features complete the DIP feature vector by adding information not captured by gradient or spatial features.
+* **Modular feature design:**  
+  Frequency features complement gradient and spatial feature groups.
+
+* **Subset-based execution:**  
+  The notebook processes one subset per run (`train` or `test`) to preserve strict separation.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook produces the final group of features used in the DIP feature vector. These features are combined with gradient and spatial features in the next step to form the complete input representation for classifier training.
+This notebook produces the **frequency-domain feature group (8 features)** used in the DIP feature vector.
+
+These features are combined with:
+
+* Gradient features (04A)
+* Spatial features (04B)
+
+to form the complete 26-dimensional feature representation used for classification.
 
 ---
 
 ## Next Step
+
+Run this notebook twice:
+
+1. Set `SUBSET_NAME = TRAIN_SUBSET`
+2. Set `SUBSET_NAME = TEST_SUBSET`
+
+Then proceed to:
 
 ➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
 
