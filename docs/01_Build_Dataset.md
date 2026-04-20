@@ -17,27 +17,23 @@ nav_order: 1
 
 ## Purpose
 
-This notebook constructs the initial dataset for the DIP-based AI image detection project. It defines and organizes metadata for all image sources while establishing a consistent structure used throughout the pipeline.
+This notebook provides an **optional method** for building a raw image dataset from a **single selected source**.
 
-The dataset consists of six sources:
+It retrieves candidate images, applies validation and deduplication, assigns standardized filenames, and generates raw metadata for accepted images.
 
-* **Real images (3 sources)**
-* **AI-generated images (3 sources)**
-
-A total of **18,000 images** are referenced and prepared through metadata, without physically moving or duplicating files.
+This notebook can also operate in a **demo mode**, where the dataset is treated as new but no files are written.
 
 ---
 
 ## Inputs
 
-* Raw image directories for:
+* Selected dataset source (chosen interactively):
 
-  * ImageNet (subset)
-  * MS COCO (subset)
-  * OpenImages (subset)
-  * DiffusionDB (subset)
-  * SDXL-generated images (subset)
-  * MidJourney images (subset)
+  * ImageNet
+  * MS COCO 2017
+  * DiffusionDB
+  * SDXL-generated images
+  * MidJourney images
 
 * Project configuration file:
 
@@ -45,90 +41,178 @@ A total of **18,000 images** are referenced and prepared through metadata, witho
 
 ---
 
+## Modes of Operation
+
+The notebook supports two modes:
+
+### Persistent Mode (`PERSIST_OUTPUTS = True`)
+* Images are saved to disk
+* Metadata CSV files are written
+* Hash files are updated
+
+### Demo Mode (`PERSIST_OUTPUTS = False`)
+* Existing datasets are ignored
+* No files are written
+* Metadata and hashes are stored in memory only
+
+This allows safe testing and demonstration without modifying existing data.
+
+---
+
 ## Outputs
 
-The following metadata files are generated:
+### Persistent Mode
 
-* `imgn_metadata.csv`
-* `coco_metadata.csv`
-* `open_metadata.csv`
-* `diff_metadata.csv`
-* `sdxl_metadata.csv`
-* `mj_metadata.csv`
+For the selected dataset source:
 
-Each file contains:
+* Images:
+  * `data/raw/<SOURCE_DATASET>/images/`
 
-* `filename`
-* `class_label` (real or ai)
-* `source_dataset`
+* Metadata:
+  * `data/metadata/[dataset_code]_raw_metadata.csv`
+
+* Hash files:
+  * `data/metadata/[target_name]_source_hashes.json`
+  * `data/metadata/global_hashes.json`
+
+### Demo Mode
+
+* No files are written
+* Metadata rows and hash sets exist in memory only
 
 ---
 
 ## Main Tasks
 
-* Define dataset sources and class labels
-* Enumerate image files for each dataset
-* Apply consistent naming conventions
-* Generate structured metadata tables
-* Save metadata CSV files for downstream processing
+* Select dataset source or skip execution
+* Load target-specific dataset module
+* Retrieve candidate image records
+* Apply:
+  * size filtering (≥256×256)
+  * duplicate filtering (SHA-256, source + global)
+* Assign standardized filenames
+* Generate metadata rows for accepted images
+* Build dataset iteratively in batches
+* Track progress and performance
 
 ---
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of steps to construct the dataset metadata:
+1. **Environment Setup**
+   Initialize runtime, paths, and execution mode.
 
-1. **Environment Setup and Configuration**
-   The runtime environment is initialized, required libraries are imported, and project configuration settings are loaded.
+2. **Dataset Selection**
+   Choose one dataset source or skip execution.
 
-2. **Dataset Definition**
-   Six dataset sources are defined and assigned to either the real or AI-generated class.
+3. **Target Module Loading**
+   Load dataset-specific logic from `src/targets/`.
 
-3. **Image Enumeration**
-   Image files are enumerated from each dataset directory, ensuring all available images are referenced without modifying their physical locations.
+4. **Configuration**
+   Define dataset paths, metadata files, and hash tracking.
 
-4. **Metadata Construction**
-   Structured metadata tables are created for each dataset, capturing filename, class label, and source information.
+5. **Utilities Initialization**
+   Prepare:
+   * metadata handling
+   * hash tracking
+   * filename generation
+   * image validation
 
-5. **Validation**
-   Metadata is validated to ensure:
+6. **Dataset Loading**
+   Load source dataset into memory or iterable form.
 
-   * Correct number of images per dataset
-   * Balanced class distribution
-   * Proper formatting and consistency
+7. **Candidate Processing**
+   For each candidate image:
+   * normalize format
+   * enforce size constraints
+   * compute SHA-256 hash
+   * reject duplicates
+   * assign filename
+   * generate metadata row
 
-6. **Output Generation**
-   Metadata tables are saved as CSV files for use in all subsequent pipeline stages.
+8. **Batch Processing**
+   Iterate through dataset using:
+   * module-based indexing, or
+   * notebook-side iteration (for iterable datasets)
+
+9. **Progress Tracking**
+   Display:
+   * accepted image count
+   * batch statistics
+   * progress bar
+
+10. **Verification**
+    Validate:
+    * image vs metadata consistency (persistent mode)
+    * metadata vs hash consistency (demo mode)
+
+11. **Final Summary**
+    Report:
+    * total processed images
+    * accepted images
+    * acceptance rate
+    * sample metadata rows (demo mode)
+
+---
+
+## Supported Datasets
+
+| Target Name | Dataset            | Class |
+|------------|--------------------|-------|
+| imagenet   | ImageNet_1K_256    | real  |
+| coco       | MS_COCO_2017       | real  |
+| diffusiondb| DiffusionDB        | ai    |
+| sdxl       | SDXL Generated     | ai    |
+| midjourney | MidJourney         | ai    |
+
+**OpenImages is not supported** due to its very large size (>20 GB).
+
+---
+
+## Expected Size
+
+* ~3000 accepted images per dataset
+* ~15,000 images across Notebook 01 sources
+* ~18,000 images total across full project
 
 ---
 
 ## Notes and Design Choices
 
-* **Metadata-driven design:**
-  Images are not moved or duplicated; all processing is controlled through CSV files.
+* **Optional notebook**
+  Users may skip this step and proceed directly to preprocessing.
 
-* **Balanced dataset construction:**
-  Equal representation is maintained between real and AI-generated images.
+* **Single-source processing**
+  Only one dataset is handled per run for clarity and control.
 
-* **Consistent naming convention:**
-  Enables traceability across preprocessing, feature extraction, and evaluation stages.
+* **Demo mode support**
+  Enables safe experimentation without modifying stored datasets.
 
-* **Separation of data and logic:**
-  Dataset structure is defined via configuration, improving maintainability and reproducibility.
+* **Hash-based deduplication**
+  Ensures dataset uniqueness both within and across sources.
+
+* **Flexible dataset handling**
+  Supports both indexed datasets and streaming/iterable datasets.
+
+* **No preprocessing performed**
+  All image preprocessing occurs in the next notebook.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook establishes the foundation of the entire pipeline by defining the dataset structure and generating metadata used in all subsequent steps.
+This notebook provides an **optional dataset construction step**.
 
-All later processing stages rely exclusively on these metadata files to access and manage image data.
+It can be used to:
+* build datasets from source APIs
+* regenerate datasets
+* test filtering and deduplication logic
+
+However, the main pipeline can proceed using existing datasets without running this notebook.
 
 ---
 
 ## Next Step
-
-The dataset produced here is passed to the preprocessing stage:
 
 ➡️ [02 Preprocess Images](02_Preprocess_Images.md)
 
