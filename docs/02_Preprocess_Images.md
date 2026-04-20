@@ -34,6 +34,7 @@ Preprocessing ensures all images have consistent size, format, and grayscale rep
   * `DiffusionDB.zip`
   * `SDXL_Generated_10K.zip`
   * `Midjourney.zip`
+  * `OpenImages.zip` (disallowed due to size)
 
 * Project configuration file:
 
