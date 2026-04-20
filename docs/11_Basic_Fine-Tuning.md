@@ -17,115 +17,135 @@ nav_order: 1
 
 ## Purpose
 
-This notebook performs **validation and comparison** of the two selected
-classifiers using the normalized Digital Image Processing (DIP) feature vectors.
+This notebook performs **controlled hyperparameter tuning** of the baseline classifier to improve performance while preserving the original Digital Image Processing (DIP) feature-based approach.
 
-The focus is on evaluating the retained models:
-
-* RBF Support Vector Machine (RBF SVM)
-* Multi-Layer Perceptron (MLP)
-
-Both classifiers are evaluated using a consistent stratified cross-validation
-framework to compare their performance prior to final independent testing.
+The goal is to demonstrate that performance gains can be achieved through modest model refinement without altering the feature engineering methodology.
 
 ---
 
 ## Inputs
 
-* Normalized training feature vectors:
+* Training feature vectors:
 
-  * `metadata/vectors/train_feature_vectors_normalized.csv`
+  * `metadata/vectors/train_feature_vectors.csv`
+
+* Test feature vectors:
+
+  * `metadata/vectors/test_feature_vectors.csv`
 
 * Project configuration file:
 
-  * `project_config.py`
-
-Classifier configurations are defined within this notebook based on
-results from Notebook 07 and the finalized model design.
+  * `src/project_config.py`
 
 ---
 
 ## Outputs
 
-All validation results are saved to `metadata/results/`:
+All tuning results are generated within the notebook and may optionally be saved:
 
-* `cross_validation_results.csv`
-  Full cross-validation performance summary.
+* Cross-validation performance summaries
+* Best model configuration
+* Final test set evaluation metrics:
 
-* `classifier_comparison_tuned.csv`
-  Condensed comparison of key performance metrics.
+  * Accuracy
+  * Precision
+  * Recall
+  * F1-score
+  * ROC AUC
+
+Optional saved outputs:
+
+* `metadata/results/fine_tuning_results.csv`
+* `metadata/results/best_model_config.json`
 
 ---
 
 ## Main Tasks
 
-* Load normalized training feature vectors
-* Validate dataset integrity
+* Load training and test feature vectors
+* Validate dataset structure and integrity
 * Separate features and labels
-* Define selected classifier configurations
-* Perform stratified k-fold cross-validation
-* Evaluate models using multiple performance metrics
-* Compare validation performance
-* Save validation outputs
+* Normalize feature values
+* Define candidate model configurations
+* Perform stratified k-fold cross-validation on training data
+* Select the best-performing configuration
+* Retrain the model on full training data
+* Evaluate the tuned model on the test set
 
 ---
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of steps to validate and compare the selected classifiers:
+This notebook executes a structured sequence of steps:
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and the normalized training dataset is loaded.
+1. **Environment Setup and Data Loading**  
+   The runtime environment is initialized, required libraries are imported, and training and test datasets are loaded.
 
-2. **Data Validation and Preparation**
-   The dataset is verified for:
+2. **Data Validation and Preparation**  
+   The datasets are verified for:
 
-   * Correct metadata structure
-   * Expected feature dimensionality
-   * Absence of missing values
-     Feature matrices and labels are prepared for evaluation.
+   * Correct metadata structure  
+   * Expected feature dimensionality  
+   * Absence of missing values  
 
-3. **Classifier Configuration Definition**
-   The two selected classifiers are defined using their tuned hyperparameters established in prior steps.
+   Feature matrices (`X`) and labels (`y`) are prepared.
 
-4. **Cross-Validation Evaluation**
-   Both classifiers are evaluated using stratified k-fold cross-validation, producing performance metrics across multiple evaluation criteria.
+3. **Feature Normalization**  
+   Feature values are normalized to ensure consistent scaling across all dimensions.
 
-5. **Performance Aggregation and Comparison**
-   Results are compiled and compared, with emphasis on ROC-AUC and overall consistency across folds.
+4. **Model Configuration Definition**  
+   A set of candidate configurations for the Multi-Layer Perceptron (MLP) is defined, including variations in:
 
-6. **Output Generation and Validation**
-   Validation results are saved to disk, and checks are performed to confirm output integrity and consistency.
+   * Hidden layer structure  
+   * Regularization strength (alpha)  
+   * Learning rate (optional)
+
+5. **Cross-Validation Evaluation (Training Data Only)**  
+   Stratified k-fold cross-validation is performed on the training dataset to evaluate each configuration.
+
+6. **Model Selection**  
+   The best-performing configuration is selected based on evaluation metrics, with emphasis on ROC AUC and F1-score.
+
+7. **Final Model Training**  
+   The selected model is retrained using the full training dataset.
+
+8. **Final Evaluation (Test Set)**  
+   The tuned model is evaluated on the independent test dataset to measure generalization performance.
 
 ---
 
 ## Notes and Design Choices
 
-* **Two-model validation approach:**
-  Both RBF SVM and MLP are evaluated to preserve a fair comparison prior to final testing.
+* **Controlled tuning approach:**  
+  Only a small number of hyperparameters are varied to maintain interpretability and avoid overfitting.
 
-* **In-notebook configuration:**
-  Classifier parameters are defined directly in this notebook based on prior selection results.
+* **Training/test separation:**  
+  Cross-validation is performed exclusively on training data. The test set is used only once for final evaluation.
 
-* **Cross-validation framework:**
-  Stratified k-fold cross-validation ensures consistent and unbiased evaluation.
+* **Model consistency:**  
+  The Multi-Layer Perceptron (MLP) remains the primary classifier to maintain consistency with the baseline evaluation.
 
-* **Separation of concerns:**
-  This notebook evaluates model behavior using training data only.
-  Final evaluation on unseen test data is performed in a later notebook.
+* **Performance metrics:**  
+  ROC AUC is emphasized as the primary metric, with F1-score used as a secondary indicator.
+
+* **Reproducibility:**  
+  Fixed random seeds are used to ensure consistent and repeatable results.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook represents the **validation and tuning stage** of the pipeline.
+This notebook represents the **model refinement stage** of the pipeline.
 
-It evaluates the selected classifiers using consistent procedures and
-produces performance summaries that inform interpretation of final test results.
+It answers the key question:
+
+> Can the performance of the DIP feature-based approach be improved through controlled tuning of the classifier?
+
+The results are compared against the baseline established in the Basic Testing notebook.
 
 ---
 
 ## Next Step
 
-➡️ [12 Evaluate Two Models](12_Evaluate_Two_Models.md)
+➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
 
