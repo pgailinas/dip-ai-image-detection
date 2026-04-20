@@ -17,24 +17,23 @@ nav_order: 2
 
 ## Purpose
 
-This notebook performs image preprocessing for all dataset sources defined in the previous step. It standardizes image format, size, and quality to ensure consistency across all inputs prior to feature extraction.
+This notebook preprocesses raw images for a **single user-selected dataset source** into a standardized format for downstream feature extraction and classification.
 
-Preprocessing is applied uniformly to both real and AI-generated images, enabling fair and comparable feature computation in later stages.
+Preprocessing ensures all images have consistent size, format, and grayscale representation, while preserving dataset structure and filenames.
 
 ---
 
 ## Inputs
 
-* Metadata CSV files from dataset construction:
+* A **user-selected dataset source** (one at a time)
 
-  * `imgn_metadata.csv`
-  * `coco_metadata.csv`
-  * `open_metadata.csv`
-  * `diff_metadata.csv`
-  * `sdxl_metadata.csv`
-  * `mj_metadata.csv`
+* Raw dataset ZIP files stored on Google Drive:
 
-* Raw image files referenced by metadata
+  * `ImageNet_1K_256.zip`
+  * `MS_COCO_2017.zip`
+  * `DiffusionDB.zip`
+  * `SDXL_Generated_10K.zip`
+  * `Midjourney.zip`
 
 * Project configuration file:
 
@@ -44,93 +43,140 @@ Preprocessing is applied uniformly to both real and AI-generated images, enablin
 
 ## Outputs
 
-The following preprocessed data artifacts are generated:
+The following artifacts are generated for the selected source:
 
-* Preprocessed image files stored in dataset-specific directories
+* Preprocessed images stored in:
 
-* Updated metadata CSV files:
+  * `data/preprocessed/<dataset>/images/`
 
-  * `imgn_preprocessed_metadata.csv`
-  * `coco_preprocessed_metadata.csv`
-  * `open_preprocessed_metadata.csv`
-  * `diff_preprocessed_metadata.csv`
-  * `sdxl_preprocessed_metadata.csv`
-  * `mj_preprocessed_metadata.csv`
+* Preprocessed metadata CSV:
 
-Each updated metadata file maintains:
+  * `<dataset>_preprocessed_metadata.csv`
+
+Each metadata file includes:
 
 * `filename`
-* `class_label`
-* `source_dataset`
+* `label`
+* `dataset_code`
+* `source_name`
+* `original_width`
+* `original_height`
+* `processed_path`
 
 ---
 
-## Main Tasks
+## Key Design Behavior
 
-* Load metadata for each dataset
-* Read and validate input images
-* Convert images to a consistent format
-* Resize images to a standard resolution
-* Handle corrupted or unreadable files
-* Save preprocessed images
-* Update and save metadata tables
+### **Single-Source Processing**
+
+Only one dataset source is processed per run, based on user selection.
+
+---
+
+### **ZIP-Based Input Handling**
+
+Raw images are stored as ZIP archives on Google Drive. The notebook:
+
+1. Copies the selected ZIP file to the local runtime
+2. Extracts the ZIP locally
+3. Processes images from the extracted directory
+
+---
+
+### **Filename Preservation**
+
+Raw images already follow the project naming convention (e.g., `rl_imgn_000001.png`).
+
+Preprocessing **preserves the filename**, meaning:
+
+```
+raw:         rl_imgn_000001.png
+processed:   rl_imgn_000001.png
+```
+
+The difference lies in the image content, not the name.
+
+---
+
+### **Fresh-Run Execution Model**
+
+Each run assumes a clean processing state:
+
+* Output directories are cleared before processing
+* Images are processed sequentially
+* No indexing or resume logic is required
 
 ---
 
 ## Processing Workflow
 
-This notebook executes a structured sequence of steps to standardize all input images:
+1. **Environment Setup**
+   Mount Google Drive, import libraries, and load configuration settings.
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and metadata for all datasets is loaded.
+2. **User Source Selection**
+   The user selects a dataset source, and ZIP file size is displayed to guide selection.
 
-2. **Image Access and Validation**
-   Raw images are accessed using metadata references, and basic validation checks are performed to ensure files can be read.
+3. **ZIP Copy and Extraction**
+   The selected ZIP file is copied locally and extracted in `/content`.
 
-3. **Image Preprocessing**
-   Each image is processed to enforce consistency, including:
+4. **Image Directory Detection**
+   The notebook identifies the directory containing extracted images.
 
-   * Format conversion
-   * Resizing to a standard resolution
-   * Basic quality normalization
+5. **Image Preprocessing**
+   Each image is processed:
 
-4. **Error Handling and Logging**
-   Corrupted or unreadable images are identified, skipped, and logged to maintain pipeline robustness.
+   * Resized to 256×256
+   * Converted to grayscale
+   * Saved using the same filename
 
-5. **Metadata Update**
-   Metadata tables are updated to reflect successfully processed images and remove invalid entries when necessary.
+6. **Metadata Collection**
+   Metadata is recorded for each processed image.
 
-6. **Output Generation and Validation**
-   Preprocessed images and updated metadata files are saved, and validation checks confirm dataset consistency and completeness.
+7. **Metadata Save**
+   A structured CSV file is generated for the processed dataset.
+
+8. **Validation**
+   Output counts and metadata consistency are verified.
+
+9. **Visualization**
+   Three sample image pairs are displayed:
+
+   * Raw image (left)
+   * Preprocessed image (right)
 
 ---
 
 ## Notes and Design Choices
 
-* **Uniform preprocessing:**
-  All images are resized and formatted consistently to eliminate variability unrelated to image content.
+* **Local processing for performance:**
+  ZIP files are copied to the local runtime to avoid Google Drive I/O bottlenecks.
 
-* **Error handling for robustness:**
-  Corrupted or unreadable images are safely skipped to prevent pipeline failure.
+* **Deterministic filenames:**
+  Filenames remain unchanged across raw and processed datasets.
 
-* **Metadata-driven workflow:**
-  Processing is guided entirely by metadata, preserving separation between data and logic.
+* **Simplified pipeline:**
+  Removing index-based naming eliminates duplication and alignment issues.
 
-* **Reentrancy support:**
-  The design allows preprocessing to resume without restarting from scratch in case of interruptions.
+* **Robust validation:**
+  The notebook verifies that processed image counts match metadata records.
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook standardizes all input images, ensuring that subsequent feature extraction operates on consistent and comparable data.
+This notebook standardizes image data for a single dataset source, preparing it for:
 
-It serves as a critical preparation step before combining datasets and generating feature vectors.
+* Dataset combination
+* Train/test splitting
+* Feature extraction
+
+Each dataset is processed independently and later merged.
 
 ---
 
 ## Next Step
 
 ➡️ [03 Combine and Split](03_Combine_and_Split.md)
+
 
 
