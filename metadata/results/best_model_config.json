@@ -1,0 +1,18 @@
+{
+    "model_name": "MLP_Small_alpha_0.0001",
+    "hidden_layer_sizes": "(32,)",
+    "alpha": 0.0001,
+    "learning_rate_init": 0.001,
+    "max_iter": 300,
+    "cv_accuracy_mean": 0.7877083333333333,
+    "cv_accuracy_std": 0.005029810822842191,
+    "cv_precision_mean": 0.7870190169830709,
+    "cv_precision_std": 0.007802667052652384,
+    "cv_recall_mean": 0.7893055555555556,
+    "cv_recall_std": 0.020626753573041088,
+    "cv_f1_mean": 0.7879307185802624,
+    "cv_f1_std": 0.007853920475025372,
+    "cv_roc_auc_mean": 0.8662393904320987,
+    "cv_roc_auc_std": 0.006699341881101548,
+    "convergence_warning_count": 0
+}

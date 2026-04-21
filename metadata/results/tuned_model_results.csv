@@ -1,0 +1,2 @@
+model,accuracy,precision,recall,f1_score,roc_auc,train_samples,test_samples,num_features,training_iterations,final_loss
+MLP_Small_alpha_0.0001,0.7719444444444444,0.7641662169454938,0.7866666666666666,0.7752532165343553,0.8546021604938272,14400,3600,25,277,0.3973804642507542
