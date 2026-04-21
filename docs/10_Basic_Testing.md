@@ -47,31 +47,33 @@ All evaluation results are generated within the notebook and may optionally be s
 
 * Classification metrics:
 
-  * Accuracy
-  * Precision
-  * Recall
-  * F1-score
-  * ROC AUC
+  * Accuracy  
+  * Precision  
+  * Recall  
+  * F1-score  
+  * ROC AUC  
 
-* Confusion matrix
+* Confusion matrix  
+* ROC curve  
 
-* ROC curve
-
-Optional saved outputs:
+Saved output files:
 
 * `metadata/results/basic_testing_results.csv`
+* `metadata/results/baseline_model_config.json`
+* `metadata/models/scaler.pkl`
 
 ---
 
 ## Main Tasks
 
-* Load training and test feature vectors
-* Validate dataset structure and integrity
-* Separate features and labels
-* Normalize feature values
-* Train baseline classifier(s)
-* Evaluate model performance on the test set
-* Generate performance metrics and visualizations
+* Load training and test feature vectors  
+* Validate dataset structure and integrity  
+* Separate features and labels  
+* Normalize feature values  
+* Train baseline classifier  
+* Evaluate model performance on the test set  
+* Generate performance metrics and visualizations  
+* Save baseline results and model configuration  
 
 ---
 
@@ -92,35 +94,42 @@ This notebook executes a structured sequence of steps:
    Feature matrices (`X`) and labels (`y`) are prepared.
 
 3. **Feature Normalization**  
-   Feature values are normalized using a standard scaler to ensure consistent input for the classifier.
+   Feature values are normalized using a standard scaler to ensure consistent input for the classifier.  
+   The fitted scaler is saved for reuse in later notebooks.
 
 4. **Baseline Model Training**  
    A baseline classifier is trained using the training dataset.  
-   The Multi-Layer Perceptron (MLP) is the primary model used.
+   The Multi-Layer Perceptron (MLP) is used as the primary model.
 
 5. **Model Evaluation (Test Set)**  
    The trained model is evaluated on the independent test dataset to measure generalization performance.
 
 6. **Performance Reporting**  
-   Evaluation metrics and visualizations are generated to summarize model behavior.
+   Evaluation metrics, confusion matrix, and ROC curve are generated to summarize model behavior.
+
+7. **Output Generation**  
+   Results and model configuration are saved to local runtime storage for reference and comparison.
 
 ---
 
 ## Notes and Design Choices
 
-* **Baseline evaluation:**
-  This notebook intentionally uses a simple model configuration to establish a reference performance level.
+* **Baseline evaluation:**  
+  This notebook intentionally uses a simple, standard model configuration to establish a reference performance level.
 
-* **Test set usage:**
+* **Test set usage:**  
   The test dataset is used strictly for final evaluation and is not involved in training.
 
-* **Feature normalization:**
+* **Feature normalization:**  
   Scaling ensures that all features contribute appropriately to model training.
 
-* **Model simplicity:**
+* **Model simplicity:**  
   The focus is on evaluating the effectiveness of the DIP feature vector rather than optimizing the classifier.
 
-* **Reproducibility:**
+* **Convergence behavior:**  
+  The baseline model may reach the maximum iteration limit without full convergence. This is expected for a baseline configuration and does not prevent valid test-set evaluation.
+
+* **Reproducibility:**  
   Fixed random seeds are used where applicable to ensure consistent results.
 
 ---
