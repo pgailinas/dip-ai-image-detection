@@ -8,7 +8,7 @@ nav_order: 1
 
 <p>
   <strong>Open Notebook in Google Colab ➡️</strong>
-  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/11_Basic_Fine_Tuning.ipynb" target="_blank" rel="noopener noreferrer">
+  <a href="https://colab.research.google.com/github/pgailinas/dip-ai-image-detection/blob/main/notebooks/11_Basic_Fine-Tuning.ipynb" target="_blank" rel="noopener noreferrer">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" style="vertical-align: middle; margin-left: 8px;"/>
   </a>
 </p>
