@@ -1,0 +1,2 @@
+model,accuracy,precision,recall,f1_score,roc_auc,train_samples,test_samples,num_features,training_iterations,final_loss
+"MLP (64, 32)",0.7547222222222222,0.7734048896839595,0.7205555555555555,0.7460454414725338,0.8401839506172839,14400,3600,25,300,0.23557137767729908
