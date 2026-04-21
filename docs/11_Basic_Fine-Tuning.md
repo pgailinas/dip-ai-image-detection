@@ -43,34 +43,40 @@ The goal is to demonstrate that performance gains can be achieved through modest
 
 All tuning results are generated within the notebook and may optionally be saved:
 
-* Cross-validation performance summaries
-* Best model configuration
+* Cross-validation performance summaries  
+* Best model configuration  
 * Final test set evaluation metrics:
 
-  * Accuracy
-  * Precision
-  * Recall
-  * F1-score
-  * ROC AUC
+  * Accuracy  
+  * Precision  
+  * Recall  
+  * F1-score  
+  * ROC AUC  
 
-Optional saved outputs:
+* Confusion matrix  
+* ROC curve  
 
-* `metadata/results/fine_tuning_results.csv`
-* `metadata/results/best_model_config.json`
+Saved output files:
+
+* `metadata/results/fine_tuning_results.csv`  
+* `metadata/results/best_model_config.json`  
+* `metadata/results/tuned_model_results.csv`  
+* `metadata/models/scaler.pkl`  
 
 ---
 
 ## Main Tasks
 
-* Load training and test feature vectors
-* Validate dataset structure and integrity
-* Separate features and labels
-* Normalize feature values
-* Define candidate model configurations
-* Perform stratified k-fold cross-validation on training data
-* Select the best-performing configuration
-* Retrain the model on full training data
-* Evaluate the tuned model on the test set
+* Load training and test feature vectors  
+* Validate dataset structure and integrity  
+* Separate features and labels  
+* Normalize feature values  
+* Define candidate model configurations  
+* Perform stratified k-fold cross-validation on training data  
+* Select the best-performing configuration  
+* Retrain the model on full training data  
+* Evaluate the tuned model on the test set  
+* Compare tuned results with baseline performance  
 
 ---
 
@@ -91,10 +97,11 @@ This notebook executes a structured sequence of steps:
    Feature matrices (`X`) and labels (`y`) are prepared.
 
 3. **Feature Normalization**  
-   Feature values are normalized to ensure consistent scaling across all dimensions.
+   Feature values are normalized to ensure consistent scaling across all dimensions.  
+   The fitted scaler is saved for reuse.
 
 4. **Model Configuration Definition**  
-   A set of candidate configurations for the Multi-Layer Perceptron (MLP) is defined, including variations in:
+   A small set of candidate configurations for the Multi-Layer Perceptron (MLP) is defined, including variations in:
 
    * Hidden layer structure  
    * Regularization strength (alpha)  
@@ -104,10 +111,12 @@ This notebook executes a structured sequence of steps:
    Stratified k-fold cross-validation is performed on the training dataset to evaluate each configuration.
 
 6. **Model Selection**  
-   The best-performing configuration is selected based on evaluation metrics, with emphasis on ROC AUC and F1-score.
+   The best-performing configuration is selected based primarily on **ROC AUC**, with **F1-score** used as a secondary metric.  
+   The selected model may be a lower-complexity architecture, reflecting the structured nature of the feature space.
 
 7. **Final Model Training**  
-   The selected model is retrained using the full training dataset.
+   The selected model is retrained using the full training dataset.  
+   Convergence behavior is verified to ensure stable training.
 
 8. **Final Evaluation (Test Set)**  
    The tuned model is evaluated on the independent test dataset to measure generalization performance.
@@ -128,6 +137,12 @@ This notebook executes a structured sequence of steps:
 * **Performance metrics:**  
   ROC AUC is emphasized as the primary metric, with F1-score used as a secondary indicator.
 
+* **Model complexity:**  
+  The best-performing configuration may be a relatively simple model, indicating that the engineered DIP features provide a well-structured feature space.
+
+* **Convergence behavior:**  
+  The selected tuned model is expected to converge within the specified iteration limit without warnings, indicating stable optimization.
+
 * **Reproducibility:**  
   Fixed random seeds are used to ensure consistent and repeatable results.
 
@@ -141,11 +156,11 @@ It answers the key question:
 
 > Can the performance of the DIP feature-based approach be improved through controlled tuning of the classifier?
 
-The results are compared against the baseline established in the Basic Testing notebook.
+The results are compared directly against the baseline established in the Basic Testing notebook.
 
 ---
 
 ## Next Step
 
-➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
+➡️ [12 Evaluate Two Models](12_Evaluate_Two_Models.md)
 
