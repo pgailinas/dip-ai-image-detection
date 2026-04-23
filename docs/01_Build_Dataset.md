@@ -17,11 +17,11 @@ nav_order: 1
 
 ## Purpose
 
-This notebook provides an **optional method** for building a raw image dataset from a **single selected source**.
+This notebook provides an **optional, reproducible method** for building a raw image dataset from a **single selected source**.
 
 It retrieves candidate images, applies validation and deduplication, assigns standardized filenames, and generates raw metadata for accepted images.
 
-This notebook can also operate in a **demo mode**, where the dataset is treated as new but no files are written.
+A **source reset mechanism** enables clean rebuilding of any dataset source without manual file cleanup.
 
 ---
 
@@ -34,187 +34,204 @@ This notebook can also operate in a **demo mode**, where the dataset is treated 
   * DiffusionDB
   * SDXL_Generated_10K
   * MidJourney
-  * OpenImages
+  * OpenImages *(not supported due to size)*
 
-* Project configuration file:
+* Project configuration:
 
   * `project_config.py`
 
 ---
 
-## Modes of Operation
+## Reset-Based Workflow (Key Feature)
 
-The notebook supports two modes:
+This notebook uses a **forward-only execution model**.
 
-### Persistent Mode (`PERSIST_OUTPUTS = True`)
-* Images are saved to disk
-* Metadata CSV files are written
-* Hash files are updated
+An optional reset step allows rebuilding a dataset cleanly:
 
-### Demo Mode (`PERSIST_OUTPUTS = False`)
-* Existing datasets are ignored
-* No files are written
-* Metadata and hashes are stored in memory only
+### Reset Step
 
-This allows safe testing and demonstration without modifying existing data.
+When enabled, the notebook:
+
+* Removes the current source hashes from the global hash set
+* Deletes:
+
+  * source hash JSON
+  * raw metadata CSV
+  * source image directory
+* Recreates required directories
+
+This ensures:
+
+* no duplicate rejection from prior runs
+* deterministic rebuild behavior
+* no need to rerun earlier cells
 
 ---
 
 ## Outputs
 
-### Persistent Mode
-
 For the selected dataset source:
 
-* Images:
-  * `data/raw/<SOURCE_DATASET>/images/`
+### Images
 
-* Metadata:
-  * `data/metadata/[dataset_code]_raw_metadata.csv`
+```text
+data/raw/<SOURCE_DATASET>/images/
+```
 
-* Hash files:
-  * `data/metadata/[target_name]_source_hashes.json`
-  * `data/metadata/global_hashes.json`
+---
 
-### Demo Mode
+### Raw Metadata CSV
 
-* No files are written
-* Metadata rows and hash sets exist in memory only
+```text
+data/metadata/original/<dataset_code>_raw_metadata.csv
+```
+
+---
+
+### Hash Files
+
+```text
+data/metadata/hashes/<dataset_code>_source_hashes.json
+data/metadata/hashes/global_hashes.json
+```
 
 ---
 
 ## Main Tasks
 
 * Select dataset source or skip execution
-* Load target-specific dataset module
+* Load dataset-specific module
 * Retrieve candidate image records
 * Apply:
+
   * size filtering (≥256×256)
   * duplicate filtering (SHA-256, source + global)
 * Assign standardized filenames
-* Generate metadata rows for accepted images
-* Build dataset iteratively in batches
+* Generate metadata rows
+* Build dataset in batches
 * Track progress and performance
+* Verify output consistency
 
 ---
 
 ## Processing Workflow
 
 1. **Environment Setup**
-   Initialize runtime, paths, and execution mode.
+   Load configuration and initialize paths.
 
 2. **Dataset Selection**
-   Choose one dataset source or skip execution.
+   Choose dataset source or skip execution.
 
 3. **Target Module Loading**
-   Load dataset-specific logic from `src/targets/`.
+   Load dataset logic from `src/datasets/`.
 
-4. **Configuration**
-   Define dataset paths, metadata files, and hash tracking.
+4. **Common Configuration**
+   Define dataset-specific paths and files.
 
-5. **Utilities Initialization**
-   Prepare:
-   * metadata handling
-   * hash tracking
-   * filename generation
-   * image validation
+5. **Reset Source State (Optional)**
+   Cleanly remove prior dataset state.
 
-6. **Dataset Loading**
-   Load source dataset into memory or iterable form.
+6. **Metadata Initialization**
+   Create raw metadata CSV with header.
 
-7. **Candidate Processing**
-   For each candidate image:
-   * normalize format
-   * enforce size constraints
-   * compute SHA-256 hash
-   * reject duplicates
-   * assign filename
-   * generate metadata row
+7. **Hash Initialization**
+   Load source and global hash sets.
 
-8. **Batch Processing**
-   Iterate through dataset using:
-   * module-based indexing, or
-   * notebook-side iteration (for iterable datasets)
+8. **Utility Setup**
+   Initialize filename, validation, and append utilities.
 
-9. **Progress Tracking**
-   Display:
-   * accepted image count
-   * batch statistics
-   * progress bar
+9. **Dataset Loading**
+   Load dataset for iteration.
 
-10. **Verification**
-    Validate:
-    * image vs metadata consistency (persistent mode)
-    * metadata vs hash consistency (demo mode)
+10. **Candidate Processing**
+    For each image:
 
-11. **Final Summary**
-    Report:
-    * total processed images
-    * accepted images
-    * acceptance rate
-    * sample metadata rows (demo mode)
+* normalize format
+* enforce size constraint
+* compute SHA-256 hash
+* reject duplicates
+* assign filename
+* save image
+* append metadata
+
+11. **Batch Processing**
+    Iterate until target count is reached.
+
+12. **Progress Tracking**
+    Display batch statistics and progress.
+
+13. **Verification**
+    Ensure image count matches metadata rows.
+
+14. **Final Summary**
+    Report dataset statistics and completion.
 
 ---
 
 ## Supported Datasets
 
-| Target Name | Dataset            | Class |
-|------------|--------------------|-------|
-| imagenet   | ImageNet_1K_256    | real  |
-| coco       | MS_COCO_2017       | real  |
-| openimages | OpenImages         | real  |
-| diffusiondb| DiffusionDB        | ai    |
-| sdxl       | SDXL Generated     | ai    |
-| midjourney | MidJourney         | ai    |
+| Target Name | Dataset         | Class |
+| ----------- | --------------- | ----- |
+| imagenet    | ImageNet_1K_256 | real  |
+| coco        | MS_COCO_2017    | real  |
+| openimages  | OpenImages      | real  |
+| diffusiondb | DiffusionDB     | ai    |
+| sdxl        | SDXL Generated  | ai    |
+| midjourney  | MidJourney      | ai    |
 
-**OpenImages is not downloadable** due to its very large size (>20 GB).
+**OpenImages is intentionally excluded** due to its very large size (>20 GB).
 
 ---
 
 ## Expected Size
 
 * ~3000 accepted images per dataset
-* ~18,000 images total across full project
+* ~18,000 images total across the full project
 
 ---
 
 ## Notes and Design Choices
 
 * **Optional notebook**
-  Users may skip this step and proceed directly to preprocessing.
+  Can be skipped if datasets already exist
 
-* **Single-source processing**
-  Only one dataset is handled per run for clarity and control.
+* **Single-source execution**
+  One dataset processed per run
 
-* **Demo mode support**
-  Enables safe experimentation without modifying stored datasets.
+* **Reset-based rebuild model**
+  Eliminates manual cleanup and ordering issues
 
 * **Hash-based deduplication**
-  Ensures dataset uniqueness both within and across sources.
+  Ensures uniqueness within and across sources
 
-* **Flexible dataset handling**
-  Supports both indexed datasets and streaming/iterable datasets.
+* **Deterministic pipeline**
+  Same inputs produce the same outputs
+
+* **Local/GitHub-based workflow**
+  No dependency on Google Drive
 
 * **No preprocessing performed**
-  All image preprocessing occurs in the next notebook.
+  Preprocessing occurs in the next notebook
 
 ---
 
 ## Role in the Overall Pipeline
 
-This notebook provides an **optional dataset construction step**.
+This notebook provides an **optional dataset construction stage**.
 
 It can be used to:
+
 * build datasets from source APIs
 * regenerate datasets
-* test filtering and deduplication logic
+* validate filtering and deduplication
 
-However, the main pipeline can proceed using existing datasets without running this notebook.
+The pipeline can proceed using prebuilt datasets without running this notebook.
 
 ---
 
 ## Next Step
 
 ➡️ [02 Preprocess Images](02_Preprocess_Images.md)
+
 
 
