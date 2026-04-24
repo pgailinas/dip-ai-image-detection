@@ -42,7 +42,7 @@ Spatial features form the second group of the 26-dimensional DIP feature vector 
 
 ## Outputs
 
-The following spatial feature datasets are generated in the **local runtime**:
+The following spatial feature datasets are generated under `metadata/features/`:
 
 * `metadata/features/train_spatial_features.csv`
 * `metadata/features/test_spatial_features.csv`
@@ -55,13 +55,14 @@ Each dataset includes:
 * `subset`
 * Spatial feature columns
 
-⚠️ These files are stored in local runtime storage only and are **not automatically saved to Google Drive**.
+⚠️ These files are written to the Colab runtime environment and are **not automatically persisted to Google Drive**.
 
 ---
 
 ## Main Tasks
 
-* Load subset metadata (train or test)
+* Select subset to process (`train` or `test`)
+* Load subset metadata
 * Extract preprocessed images from ZIP (if needed)
 * Read images using metadata references
 * Compute spatial-domain statistics
@@ -81,8 +82,8 @@ This notebook executes a structured sequence of steps:
 2. **Image Extraction (if needed)**  
    The preprocessed image archive is extracted into the local runtime. Images are stored in a **flat directory structure** with no subdirectories.
 
-3. **Metadata Loading**  
-   A single subset (`train` or `test`) is loaded based on the `SUBSET_NAME` setting.
+3. **Subset Selection and Metadata Loading**  
+   A single subset (`train` or `test`) is selected via `SUBSET_NAME` and loaded.
 
 4. **Image Access**  
    Image paths are constructed directly from filenames in metadata.
@@ -142,13 +143,16 @@ The following spatial-domain features are extracted:
 ## Notes and Design Choices
 
 * **Flat image structure:**  
-  All 18,000 images are stored in a single directory and accessed by filename, simplifying data handling.
+  All 18,000 images are stored in a single directory and accessed by filename.
 
 * **Metadata-driven processing:**  
   Dataset membership is determined entirely from metadata, not directory structure.
 
+* **Subset-based execution:**  
+  The notebook processes **one subset per run** using `SUBSET_NAME`.
+
 * **Intensity-based representation:**  
-  Spatial features describe the distribution of pixel intensities across the image.
+  Spatial features describe the distribution of pixel intensities.
 
 * **Local vs global structure:**  
   Both global statistics and localized measures are used to capture fine-grained texture differences.
@@ -158,9 +162,6 @@ The following spatial-domain features are extracted:
 
 * **Modular feature design:**  
   Spatial features are computed independently from gradient and frequency features.
-
-* **Subset-based execution:**  
-  The notebook processes one subset per run (`train` or `test`) to preserve strict separation.
 
 ---
 
@@ -187,6 +188,4 @@ Run this notebook twice:
 Then proceed to:
 
 ➡️ [04C Extract Frequency Features](04C_Extract_Frequency_Features.md)
-
-
 
