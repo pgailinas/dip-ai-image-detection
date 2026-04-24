@@ -1,6 +1,6 @@
 ---
-title: "03 Combine and Split"
-parent: "1. Dataset Tutorial"
+title: 03 Combine and Split
+parent: 1. Dataset Tutorial
 nav_order: 3
 ---
 
@@ -17,118 +17,85 @@ nav_order: 3
 
 ## Purpose
 
-This notebook combines all preprocessed dataset metadata into a single unified table and performs a controlled split into training and test datasets.
-
-The split preserves class balance and ensures equal representation from all six source datasets. The resulting training set is used for model development and cross-validation, while the test set is held out for final independent evaluation.
+This notebook combines preprocessed metadata from all dataset sources and creates balanced **train** and **test** splits for downstream machine learning tasks.
 
 ---
 
 ## Inputs
 
-* Preprocessed metadata CSV files (from GitHub repository):
+The notebook uses preprocessed metadata CSV files generated in Notebook 02:
 
-  * `metadata/preprocessed/imgn_preprocessed_metadata.csv`
-  * `metadata/preprocessed/coco_preprocessed_metadata.csv`
-  * `metadata/preprocessed/open_preprocessed_metadata.csv`
-  * `metadata/preprocessed/diff_preprocessed_metadata.csv`
-  * `metadata/preprocessed/sdxl_preprocessed_metadata.csv`
-  * `metadata/preprocessed/mj_preprocessed_metadata.csv`
+* `metadata/preprocessed/imgn_preprocessed_metadata.csv`
+* `metadata/preprocessed/coco_preprocessed_metadata.csv`
+* `metadata/preprocessed/open_preprocessed_metadata.csv`
+* `metadata/preprocessed/diff_preprocessed_metadata.csv`
+* `metadata/preprocessed/sdxl_preprocessed_metadata.csv`
+* `metadata/preprocessed/midj_preprocessed_metadata.csv`
 
-* Project configuration file:
-
-  * `src/project_config.py`
+All file paths and dataset definitions are provided by `project_config.py`.
 
 ---
 
 ## Outputs
 
-The following metadata files are generated:
+The following files are generated:
 
 * `metadata/splits/combined_metadata.csv`
-  Full dataset metadata containing all sources.
-
 * `metadata/splits/train_metadata.csv`
-  Training subset with balanced representation across all datasets and classes.
-
 * `metadata/splits/test_metadata.csv`
-  Independent test subset reserved for final evaluation.
-
-Each file includes the following fields:
-
-* `filename`
-* `class_label`
-* `source_dataset`
-* `subset` (train or test)
 
 ---
 
-## Main Tasks
+## Workflow Overview
 
-* Clone the GitHub repository into the Colab runtime
-* Load preprocessed metadata for all datasets
-* Concatenate metadata into a single table
-* Shuffle and organize dataset entries
-* Perform a balanced train/test split
-* Ensure equal representation across datasets and classes
-* Save combined and split metadata tables
-* Validate output file integrity and dataset sizes
+1. **Environment Setup**
+   - Load configuration
+   - Verify required input files
 
----
+2. **Define Paths**
+   - Set input/output directories from config
 
-## Processing Workflow
+3. **Dataset Configuration**
+   - Dynamically build dataset definitions from config
 
-This notebook executes a structured sequence of steps to construct the final dataset splits:
+4. **Combine Metadata**
+   - Load all CSV files
+   - Add `source_dataset` and `class_label`
+   - Merge into a single dataset
 
-1. **Environment Setup and Verification**
-   The Colab runtime is prepared by cloning the project repository, configuring paths, and verifying the availability of all required preprocessed metadata files.
+5. **Train/Test Split**
+   - Shuffle each dataset independently
+   - Split into:
+     - 2400 training samples
+     - 600 testing samples
+   - Combine splits across all datasets
+   - Shuffle final train and test sets
 
-2. **Metadata Consolidation**
-   Metadata from all six datasets is loaded, standardized, and combined into a single unified table. Each entry is annotated with its source dataset and class label.
-
-3. **Dataset Construction**
-   The combined dataset is organized and shuffled to prepare for controlled partitioning.
-
-4. **Balanced Train/Test Split**
-   A fixed-count split is applied to ensure:
-
-   * Equal representation across all datasets
-   * Balanced class distribution
-   * Strict separation between training and test data
-
-5. **Output Generation and Validation**
-   Final metadata files are written to disk, and validation checks confirm dataset sizes, balance, and integrity.
+6. **Save and Validate**
+   - Save combined, train, and test CSV files
+   - Validate sizes and distributions
 
 ---
 
-## Notes and Design Choices
+## Expected Dataset Sizes
 
-* **Metadata-only splitting:**
-  No image files are moved or duplicated; dataset partitions are defined entirely through metadata.
-
-* **Balanced dataset design:**
-  Equal representation is maintained across both class labels and dataset sources.
-
-* **Two-way split with cross-validation:**
-  A dedicated validation set is not created. Instead, model validation is performed using cross-validation on the training set, while the test set remains untouched for final evaluation.
-
-* **GitHub-based workflow:**
-  All required files are sourced from the GitHub repository, and processing occurs within the Colab local runtime.
-
-* **Reproducibility:**
-  Shuffling and splitting operations use a fixed random seed to ensure consistent results across runs.
+| Dataset | Rows |
+|--------|-----|
+| Combined | 18,000 |
+| Train | 14,400 |
+| Test | 3,600 |
 
 ---
 
-## Role in the Overall Pipeline
+## Notes
 
-This notebook defines the dataset partitions used throughout the remainder of the pipeline. It ensures that training and evaluation are conducted on properly balanced and independent data.
-
-All subsequent steps—feature extraction, normalization, model training, and evaluation—operate based on these split definitions.
+* Splits are **balanced across datasets and class labels**
+* Uses a fixed random seed for reproducibility
+* Operates entirely on metadata (no image processing)
+* Prepares data for feature extraction and model training
 
 ---
 
 ## Next Step
 
 ➡️ [04A Extract Gradient Features](04A_Extract_Gradient_Features.md)
-
-
