@@ -34,7 +34,7 @@ Preprocessing ensures all images have consistent size, format, and grayscale rep
   * `DiffusionDB.zip`
   * `SDXL_Generated_10K.zip`
   * `Midjourney.zip`
-  * `OpenImages.zip` (disallowed due to size)
+  * `OpenImages.zip` (excluded due to size)
 
 * Project configuration file:
 
@@ -46,13 +46,15 @@ Preprocessing ensures all images have consistent size, format, and grayscale rep
 
 The following artifacts are generated for the selected source:
 
-* Preprocessed images stored in:
+* **Preprocessed images (temporary runtime output):**
 
-  * `data/preprocessed/<dataset>/images/`
+  * `/content/preprocessed/<dataset>/images/`
 
-* Preprocessed metadata CSV:
+  These images are written to the local Colab runtime and are **not persisted** in the GitHub repository.
 
-  * `<dataset>_preprocessed_metadata.csv`
+* **Preprocessed metadata CSV (persistent):**
+
+  * `metadata/preprocessed/<dataset>_preprocessed_metadata.csv`
 
 Each metadata file includes:
 
@@ -79,7 +81,7 @@ Only one dataset source is processed per run, based on user selection.
 Raw images are stored as ZIP archives on Google Drive. The notebook:
 
 1. Copies the selected ZIP file to the local runtime
-2. Extracts the ZIP locally
+2. Extracts the ZIP locally into `/content/raw_extracted/`
 3. Processes images from the extracted directory
 
 ---
@@ -118,7 +120,7 @@ Each run assumes a clean processing state:
    The user selects a dataset source, and ZIP file size is displayed to guide selection.
 
 3. **ZIP Copy and Extraction**
-   The selected ZIP file is copied locally and extracted in `/content`.
+   The selected ZIP file is copied locally and extracted in `/content/raw_extracted/`.
 
 4. **Image Directory Detection**
    The notebook identifies the directory containing extracted images.
@@ -149,8 +151,11 @@ Each run assumes a clean processing state:
 
 ## Notes and Design Choices
 
-* **Local processing for performance:**
-  ZIP files are copied to the local runtime to avoid Google Drive I/O bottlenecks.
+* **Local runtime processing:**
+  ZIP files are copied to `/content` to avoid Google Drive I/O bottlenecks.
+
+* **Temporary image storage:**
+  Processed images are not stored in the repository and exist only during execution.
 
 * **Deterministic filenames:**
   Filenames remain unchanged across raw and processed datasets.
@@ -178,6 +183,3 @@ Each dataset is processed independently and later merged.
 ## Next Step
 
 ➡️ [03 Combine and Split](03_Combine_and_Split.md)
-
-
-
