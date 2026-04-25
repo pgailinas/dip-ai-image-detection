@@ -2,7 +2,7 @@
 title: 05 Build Feature Vectors
 parent: 2. Model Description Tutorial
 nav_order: 4
-------------
+---
 
 # 05 Build Feature Vectors
 
