@@ -24,13 +24,10 @@ Combine gradient, spatial, and frequency-domain feature groups into unified **fe
 ---
 
 ## Inputs
-
-- `train_gradient_features.csv` — gradient features (N × 8)  
-- `train_spatial_features.csv` — spatial features (N × 9)  
-- `train_frequency_features.csv` — frequency features (N × 8)  
-- `test_gradient_features.csv` — gradient feature values per image (N samples × 8 features)  
-- `test_spatial_features.csv` — spatial feature values per image (N samples × 9 features)  
-- `test_frequency_features.csv` — frequency-domain feature values per image (N samples × 8 features)  
+ 
+- `train_gradient_features.csv`, `test_gradient_features.csv` — gradient feature values per image (N samples × 8 features)  
+- `train_spatial_features.csv`, `test_spatial_features.csv` — spatial feature values per image (N samples × 9 features)  
+- `train_frequency_features.csv`, `test_frequency_features.csv` — frequency-domain feature values per image (N samples × 8 features)  
 
 ---
 
