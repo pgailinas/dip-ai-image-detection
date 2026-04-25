@@ -25,11 +25,15 @@ These features are used as input to classical machine learning classifiers, incl
 
 The project is organized as a modular pipeline that transforms raw images into evaluated models:
 
+## Pipeline Overview
+
 ```mermaid
-flowchart LR
+flowchart TB
+
 A[Dataset] --> B[Preprocessing]
 B --> C[Feature Extraction]
 C --> D[Feature Vectors]
+
 D --> E[Normalization]
 E --> F[Model Optimization]
 F --> G[Testing]
