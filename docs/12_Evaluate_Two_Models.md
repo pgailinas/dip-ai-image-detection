@@ -50,5 +50,5 @@ Evaluate trained classifiers on the held-out test dataset using normalized DIP f
 
 ## Next Notebook
 
-➡️ **13 Feature Level Analysis**
+➡️ [13 Feature-Level Analysis](13_Feature_Level_Analysis.md)
 
