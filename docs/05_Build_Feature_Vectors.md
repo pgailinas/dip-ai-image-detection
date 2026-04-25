@@ -17,7 +17,7 @@ nav_order: 4
 
 ---
 ## Purpose
-Combine gradient, spatial, and frequency-domain feature groups into unified feature vectors for each image.
+    Combine gradient, spatial, and frequency-domain feature groups into unified feature vectors for each image.
 ---
 ## Inputs
 - `train_gradient_features.csv`, `test_gradient_features.csv` — gradient feature values per image (N samples × 8 features)  
