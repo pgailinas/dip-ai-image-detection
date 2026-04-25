@@ -17,85 +17,34 @@ nav_order: 3
 
 ## Purpose
 
-This notebook combines preprocessed metadata from all dataset sources and creates balanced **train** and **test** splits for downstream machine learning tasks.
-
----
+Combine preprocessed metadata from all dataset sources and create balanced training and test splits.
 
 ## Inputs
 
-The notebook uses preprocessed metadata CSV files generated in Notebook 02:
-
-* `metadata/preprocessed/imgn_preprocessed_metadata.csv`
-* `metadata/preprocessed/coco_preprocessed_metadata.csv`
-* `metadata/preprocessed/open_preprocessed_metadata.csv`
-* `metadata/preprocessed/diff_preprocessed_metadata.csv`
-* `metadata/preprocessed/sdxl_preprocessed_metadata.csv`
-* `metadata/preprocessed/midj_preprocessed_metadata.csv`
-
-All file paths and dataset definitions are provided by `project_config.py`.
-
----
+- `imgn_preprocessed_metadata.csv`, `coco_preprocessed_metadata.csv`, `open_preprocessed_metadata.csv` — real image metadata  
+- `diff_preprocessed_metadata.csv`, `sdxl_preprocessed_metadata.csv`, `midj_preprocessed_metadata.csv` — AI-generated image metadata  
 
 ## Outputs
 
-The following files are generated:
+- `combined_metadata.csv` — merged dataset metadata  
+- `train_metadata.csv` — training split metadata  
+- `test_metadata.csv` — test split metadata  
 
-* `metadata/splits/combined_metadata.csv`
-* `metadata/splits/train_metadata.csv`
-* `metadata/splits/test_metadata.csv`
+## Processing Summary
 
----
-
-## Workflow Overview
-
-1. **Environment Setup**
-   - Load configuration
-   - Verify required input files
-
-2. **Define Paths**
-   - Set input/output directories from config
-
-3. **Dataset Configuration**
-   - Dynamically build dataset definitions from config
-
-4. **Combine Metadata**
-   - Load all CSV files
-   - Add `source_dataset` and `class_label`
-   - Merge into a single dataset
-
-5. **Train/Test Split**
-   - Shuffle each dataset independently
-   - Split into:
-     - 2400 training samples
-     - 600 testing samples
-   - Combine splits across all datasets
-   - Shuffle final train and test sets
-
-6. **Save and Validate**
-   - Save combined, train, and test CSV files
-   - Validate sizes and distributions
-
----
-
-## Expected Dataset Sizes
-
-| Dataset | Rows |
-|--------|-----|
-| Combined | 18,000 |
-| Train | 14,400 |
-| Test | 3,600 |
-
----
+- Load preprocessed metadata from all dataset sources  
+- Assign class labels and dataset identifiers  
+- Combine metadata into a unified dataset  
+- Shuffle and split each dataset into train and test subsets  
+- Merge and shuffle final training and test datasets  
+- Save split metadata files  
 
 ## Notes
 
-* Splits are **balanced across datasets and class labels**
-* Uses a fixed random seed for reproducibility
-* Operates entirely on metadata (no image processing)
-* Prepares data for feature extraction and model training
+- Splits are balanced across dataset sources and class labels  
+- A fixed random seed ensures reproducible splits  
+- Processing operates on metadata only (no image data)  
 
----
+## Next Notebook
 
-## Next Step
-
-➡️ [04A Extract Gradient Features](04A_Extract_Gradient_Features.md)
+➡️ **04A Extract Gradient Features**
