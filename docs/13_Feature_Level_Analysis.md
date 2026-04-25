@@ -45,5 +45,5 @@ Evaluate the predictive contribution of individual DIP features by comparing sin
 
 ## Next Notebook
 
-➡️ [14 Source-Pair Analysis](14_Source_Pair_Analysis.md)
+➡️ [14 Source Pair Analysis](14_Source_Pair_Analysis.md)
 
