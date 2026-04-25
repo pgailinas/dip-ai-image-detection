@@ -45,5 +45,5 @@ Evaluate model generalization across dataset combinations by comparing performan
 
 ## Next Notebook
 
-➡️ **Thanks For Trying This Tutorial**
+➡️ [Thanks For Trying This Tutorial](Thanks_For_Trying_This_Tutorial.md)
 
