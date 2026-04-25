@@ -17,154 +17,35 @@ nav_order: 1
 
 ## Purpose
 
-This notebook establishes the **baseline performance** of the proposed Digital Image Processing (DIP) feature-based approach for AI-generated image detection.
-
-The goal is to evaluate how well the engineered feature vector performs using a **standard classifier configuration**, without extensive hyperparameter tuning.
-
-This provides a reference point for later improvement and analysis.
-
----
+Evaluate baseline model performance using DIP feature vectors on the test dataset.
 
 ## Inputs
 
-* Training feature vectors:
-
-  * `metadata/vectors/train_feature_vectors.csv`
-
-* Test feature vectors:
-
-  * `metadata/vectors/test_feature_vectors.csv`
-
-* Project configuration file:
-
-  * `src/project_config.py`
-
----
+- `train_feature_vectors.csv`, `test_feature_vectors.csv` — feature vectors (N samples × 25 features)
 
 ## Outputs
 
-All evaluation results are generated within the notebook and saved using **config-controlled paths**:
+- `basic_testing_results.csv` — baseline evaluation metrics  
+- `baseline_model_config.json` — baseline model configuration  
+- `scaler.pkl` — normalization model  
 
-* Classification metrics:
+## Processing Summary
 
-  * Accuracy  
-  * Precision  
-  * Recall  
-  * F1-score  
-  * ROC AUC  
+- Load training and test feature vectors  
+- Separate feature columns and class labels  
+- Normalize feature values  
+- Train baseline classifier  
+- Evaluate model performance on test dataset  
+- Generate evaluation metrics and save results  
 
-* Confusion matrix  
-* ROC curve  
+## Notes
 
-Saved output files:
+- The test dataset is used only for independent evaluation  
+- Normalization is fit on training data and applied to both datasets  
+- A standard classifier configuration is used to establish baseline performance  
+- A notebook-level `VERBOSE` flag controls optional diagnostic output  
 
-* `metadata/results/basic_testing_results.csv`
-* `metadata/results/baseline_model_config.json`
-* `metadata/models/scaler.pkl`
+## Next Notebook
 
-> Note: Outputs are written to local runtime storage and are not persisted unless explicitly saved.
-
----
-
-## Main Tasks
-
-* Load training and test feature vectors  
-* Validate dataset structure and integrity  
-* Separate features and labels  
-* Normalize feature values  
-* Train baseline classifier  
-* Evaluate model performance on the test set  
-* Generate performance metrics and visualizations  
-* Save baseline results and model configuration  
-
----
-
-## Processing Workflow
-
-This notebook executes a structured sequence of steps:
-
-### 1. Environment Setup and Data Loading  
-The runtime environment is initialized, the repository is loaded, and required datasets are accessed using paths defined in `project_config.py`.
-
-### 2. Data Validation and Preparation  
-The datasets are verified for:
-
-* Correct metadata structure  
-* Expected feature dimensionality (**25 features**)  
-* Valid class labels and subset separation  
-* Absence of missing values  
-
-Feature matrices (`X`) and labels (`y`) are prepared.
-
-### 3. Feature Normalization  
-Feature values are normalized using a standard scaler:
-
-* Fit on training data only  
-* Applied to both training and test sets  
-* Saved for reuse in later notebooks  
-
-### 4. Baseline Model Training  
-A baseline classifier is trained using the training dataset:
-
-* Multi-Layer Perceptron (MLP)  
-* Architecture: `(64, 32)`  
-* Standard training configuration  
-
-### 5. Model Evaluation (Test Set)  
-The trained model is evaluated on the independent test dataset to measure generalization performance.
-
-### 6. Performance Reporting  
-Evaluation metrics, confusion matrix, and ROC curve are generated:
-
-* Core metrics are always displayed  
-* Visualizations are optionally displayed (controlled by `VERBOSE`)  
-
-### 7. Output Generation  
-Results and model configuration are saved using config-defined paths.
-
----
-
-## Notes and Design Choices
-
-* **Baseline evaluation:**  
-  This notebook intentionally uses a standard model configuration to establish a reference performance level.
-
-* **Test set usage:**  
-  The test dataset is used strictly for independent evaluation and is never used during training.
-
-* **Feature normalization:**  
-  Scaling ensures consistent feature contribution across all dimensions.
-
-* **Model simplicity:**  
-  The focus is on evaluating the effectiveness of the DIP feature vector rather than optimizing classifier performance.
-
-* **Convergence behavior:**  
-  The baseline model may reach the maximum iteration limit without full convergence. This is expected and does not invalidate evaluation results.
-
-* **Configuration-driven design:**  
-  All file paths, dataset sizes, and constants are controlled through `project_config.py`.
-
-* **VERBOSE control:**  
-  Optional displays (sample rows, detailed reports, plots) are controlled via the `VERBOSE` flag.
-
-* **Reproducibility:**  
-  Fixed random seeds ensure consistent and repeatable results.
-
----
-
-## Role in the Overall Pipeline
-
-This notebook represents the **initial evaluation stage** of the pipeline.
-
-It answers the key question:
-
-> How effective are the engineered DIP features when used with a standard classifier?
-
-The results serve as a baseline for comparison with later improvements.
-
----
-
-## Next Step
-
-➡️ [11 Basic Fine-Tuning](11_Basic_Fine-Tuning.md)
+➡️ **11 Basic Fine-Tuning**
 
