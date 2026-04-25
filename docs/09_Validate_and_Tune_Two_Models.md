@@ -46,5 +46,5 @@ Validate and compare the selected classifiers using normalized DIP feature vecto
 
 ## Next Notebook
 
-➡️ **10 Basic Testing**
+➡️ [10 Basic Testing](10_Basic_Testing.md)
 
