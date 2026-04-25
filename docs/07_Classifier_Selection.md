@@ -47,4 +47,4 @@ Evaluate candidate classifiers using normalized DIP feature vectors and select t
 
 ## Next Notebook
 
-➡️ **08 Train Two Classifiers**
+➡️ [08 Train Two Classifiers](08_Train_Two_Classifiers.md)
