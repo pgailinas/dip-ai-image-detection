@@ -24,7 +24,6 @@ Normalize feature vectors and prepare final classifier input datasets.
 ## Inputs
 
 - `train_feature_vectors.csv`, `test_feature_vectors.csv` — combined feature vectors (N samples × 25 features)
-- `project_config.py` — project configuration settings
 
 ## Outputs
 
