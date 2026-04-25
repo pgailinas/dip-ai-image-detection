@@ -17,16 +17,14 @@ nav_order: 1
 
 ## Purpose
 
-This notebook performs the **final independent evaluation** of the trained
-classifiers using the normalized Digital Image Processing (DIP) feature vectors.
+This notebook performs the **final independent evaluation** of the trained classifiers using the normalized **25-dimensional Digital Image Processing (DIP) feature vectors**.
 
 The following models are evaluated:
 
 * RBF Support Vector Machine (RBF SVM)
 * Multi-Layer Perceptron (MLP)
 
-Both models are applied to the **held-out test dataset**, ensuring an unbiased
-assessment of model performance.
+Both models are applied to the **held-out test dataset**, ensuring an unbiased assessment of model performance.
 
 ---
 
@@ -43,45 +41,43 @@ assessment of model performance.
 
 * Project configuration file:
 
-  * `project_config.py`
+  * `src/project_config.py`
 
 ---
 
 ## Outputs
 
-All evaluation outputs are saved to `metadata/results/`:
+All evaluation outputs are saved using **config-controlled paths** under `metadata/results/`:
 
-* `final_test_results.csv`
-  Complete evaluation metrics for both models.
+* `final_test_results.csv`  
+  Complete evaluation metrics for both models
 
-* `final_test_results.json`
-  Structured representation of evaluation metrics.
+* `final_test_results.json`  
+  Structured representation of evaluation metrics
 
-* `final_confusion_matrix_mlp.csv`
-
+* `final_confusion_matrix_mlp.csv`  
 * `final_confusion_matrix_rbf_svm.csv`
 
-* `final_roc_points_mlp.csv`
-
+* `final_roc_points_mlp.csv`  
 * `final_roc_points_rbf_svm.csv`
 
-* `final_comparison_summary.csv`
-  Side-by-side comparison of model performance.
+* `final_comparison_summary.csv`  
+  Side-by-side comparison of model performance
 
 ---
 
 ## Main Tasks
 
-* Load normalized test dataset
-* Validate dataset integrity
-* Prepare feature matrix and label vector
-* Load trained models
-* Generate predictions and class probabilities
-* Compute evaluation metrics (Accuracy, Precision, Recall, F1-score, ROC-AUC)
-* Generate confusion matrices
-* Compute ROC curves
-* Compare model performance
-* Save evaluation outputs
+* Load normalized test dataset  
+* Validate dataset integrity  
+* Prepare feature matrix (`X_test`) and label vector (`y_test`)  
+* Load trained models  
+* Generate predictions and class probabilities  
+* Compute evaluation metrics (Accuracy, Precision, Recall, F1-score, ROC-AUC)  
+* Generate confusion matrices (counts and normalized)  
+* Compute ROC curves  
+* Compare model performance  
+* Save evaluation outputs  
 
 ---
 
@@ -89,52 +85,96 @@ All evaluation outputs are saved to `metadata/results/`:
 
 This notebook executes a structured sequence of steps to evaluate trained models on unseen data:
 
-1. **Environment Setup and Data Loading**
-   The runtime environment is initialized, required libraries are imported, and the normalized test dataset is loaded.
+### 1. Environment Setup and Verification
+The runtime environment is initialized, required libraries are imported, and all paths are loaded from `project_config.py`. Required input files are verified before execution proceeds.
 
-2. **Data Validation and Preparation**
-   The test dataset is verified for:
+### 2. Data Loading
+The normalized test dataset is loaded from disk and basic dataset information is displayed.
 
-   * Correct structure and feature dimensionality
-   * Absence of missing values
-     Feature matrices and labels are prepared for evaluation.
+### 3. Data Validation and Preparation
+The test dataset is verified for:
 
-3. **Model Loading**
-   Trained classifier models are loaded from stored `.pkl` files.
+* Correct metadata structure  
+* Expected feature dimensionality (**25 features**)  
+* Valid class labels and subset values  
+* Absence of missing values  
 
-4. **Prediction Generation**
-   Each model produces predicted class labels and class probabilities for the test dataset.
+Feature matrices and encoded labels are prepared for evaluation.
 
-5. **Metric Computation**
-   Evaluation metrics are computed, including accuracy, precision, recall, F1-score, and ROC-AUC.
+### 4. Model Loading
+The trained MLP and RBF SVM models are loaded from stored `.pkl` files.
 
-6. **Diagnostic Analysis**
-   Additional evaluation artifacts are generated:
+### 5. Prediction Generation
+Each model generates:
 
-   * Confusion matrices
-   * ROC curve data
+* Predicted class labels  
+* Class probability estimates  
 
-7. **Model Comparison**
-   Results are aggregated into comparison tables to enable direct performance assessment between classifiers.
+The correct probability column corresponding to the AI class is extracted for ROC analysis.
 
-8. **Output Generation and Validation**
-   All evaluation artifacts are saved, and validation checks confirm output completeness and consistency.
+### 6. Metric Computation
+Evaluation metrics are computed:
+
+* Accuracy  
+* Precision  
+* Recall  
+* F1-score  
+* ROC-AUC  
+
+The AI-generated class is treated as the positive class.
+
+### 7. Confusion Matrix Analysis
+Confusion matrices are computed for both models:
+
+* Raw count matrices  
+* Row-normalized matrices  
+
+Optional visualization is controlled by the `VERBOSE` flag.
+
+### 8. ROC Curve Analysis
+ROC curves are computed for both models and optionally visualized.  
+ROC point data is also prepared for export.
+
+### 9. Model Comparison
+Final evaluation results are aggregated into:
+
+* Sorted results table  
+* Report-friendly comparison table  
+
+### 10. Output Generation
+All evaluation artifacts are saved:
+
+* Metrics (CSV + JSON)  
+* Confusion matrices  
+* ROC curve points  
+* Final comparison summary  
+
+Validation checks confirm successful output generation.
 
 ---
 
 ## Notes and Design Choices
 
-* **Independent test evaluation:**
-  The test dataset is never used during training or validation.
+* **Independent test evaluation:**  
+  The test dataset is never used during training, validation, or tuning.
 
-* **Positive class definition:**
+* **Positive class definition:**  
   The AI-generated class is treated as the positive class for all metrics.
 
-* **Two-model comparison:**
+* **Two-model comparison:**  
   Both MLP and RBF SVM are evaluated to provide a robust comparison.
 
-* **Consistent feature pipeline:**
+* **Consistent feature pipeline:**  
   The same 25 normalized DIP features are used across all stages.
+
+* **Configuration-driven design:**  
+  All file paths and constants are controlled through `project_config.py`.
+
+* **VERBOSE control:**  
+  Optional outputs (tables, plots, detailed diagnostics) are controlled via the `VERBOSE` flag.
+
+* **Fail-safe validation:**  
+  Multiple validation checks ensure dataset integrity, correct label encoding, and consistency of predictions.
 
 ---
 
@@ -142,8 +182,15 @@ This notebook executes a structured sequence of steps to evaluate trained models
 
 This notebook represents the **final evaluation stage** of the pipeline.
 
-It measures real-world model performance on unseen data and produces the
-results used for reporting, analysis, and conclusions.
+It answers the key question:
+
+> How well do the trained classifiers generalize to completely unseen data?
+
+The results produced here are used directly for:
+
+* performance reporting  
+* comparative analysis  
+* final project conclusions  
 
 ---
 
