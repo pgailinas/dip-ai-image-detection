@@ -41,7 +41,7 @@ The goal is to demonstrate that performance gains can be achieved through modest
 
 ## Outputs
 
-All tuning results are generated within the notebook and may optionally be saved:
+All tuning results are generated within the notebook and saved using **config-controlled paths**:
 
 * Cross-validation performance summaries  
 * Best model configuration  
@@ -62,6 +62,8 @@ Saved output files:
 * `metadata/results/best_model_config.json`  
 * `metadata/results/tuned_model_results.csv`  
 * `metadata/models/scaler.pkl`  
+
+> Note: Outputs are written to local runtime storage and are not persisted unless explicitly saved.
 
 ---
 
@@ -84,49 +86,69 @@ Saved output files:
 
 This notebook executes a structured sequence of steps:
 
-1. **Environment Setup and Data Loading**  
-   The runtime environment is initialized, required libraries are imported, and training and test datasets are loaded.
+### 1. Environment Setup and Data Loading  
+The runtime environment is initialized, the repository is loaded, and datasets are accessed using paths defined in `project_config.py`.
 
-2. **Data Validation and Preparation**  
-   The datasets are verified for:
+### 2. Data Validation and Preparation  
+The datasets are verified for:
 
-   * Correct metadata structure  
-   * Expected feature dimensionality  
-   * Absence of missing values  
+* Correct metadata structure  
+* Expected feature dimensionality (**25 features**)  
+* Valid class labels and subset separation  
+* Absence of missing values  
 
-   Feature matrices (`X`) and labels (`y`) are prepared.
+Feature matrices (`X`) and labels (`y`) are prepared.
 
-3. **Feature Normalization**  
-   Feature values are normalized to ensure consistent scaling across all dimensions.  
-   The fitted scaler is saved for reuse.
+### 3. Feature Normalization  
+Feature values are normalized:
 
-4. **Model Configuration Definition**  
-   A small set of candidate configurations for the Multi-Layer Perceptron (MLP) is defined, including variations in:
+* Fit on training data only  
+* Applied to both training and test sets  
+* Saved for reuse in later notebooks  
 
-   * Hidden layer structure  
-   * Regularization strength (alpha)  
-   * Learning rate (optional)
+### 4. Model Configuration Definition  
+A small set of candidate MLP configurations is defined, including variations in:
 
-5. **Cross-Validation Evaluation (Training Data Only)**  
-   Stratified k-fold cross-validation is performed on the training dataset to evaluate each configuration.
+* Hidden layer structure  
+* Regularization strength (`alpha`)  
 
-6. **Model Selection**  
-   The best-performing configuration is selected based primarily on **ROC AUC**, with **F1-score** used as a secondary metric.  
-   The selected model may be a lower-complexity architecture, reflecting the structured nature of the feature space.
+### 5. Cross-Validation Evaluation (Training Data Only)  
+Stratified k-fold cross-validation is performed on the training dataset:
 
-7. **Final Model Training**  
-   The selected model is retrained using the full training dataset.  
-   Convergence behavior is verified to ensure stable training.
+* Accuracy  
+* Precision  
+* Recall  
+* F1-score  
+* ROC AUC  
 
-8. **Final Evaluation (Test Set)**  
-   The tuned model is evaluated on the independent test dataset to measure generalization performance.
+Model selection is based primarily on **ROC AUC**, with **F1-score** as a secondary metric.
+
+### 6. Model Selection  
+The best-performing configuration is selected based on cross-validation results and saved for reproducibility.
+
+### 7. Final Model Training  
+The selected model is retrained using the full normalized training dataset.  
+Training time and convergence behavior are recorded.
+
+### 8. Final Evaluation (Test Set)  
+The tuned model is evaluated on the independent test dataset to measure generalization performance.
+
+### 9. Results Display  
+Cross-validation summaries and final test metrics are presented.  
+Visualizations (confusion matrix and ROC curve) are optionally displayed based on the `VERBOSE` flag.
+
+### 10. Output Generation  
+Cross-validation results, best configuration, and final evaluation metrics are saved using config-defined paths.
+
+### 11. Baseline Comparison  
+The tuned model performance is compared directly against baseline results from Notebook 10, if available.
 
 ---
 
 ## Notes and Design Choices
 
 * **Controlled tuning approach:**  
-  Only a small number of hyperparameters are varied to maintain interpretability and avoid overfitting.
+  Only a small number of hyperparameters are varied to maintain interpretability and reduce overfitting risk.
 
 * **Training/test separation:**  
   Cross-validation is performed exclusively on training data. The test set is used only once for final evaluation.
@@ -137,14 +159,20 @@ This notebook executes a structured sequence of steps:
 * **Performance metrics:**  
   ROC AUC is emphasized as the primary metric, with F1-score used as a secondary indicator.
 
+* **Configuration-driven design:**  
+  All file paths, dataset sizes, and constants are controlled via `project_config.py`.
+
+* **VERBOSE control:**  
+  Optional outputs (tables, detailed logs, visualizations) are controlled using the `VERBOSE` flag.
+
 * **Model complexity:**  
-  The best-performing configuration may be a relatively simple model, indicating that the engineered DIP features provide a well-structured feature space.
+  The best-performing configuration may be a relatively simple model, indicating that the engineered DIP features form a well-structured feature space.
 
 * **Convergence behavior:**  
-  The selected tuned model is expected to converge within the specified iteration limit without warnings, indicating stable optimization.
+  The selected tuned model may still reach the iteration limit; this does not invalidate evaluation.
 
 * **Reproducibility:**  
-  Fixed random seeds are used to ensure consistent and repeatable results.
+  Fixed random seeds ensure consistent and repeatable results.
 
 ---
 
