@@ -47,4 +47,4 @@ Combine preprocessed metadata from all dataset sources and create balanced train
 
 ## Next Notebook
 
-➡️ **04A Extract Gradient Features**
+➡️ [04A Extract Gradient Features](04A_Extract_Gradient_Features.md)
