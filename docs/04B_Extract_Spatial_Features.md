@@ -46,5 +46,5 @@ Extract spatial-domain features from preprocessed images to capture intensity di
 
 ## Next Notebook
 
-➡️ **04C Extract Frequency Features**
+➡️ [04C Extract Frequency Features](04C_Extract_Frequency_Features.md)
 
