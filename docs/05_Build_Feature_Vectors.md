@@ -50,5 +50,5 @@ Combine gradient, spatial, and frequency-domain features into unified feature ve
 
 ## Next Notebook
 
-➡️ **06 Normalize and Prepare Inputs**
+➡️ [06 Normalize and Prepare Inputs](06_Normalize_and_Prepare_Inputs.md)
 
