@@ -47,5 +47,5 @@ Build a raw image dataset from a selected source, including validation, deduplic
 
 ## Next Notebook
 
-➡️ **02 Preprocess Images**
+➡️ [02 Preprocess Images](02_Preprocess_Images.md)
 
