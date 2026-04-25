@@ -22,16 +22,14 @@ nav_order: 4
 Combine gradient, spatial, and frequency-domain feature groups into unified **feature vectors** for each image.
 
 ---
-
 ## Inputs
 - `train_gradient_features.csv`, `test_gradient_features.csv` — gradient feature values per image (N samples × 8 features)  
 - `train_spatial_features.csv`, `test_spatial_features.csv` — spatial feature values per image (N samples × 9 features)  
 - `train_frequency_features.csv`, `test_frequency_features.csv` — frequency-domain feature values per image (N samples × 8 features)  
 ---
-
 ## Outputs
-- `train_feature_vectors.csv` — combined feature vectors (N samples × 25 features)
-- `test_feature_vectors.csv` — combined feature vectors for test dataset
+- `train_feature_vectors.csv` — combined feature vectors for train dataset (N samples × 25 features)
+- `test_feature_vectors.csv` — combined feature vectors for test dataset (N smaples x 25 features)
 ---
 
 ## Key Steps
