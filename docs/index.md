@@ -5,156 +5,73 @@ nav_order: 0
 
 # DIP-Based AI Image Detection
 
+## Overview
+
 This project presents a tutorial and implementation for detecting AI-generated images using a feature-driven Digital Image Processing (DIP) pipeline. The method emphasizes engineered image statistics derived from gradient-based, spatial, and frequency-domain features rather than end-to-end deep image classification.
 
-👉 Use the navigation menu on the left to follow the tutorial step-by-step.
+Instead of relying on generator-specific artifacts, this approach focuses on generalizable statistical differences between real and synthetic images.
 
----
+## Key Idea
 
-## Repository Structure
+Each image is represented by a fixed set of **25 DIP features**, capturing complementary aspects of image structure:
 
-The GitHub repository is organized into the following major directories:
+- Gradient-based features (edge and orientation structure)
+- Spatial features (intensity and texture)
+- Frequency-domain features (spectral characteristics)
 
-- **docs/**  
-  GitHub Pages site containing the full tutorial and documentation.
+These features are used as input to classical machine learning classifiers, including a **Multi-Layer Perceptron (MLP)** and a **Radial Basis Function Support Vector Machine (RBF SVM)**.
 
-- **notebooks/**  
-  Google Colab notebooks implementing each stage of the DIP pipeline.
+## Pipeline Overview
 
-- **src/**  
-  Reusable Python code including:
-  - `project_config.py` (used across most notebooks)
-  - dataset target modules used for dataset acquisition (Notebook 01)
+The project is organized as a modular pipeline that transforms raw images into evaluated models:
 
-- **metadata/**  
-  Structured data artifacts used throughout the pipeline, including:
-  - original metadata
-  - preprocessed metadata
-  - train/test splits
-  - extracted features
-  - feature vectors
-  - model artifacts
-  - evaluation results
+```mermaid
+flowchart LR
+A[Dataset] --> B[Preprocessing]
+B --> C[Feature Extraction]
+C --> D[Feature Vectors]
+D --> E[Normalization]
+E --> F[Model Optimization]
+F --> G[Testing]
+G --> H[Fine-Tuning]
+H --> I[Evaluation & Analysis]
+```
 
-- **data/**  
-  Dataset guidance and references. Large datasets are not stored directly in the repository.
+This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
 
-- **releases/**  
-  Documentation for GitHub Releases, used to distribute large assets when needed.
+## Dataset
 
----
+The dataset consists of **18,000 images**, balanced across real and AI-generated classes.
 
-## Intended Colab Workflow
+**Real images (9,000):**
 
-The project is designed so that required notebook inputs can be obtained from GitHub rather than Google Drive. Depending on the notebook stage, inputs may come from:
+- ImageNet
+- MS COCO
+- OpenImages
 
-1. files stored directly in this repository,
-2. downloadable assets attached to GitHub Releases, or
-3. optional user-downloaded zip files referenced by this tutorial.
+**AI-generated images (9,000):**
 
-This approach keeps the workflow portable, reproducible, and easier to distribute to students.
+- DiffusionDB
+- SDXL
+- MidJourney
 
----
+The dataset is split into training and test sets, with **k-fold cross-validation applied to the training data**. Class and source balance are maintained to prevent bias and data leakage.
 
-## Getting Started
+## Models
 
-Begin with the tutorial pages in the left navigation menu. Each page explains the purpose of the corresponding notebook, expected inputs, produced outputs, and a link to open that notebook in Google Colab.
+Two classifiers are used for evaluation:
 
----
+- **RBF SVM (Final Model)**
+  Kernel: RBF
+  C = 100, gamma = 0.01
 
-## 🔍 Overview
+- **MLP (Comparison Model)**
+  Architecture: (128, 64, 32)
+  Alpha = 0.001
 
-Modern generative models produce highly realistic images, making it increasingly difficult to distinguish synthetic content from real-world imagery. This project addresses that challenge by focusing on **statistical image characteristics** rather than generator-specific artifacts.
+## Evaluation Metrics
 
-The approach extracts a fixed set of **25 Digital Image Processing (DIP) features** from each image and uses these features as input to machine learning classifiers, including a **Multi-Layer Perceptron (MLP)** and a **Radial Basis Function Support Vector Machine (RBF SVM)**.
-
----
-
-## 🧠 Key Idea
-
-Instead of detecting artifacts specific to a particular generative model, this method identifies **generalizable statistical differences** between real and AI-generated images.
-
-These differences are captured through:
-
-* Gradient-based structure analysis
-* Spatial-domain statistics
-* Frequency-domain characteristics
-
----
-
-## 🧱 Pipeline Overview
-
-The project is organized as a modular pipeline:
-
-1. **Dataset Builder**
-   * Collects and filters images from multiple datasets
-   * Ensures minimum size and removes duplicates
-
-2. **Preprocessing**
-   * Resize to 256×256
-   * Convert to grayscale
-
-3. **Feature Extraction**
-   * Gradient-Based Features
-   * Spatial Features
-   * Frequency-Domain Features
-
-4. **Feature Vector Construction**
-   * Combine all features into a 25-dimensional vector
-   * Normalize using training statistics
-
-5. **Model Selection and Training**
-   * Evaluate multiple classifiers using k-fold cross-validation
-   * Train selected models (MLP and RBF SVM)
-
-6. **Evaluation**
-   * Independent test set evaluation
-   * Accuracy, Precision, Recall, F1 Score
-   * ROC Curve and AUC
-
-7. **Further Analysis**
-   * Single-feature vs full-feature comparisons
-   * Source-pair sensitivity analysis
-
----
-
-## 🧪 Dataset
-
-The dataset consists of **18,000 images**, balanced across real and AI-generated classes:
-
-### Real Images (9,000)
-- ImageNet  
-- MS COCO  
-- OpenImages  
-
-### AI-Generated Images (9,000)
-- DiffusionDB  
-- SDXL  
-- MidJourney  
-
-### Data Split
-
-- Training + Test split only  
-- k-fold cross-validation applied to training set  
-
-The dataset maintains balance across both class and source dataset to prevent bias and dataset leakage.
-
----
-
-## 🤖 Models
-
-* **RBF SVM (Final Model)**
-  * Kernel: RBF
-  * C = 100
-  * gamma = 0.01
-
-* **MLP (Comparison Model)**
-  * Architecture: (128, 64, 32)
-  * Alpha = 0.001
-
----
-
-## 📈 Evaluation Metrics
+Model performance is assessed using:
 
 * Accuracy
 * Precision
@@ -163,35 +80,36 @@ The dataset maintains balance across both class and source dataset to prevent bi
 * ROC Curve
 * Area Under Curve (AUC)
 
----
+## Repository Structure
 
-## 📌 Current Status
+The repository is organized into a small number of core directories:
 
-* [x] Dataset construction
-* [x] Preprocessing
-* [x] Feature extraction (all groups)
-* [x] Feature vector construction
-* [x] Model selection (k-fold cross-validation)
-* [x] Model training (MLP and RBF SVM)
-* [x] Final evaluation on independent test set
-* [ ] Further analysis (Notebook 10)
-* [ ] Documentation site (GitHub Pages)
+- `docs/` — tutorial documentation (this site)
+- `notebooks/` — Google Colab notebooks for each pipeline stage
+- `src/` — reusable Python modules and configuration
+- `metadata/` — dataset, feature, and model artifacts
+- `data/` — dataset guidance and references
 
----
+Large datasets are not stored directly in the repository.
 
-## 📖 Documentation
+## Getting Started
+
+Use the navigation menu to follow the tutorial step-by-step. Each section provides:
+
+- a conceptual overview
+- linked notebook descriptions
+- direct links to run notebooks in Google Colab
+
+## Documentation
 
 A full tutorial-style documentation site is provided through GitHub Pages.
 
----
+## Author
 
-## 👤 Author
-
-**Phil Gailinas**  
+**Phil Gailinas**
 MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
 
----
+## License
 
-## 📄 License
+This project is intended for academic and research use.
 
-This project is for academic and research purposes.
