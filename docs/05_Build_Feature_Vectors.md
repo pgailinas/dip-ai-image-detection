@@ -28,29 +28,21 @@ nav_order: 4
 - `train_feature_vectors.csv` — combined feature vectors for training dataset (N samples × 25 features)  
 - `test_feature_vectors.csv` — combined feature vectors for test dataset (N samples × 25 features)  
 ---
-## Key Steps
-
+## Processing Summary
 1. Load feature datasets for train and test subsets
 2. Verify alignment across feature groups
 3. Merge feature groups using shared metadata
 4. Validate structure and completeness
 5. Save combined feature vector datasets
-
 ---
-
 ## Notes
-
 * This notebook performs **data merging only** (no feature extraction)
 * Dataset integrity is enforced through strict alignment checks
 * Training and test datasets remain fully separated
 * Output files are written to the Colab runtime environment
-
 ---
-
-## Next Step
+## Next Notebook
 
 ➡️ **06 Normalize and Prepare Inputs**
-
-
 
 
