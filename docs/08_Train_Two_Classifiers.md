@@ -47,5 +47,5 @@ Train the selected classifiers using normalized DIP feature vectors and prepare 
 
 ## Next Notebook
 
-➡️ **09 Validate and Tune Two Models**
+➡️ [09 Validate and Tune Two Models](09_Validate_and_Tune_Two_Models.md)
 
