@@ -46,5 +46,5 @@ Extract gradient-based features from preprocessed images to capture edge structu
 
 ## Next Notebook
 
-➡️ **04B Extract Spatial Features**
+➡️ [04B Extract Spatial Features](04B_Extract_Spatial_Features.md)
 
