@@ -46,5 +46,5 @@ Extract frequency-domain features from preprocessed images to capture spectral e
 
 ## Next Notebook
 
-➡️ **05 Build Feature Vectors**
+➡️ [05 Build Feature Vectors](05_Build_Feature_Vectors.md)
 
