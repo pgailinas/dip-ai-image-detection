@@ -17,92 +17,34 @@ nav_order: 2
 
 ## Purpose
 
-This notebook evaluates the predictive power of individual DIP features by training classifiers using one feature at a time and comparing performance against the full feature set.
-
-The goal is to understand the relative importance and discriminative capability of each feature.
-
----
+Evaluate the predictive contribution of individual DIP features by comparing single-feature models to the full feature set.
 
 ## Inputs
 
-* Normalized feature vector CSV files:
-
-  * `train_feature_vectors_normalized.csv`
-  * `test_feature_vectors_normalized.csv`
-
-* Project configuration file:
-
-  * `project_config.py`
-
----
+- `train_feature_vectors_normalized.csv`, `test_feature_vectors_normalized.csv` — normalized feature vectors (N samples × 25 features)
 
 ## Outputs
 
-The following analysis results are generated:
+- Single-feature performance metrics — evaluation results for models trained on individual features  
+- Feature comparison summaries — performance comparison against the full feature model  
 
-* Single-feature model performance metrics:
+## Processing Summary
 
-  * Accuracy
-  * Precision
-  * Recall
-  * F1-score
-  * ROC-AUC
+- Load normalized feature vectors  
+- Separate feature columns and class labels  
+- Train classifiers using individual features  
+- Evaluate model performance for each feature  
+- Compare results against full feature model  
+- Summarize feature contributions  
 
-* Comparative performance tables against full feature model
+## Notes
 
----
+- Single-feature models isolate the contribution of each feature  
+- Performance is compared against the full feature set for context  
+- Results provide insight into feature importance and model behavior  
 
-## Main Tasks
+## Next Notebook
 
-* Load normalized feature vectors
-* Isolate individual features
-* Train classifiers using single features
-* Evaluate model performance
-* Compare against full feature model
-* Analyze feature importance
-
----
-
-## Processing Workflow
-
-1. **Data Loading and Preparation**
-   Load normalized datasets and separate features and labels.
-
-2. **Single-Feature Model Training**
-   Train classifiers using one feature at a time.
-
-3. **Performance Evaluation**
-   Compute standard classification metrics for each feature.
-
-4. **Comparison with Full Feature Model**
-   Compare individual feature performance against the full feature set.
-
-5. **Analysis and Interpretation**
-   Identify features with strong predictive capability and assess their contribution.
-
----
-
-## Notes and Design Choices
-
-* **Feature-level analysis:**
-  Evaluating individual features provides insight into their relative importance.
-
-* **Comparison to full model:**
-  Demonstrates the benefit of combining multiple complementary features.
-
-* **Interpretability:**
-  Results help explain the effectiveness of the DIP feature design.
-
----
-
-## Role in the Overall Pipeline
-
-This notebook provides insight into feature importance and supports interpretation of model behavior.
-
----
-
-## Next Step
-
-➡️ [14 Source-Pair Analysis](14_Source_Pair_Analysis.md)
+➡️ **14 Source-Pair Analysis**
 
 
