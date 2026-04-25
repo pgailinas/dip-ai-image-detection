@@ -51,5 +51,5 @@ Improve baseline model performance through controlled hyperparameter tuning usin
 
 ## Next Notebook
 
-➡️ **12 Evaluate Two Models**
+➡️ [12 Evaluate Two Models](12_Evaluate_Two_Models.md)
 
