@@ -17,175 +17,34 @@ nav_order: 2
 
 ## Purpose
 
-This notebook extracts spatial-domain features from preprocessed images. These features capture intensity distribution, local variability, and structural complexity within the image, providing complementary information to gradient-based descriptors.
-
-Spatial features form the second group of the 26-dimensional DIP feature vector used for classification.
-
----
+Extract spatial-domain features from preprocessed images to capture intensity distribution, texture, and structural complexity.
 
 ## Inputs
 
-* Metadata from the GitHub repository:
-
-  * `metadata/splits/train_metadata.csv`
-  * `metadata/splits/test_metadata.csv`
-
-* Preprocessed image archive from Google Drive:
-
-  * `/content/drive/MyDrive/DIP_Project/releases/preprocessed/All_Sources_preprocessed.zip`
-
-* Project configuration file:
-
-  * `src/project_config.py`
-
----
+- `train_metadata.csv`, `test_metadata.csv` — dataset metadata  
+- Preprocessed images — accessed using metadata filenames  
 
 ## Outputs
 
-The following spatial feature datasets are generated under `metadata/features/`:
+- `train_spatial_features.csv`, `test_spatial_features.csv` — spatial feature datasets (N samples × 9 features)  
 
-* `metadata/features/train_spatial_features.csv`
-* `metadata/features/test_spatial_features.csv`
+## Processing Summary
 
-Each dataset includes:
+- Load subset metadata  
+- Access preprocessed images using metadata  
+- Compute spatial-domain statistics  
+- Extract intensity and texture descriptors  
+- Combine features with metadata  
+- Save spatial feature datasets  
 
-* `filename`
-* `class_label`
-* `source_dataset`
-* `subset`
-* Spatial feature columns
+## Notes
 
-⚠️ These files are written to the Colab runtime environment and are **not automatically persisted to Google Drive**.
+- Processing is performed separately for training and test subsets  
+- Image access is metadata-driven using filenames  
+- Spatial features capture intensity, contrast, and texture characteristics  
+- Output files are written to the Colab runtime environment  
 
----
+## Next Notebook
 
-## Main Tasks
-
-* Select subset to process (`train` or `test`)
-* Load subset metadata
-* Extract preprocessed images from ZIP (if needed)
-* Read images using metadata references
-* Compute spatial-domain statistics
-* Extract entropy, variance, and intensity descriptors
-* Construct feature tables
-* Save spatial feature CSV files
-
----
-
-## Processing Workflow
-
-This notebook executes a structured sequence of steps:
-
-1. **Environment Setup and Input Verification**  
-   The runtime environment is initialized, the repository is cloned, Google Drive is mounted, and required inputs are verified.
-
-2. **Image Extraction (if needed)**  
-   The preprocessed image archive is extracted into the local runtime. Images are stored in a **flat directory structure** with no subdirectories.
-
-3. **Subset Selection and Metadata Loading**  
-   A single subset (`train` or `test`) is selected via `SUBSET_NAME` and loaded.
-
-4. **Image Access**  
-   Image paths are constructed directly from filenames in metadata.
-
-5. **Spatial Feature Computation**  
-   Image intensity data is analyzed to compute:
-
-   * Global intensity statistics  
-   * Local entropy maps  
-   * Variance-based texture descriptors  
-   * Noise residual characteristics  
-
-6. **Feature Extraction**  
-   Statistical descriptors are derived to capture brightness, contrast, texture variability, and structural complexity.
-
-7. **Feature Table Construction**  
-   Extracted features are combined with metadata to form a structured dataset.
-
-8. **Validation and Output Generation**  
-   Feature tables are validated and saved for downstream processing.
-
----
-
-## Spatial Feature Definitions
-
-The following spatial-domain features are extracted:
-
-* **Global Entropy**  
-  Measures the overall randomness of pixel intensities.
-
-* **Local Entropy Mean**  
-  Captures average texture complexity across local regions.
-
-* **Local Entropy Std**  
-  Measures variability of local entropy across the image.
-
-* **Intensity Mean**  
-  Represents average pixel brightness.
-
-* **Intensity Std**  
-  Measures contrast and intensity variation.
-
-* **Laplacian Variance**  
-  Quantifies image sharpness and fine detail.
-
-* **Patch Variance Mean**  
-  Captures average local intensity variation.
-
-* **Patch Variance Std**  
-  Measures variability of local texture strength.
-
-* **Noise Residual Energy**  
-  Measures high-frequency residual energy after smoothing, capturing fine-grained noise characteristics.
-
----
-
-## Notes and Design Choices
-
-* **Flat image structure:**  
-  All 18,000 images are stored in a single directory and accessed by filename.
-
-* **Metadata-driven processing:**  
-  Dataset membership is determined entirely from metadata, not directory structure.
-
-* **Subset-based execution:**  
-  The notebook processes **one subset per run** using `SUBSET_NAME`.
-
-* **Intensity-based representation:**  
-  Spatial features describe the distribution of pixel intensities.
-
-* **Local vs global structure:**  
-  Both global statistics and localized measures are used to capture fine-grained texture differences.
-
-* **Noise modeling:**  
-  Noise residual energy provides additional discriminatory information between real and AI-generated images.
-
-* **Modular feature design:**  
-  Spatial features are computed independently from gradient and frequency features.
-
----
-
-## Role in the Overall Pipeline
-
-This notebook produces the **spatial feature group (9 features)** used in the DIP feature vector.
-
-These features are later combined with:
-
-* Gradient features (04A)
-* Frequency-domain features (04C)
-
-to form the complete 26-dimensional feature representation used for classification.
-
----
-
-## Next Step
-
-Run this notebook twice:
-
-1. Set `SUBSET_NAME = TRAIN_SUBSET`
-2. Set `SUBSET_NAME = TEST_SUBSET`
-
-Then proceed to:
-
-➡️ [04C Extract Frequency Features](04C_Extract_Frequency_Features.md)
+➡️ **04C Extract Frequency Features**
 
