@@ -48,8 +48,5 @@ Normalize feature vectors and prepare final classifier input datasets.
 
 ## Next Notebook
 
-➡️ **07 Classifier Selection**
-
-
-
+➡️ [07 Classifier Selection](07_Classifier_Selection.md)
 
