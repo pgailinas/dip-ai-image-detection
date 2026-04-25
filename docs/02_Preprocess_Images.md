@@ -48,4 +48,4 @@ Preprocess raw images from a selected dataset source into a standardized format 
 
 ## Next Notebook
 
-➡️ **03 Combine and Split**
+➡️ [03 Combine and Split](03_Combine_and_Split.md)
