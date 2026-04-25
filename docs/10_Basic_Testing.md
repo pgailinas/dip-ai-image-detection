@@ -43,7 +43,7 @@ This provides a reference point for later improvement and analysis.
 
 ## Outputs
 
-All evaluation results are generated within the notebook and may optionally be saved:
+All evaluation results are generated within the notebook and saved using **config-controlled paths**:
 
 * Classification metrics:
 
@@ -61,6 +61,8 @@ Saved output files:
 * `metadata/results/basic_testing_results.csv`
 * `metadata/results/baseline_model_config.json`
 * `metadata/models/scaler.pkl`
+
+> Note: Outputs are written to local runtime storage and are not persisted unless explicitly saved.
 
 ---
 
@@ -81,56 +83,72 @@ Saved output files:
 
 This notebook executes a structured sequence of steps:
 
-1. **Environment Setup and Data Loading**  
-   The runtime environment is initialized, required libraries are imported, and training and test feature vector datasets are loaded.
+### 1. Environment Setup and Data Loading  
+The runtime environment is initialized, the repository is loaded, and required datasets are accessed using paths defined in `project_config.py`.
 
-2. **Data Validation and Preparation**  
-   The datasets are verified for:
+### 2. Data Validation and Preparation  
+The datasets are verified for:
 
-   * Correct metadata structure  
-   * Expected feature dimensionality  
-   * Absence of missing values  
+* Correct metadata structure  
+* Expected feature dimensionality (**25 features**)  
+* Valid class labels and subset separation  
+* Absence of missing values  
 
-   Feature matrices (`X`) and labels (`y`) are prepared.
+Feature matrices (`X`) and labels (`y`) are prepared.
 
-3. **Feature Normalization**  
-   Feature values are normalized using a standard scaler to ensure consistent input for the classifier.  
-   The fitted scaler is saved for reuse in later notebooks.
+### 3. Feature Normalization  
+Feature values are normalized using a standard scaler:
 
-4. **Baseline Model Training**  
-   A baseline classifier is trained using the training dataset.  
-   The Multi-Layer Perceptron (MLP) is used as the primary model.
+* Fit on training data only  
+* Applied to both training and test sets  
+* Saved for reuse in later notebooks  
 
-5. **Model Evaluation (Test Set)**  
-   The trained model is evaluated on the independent test dataset to measure generalization performance.
+### 4. Baseline Model Training  
+A baseline classifier is trained using the training dataset:
 
-6. **Performance Reporting**  
-   Evaluation metrics, confusion matrix, and ROC curve are generated to summarize model behavior.
+* Multi-Layer Perceptron (MLP)  
+* Architecture: `(64, 32)`  
+* Standard training configuration  
 
-7. **Output Generation**  
-   Results and model configuration are saved to local runtime storage for reference and comparison.
+### 5. Model Evaluation (Test Set)  
+The trained model is evaluated on the independent test dataset to measure generalization performance.
+
+### 6. Performance Reporting  
+Evaluation metrics, confusion matrix, and ROC curve are generated:
+
+* Core metrics are always displayed  
+* Visualizations are optionally displayed (controlled by `VERBOSE`)  
+
+### 7. Output Generation  
+Results and model configuration are saved using config-defined paths.
 
 ---
 
 ## Notes and Design Choices
 
 * **Baseline evaluation:**  
-  This notebook intentionally uses a simple, standard model configuration to establish a reference performance level.
+  This notebook intentionally uses a standard model configuration to establish a reference performance level.
 
 * **Test set usage:**  
-  The test dataset is used strictly for final evaluation and is not involved in training.
+  The test dataset is used strictly for independent evaluation and is never used during training.
 
 * **Feature normalization:**  
-  Scaling ensures that all features contribute appropriately to model training.
+  Scaling ensures consistent feature contribution across all dimensions.
 
 * **Model simplicity:**  
-  The focus is on evaluating the effectiveness of the DIP feature vector rather than optimizing the classifier.
+  The focus is on evaluating the effectiveness of the DIP feature vector rather than optimizing classifier performance.
 
 * **Convergence behavior:**  
-  The baseline model may reach the maximum iteration limit without full convergence. This is expected for a baseline configuration and does not prevent valid test-set evaluation.
+  The baseline model may reach the maximum iteration limit without full convergence. This is expected and does not invalidate evaluation results.
+
+* **Configuration-driven design:**  
+  All file paths, dataset sizes, and constants are controlled through `project_config.py`.
+
+* **VERBOSE control:**  
+  Optional displays (sample rows, detailed reports, plots) are controlled via the `VERBOSE` flag.
 
 * **Reproducibility:**  
-  Fixed random seeds are used where applicable to ensure consistent results.
+  Fixed random seeds ensure consistent and repeatable results.
 
 ---
 
