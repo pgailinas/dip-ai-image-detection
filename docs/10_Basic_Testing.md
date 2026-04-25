@@ -47,5 +47,5 @@ Evaluate baseline model performance using DIP feature vectors on the test datase
 
 ## Next Notebook
 
-➡️ **11 Basic Fine-Tuning**
+➡️ [11 Basic Fine-Tuning](11_Basic_Fine-Tuning.md)
 
