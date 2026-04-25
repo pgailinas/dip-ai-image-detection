@@ -41,6 +41,22 @@ G --> H[Fine-Tuning]
 H --> I[Evaluation & Analysis]
 ```
 
+```mermaid
+flowchart TB
+
+%% Left column (vertical)
+A[Dataset] --> B[Preprocessing] --> C[Feature Extraction] --> D[Feature Vectors] --> E[Normalization]
+
+%% Right column (vertical)
+F[Model Optimization] --> G[Testing] --> H[Fine-Tuning] --> I[Evaluation & Analysis]
+
+%% Connector path (right → up → right)
+E --> X
+X --> Y
+Y --> F
+```
+
+
 This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
 
 ## Dataset
