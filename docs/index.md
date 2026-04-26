@@ -42,20 +42,25 @@ H --> I[Evaluation & Analysis]
 ```
 
 ```mermaid
-flowchart TB
+flowchart LR
 
 %% Left column (vertical)
+subgraph LEFT
+direction TB
 A[Dataset] --> B[Preprocessing] --> C[Feature Extraction] --> D[Feature Vectors] --> E[Normalization]
+end
 
 %% Right column (vertical)
+subgraph RIGHT
+direction TB
 F[Model Optimization] --> G[Testing] --> H[Fine-Tuning] --> I[Evaluation & Analysis]
+end
 
-%% Connector path (right → up → right)
-E --> X
-X --> Y
+%% Dogleg connector
+E --> X(( ))
+X --> Y(( ))
 Y --> F
 ```
-
 
 This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
 
