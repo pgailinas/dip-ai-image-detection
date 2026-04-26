@@ -109,9 +109,9 @@ Navigate through the documentation using the left-hand menu.
 
 Recommended workflow:
 
-1. Start with **Notebook 01 — Build Dataset**  
-2. Proceed sequentially through each pipeline stage  
-3. Use notebook descriptions and Colab links to execute each step  
+1. Start with **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.md)** 
+3. Proceed sequentially through each pipeline stage  
+4. Use notebook descriptions and Colab links to execute each step  
 
 Each section provides:
 - Conceptual explanations  
