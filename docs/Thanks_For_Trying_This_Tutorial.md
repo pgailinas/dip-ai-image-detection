@@ -19,7 +19,7 @@ This tutorial walked through a complete, end-to-end machine learning pipeline:
 - Metadata-driven data management (no file duplication or restructuring)
 - Image preprocessing and standardization
 - Extraction of **gradient**, **spatial**, and **frequency-domain** features
-- Construction of a **26-dimensional DIP feature vector**
+- Construction of a **25-dimensional DIP feature vector**
 - Feature normalization and preparation for machine learning
 - Classifier selection using cross-validation
 - Training and comparison of **RBF SVM** and **MLP** models
@@ -49,22 +49,27 @@ This project was developed as part of a graduate-level study in Digital Image Pr
 
 ## Closing
 
+You have now completed the full DIP-based image detection pipeline—from dataset construction through final model evaluation.
+
 Thanks again for your time and interest.
 
 If this tutorial helped you learn something new or gave you ideas for your own work, then it has done exactly what it was intended to do.
 
----
+## 🔗 Continue Exploring
 
-**Project Repository:**  
-[GitHub Repository Link]
+👉 [Return to Home](index.md)
 
-**Author:**  
+## 📁 Project Repository
+
+👉 https://github.com/pgailinas/dip-ai-image-detection
+
+## 👤 Author
 
 **Phil Gailinas**  
-MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
-
----
+MS Computer Engineering (AI/ML focus) candidate at University of New Mexico  
 
 ## 📄 License
 
 This project is for academic and research purposes.
+
+
