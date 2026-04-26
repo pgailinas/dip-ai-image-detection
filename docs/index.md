@@ -25,9 +25,9 @@ These features are used as input to classical machine learning classifiers, incl
 
 The project is organized as a modular pipeline that transforms raw images into evaluated models:
 
-
-
-
+<p align="center">
+  <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
+</p>
 
 This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
 
