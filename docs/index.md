@@ -129,8 +129,7 @@ Large datasets are not stored directly in the repository.
 ## Author
 
 **Phil Gailinas**  
-M.S. Computer Engineering (AI/ML focus) candidate 
-University of New Mexico  
+M.S. Computer Engineering (AI/ML focus) candidate at University of New Mexico  
 
 ## License
 
