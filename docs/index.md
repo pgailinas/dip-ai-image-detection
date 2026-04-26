@@ -27,7 +27,7 @@ These features provide a compact, interpretable representation of image structur
 
 The diagram above illustrates the full pipeline. To begin implementation:
 
-👉 **Start with [Notebook 01 — Build Dataset](1.%20Dataset%20Tutorial.md)**
+👉 **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.md)**
 
 ## Pipeline Stages
 
