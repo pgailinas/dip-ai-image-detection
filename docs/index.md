@@ -25,13 +25,11 @@ These features provide a compact, interpretable representation of image structur
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-## 🚀 Start Here
+The diagram above illustrates the full pipeline.
 
-Begin the tutorial with the first step in the pipeline:
+To begin implementation:
 
-👉 **[Notebook 01 — Build Dataset](notebook_01.md)**
-
-Follow the notebooks sequentially from 01 through 09. Each stage builds on the outputs of the previous step.
+👉 **Start with [Notebook 01 — Build Dataset](notebook_01.md)**
 
 ## Pipeline Stages
 
