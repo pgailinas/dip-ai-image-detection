@@ -25,9 +25,13 @@ These features provide a compact, interpretable representation of image structur
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-The diagram above illustrates the full pipeline. To begin implementation:
+Begin the tutorial with the first step in the pipeline:
 
 👉 **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.md)**
+
+This page provides an overview of dataset construction and links directly to the Colab notebook for execution.
+
+Follow the notebooks sequentially as each step builds on the outputs of the previous step.
 
 ## Pipeline Stages
 
