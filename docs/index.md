@@ -5,101 +5,111 @@ nav_order: 0
 
 # DIP-Based AI Image Detection
 
+This tutorial presents a **feature-driven Digital Image Processing (DIP)** approach for detecting AI-generated images using engineered image statistics and machine learning.
+
+Instead of relying on end-to-end deep learning or generator-specific artifacts, the method focuses on **generalizable statistical differences** between real and synthetic images.
+
 ## Overview
 
-This project presents a tutorial and implementation for detecting AI-generated images using a feature-driven Digital Image Processing (DIP) pipeline. The method emphasizes engineered image statistics derived from gradient-based, spatial, and frequency-domain features rather than end-to-end deep image classification.
+Each image is represented by a fixed **25-dimensional DIP feature vector**, composed of:
 
-Instead of relying on generator-specific artifacts, this approach focuses on generalizable statistical differences between real and synthetic images.
+- **Gradient-based features** (edge strength and orientation structure)
+- **Spatial features** (intensity and texture statistics)
+- **Frequency-domain features** (spectral energy and distribution)
 
-## Key Idea
-
-Each image is represented by a fixed set of **25 DIP features**, capturing complementary aspects of image structure:
-
-- Gradient-based features (edge and orientation structure)
-- Spatial features (intensity and texture)
-- Frequency-domain features (spectral characteristics)
-
-These features are used as input to classical machine learning classifiers, including a **Multi-Layer Perceptron (MLP)** and a **Radial Basis Function Support Vector Machine (RBF SVM)**.
+These features provide a compact, interpretable representation of image structure suitable for classical machine learning models.
 
 ## Pipeline Overview
 
-The project is organized as a modular pipeline that transforms raw images into evaluated models:
+The project is organized as a modular pipeline that transforms raw images into evaluated classifiers:
 
 <p align="center">
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
+Pipeline stages include:
+
+1. Build Dataset  
+2. Preprocess Images  
+3. Combine and Split Metadata  
+4. Extract DIP Features  
+5. Build Feature Vectors  
+6. Normalize Features  
+7. Train Models  
+8. Validate and Tune Models  
+9. Evaluate Final Models  
+
+This structure emphasizes reproducibility, modularity, and clear separation of responsibilities.
 
 ## Dataset
 
-The dataset consists of **18,000 images**, balanced across real and AI-generated classes.
+The dataset contains **18,000 images**, balanced across real and AI-generated classes.
 
 **Real images (9,000):**
-
-- ImageNet
-- MS COCO
-- OpenImages
+- ImageNet  
+- MS COCO  
+- OpenImages  
 
 **AI-generated images (9,000):**
+- DiffusionDB  
+- SDXL  
+- MidJourney  
 
-- DiffusionDB
-- SDXL
-- MidJourney
-
-The dataset is split into training and test sets, with **k-fold cross-validation applied to the training data**. Class and source balance are maintained to prevent bias and data leakage.
+Data is split into **training and test sets**, with **k-fold cross-validation applied to the training data**. Class and source balance are maintained to avoid bias and data leakage.
 
 ## Models
 
-Two classifiers are used for evaluation:
+Two classifiers are evaluated:
 
-- **RBF SVM (Final Model)**
-  Kernel: RBF
-  C = 100, gamma = 0.01
+- **RBF SVM (Final Model)**  
+  Kernel: RBF  
+  C = 100, gamma = 0.01  
 
-- **MLP (Comparison Model)**
-  Architecture: (128, 64, 32)
-  Alpha = 0.001
+- **MLP (Comparison Model)**  
+  Architecture: (128, 64, 32)  
+  Alpha = 0.001  
 
 ## Evaluation Metrics
 
-Model performance is assessed using:
+Performance is assessed using:
 
-* Accuracy
-* Precision
-* Recall
-* F1 Score
-* ROC Curve
-* Area Under Curve (AUC)
+- Accuracy  
+- Precision  
+- Recall  
+- F1 Score  
+- ROC Curve  
+- Area Under the Curve (AUC)  
+
+## How to Use This Tutorial
+
+Navigate through the documentation using the left-hand menu.
+
+Recommended workflow:
+
+1. Start with **Notebook 01 — Build Dataset**  
+2. Proceed sequentially through each pipeline stage  
+3. Use notebook descriptions and Colab links to execute each step  
+
+Each section provides:
+- Conceptual explanations  
+- Implementation details  
+- Direct notebook access  
 
 ## Repository Structure
 
-The repository is organized into a small number of core directories:
-
-- `docs/` — tutorial documentation (this site)
-- `notebooks/` — Google Colab notebooks for each pipeline stage
-- `src/` — reusable Python modules and configuration
-- `metadata/` — dataset, feature, and model artifacts
-- `data/` — dataset guidance and references
+- `docs/` — tutorial documentation (this site)  
+- `notebooks/` — Google Colab notebooks  
+- `src/` — reusable Python modules and configuration  
+- `metadata/` — dataset, feature, and model artifacts  
+- `data/` — dataset guidance and references  
 
 Large datasets are not stored directly in the repository.
 
-## Getting Started
-
-Use the navigation menu to follow the tutorial step-by-step. Each section provides:
-
-- a conceptual overview
-- linked notebook descriptions
-- direct links to run notebooks in Google Colab
-
-## Documentation
-
-A full tutorial-style documentation site is provided through GitHub Pages.
-
 ## Author
 
-**Phil Gailinas**
-MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
+**Phil Gailinas**  
+M.S. Computer Engineering (AI/ML focus) candidate 
+University of New Mexico  
 
 ## License
 
