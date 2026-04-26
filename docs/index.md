@@ -27,18 +27,6 @@ The project is organized as a modular pipeline that transforms raw images into e
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-Pipeline stages include:
-
-1. Build Dataset  
-2. Preprocess Images  
-3. Combine and Split Metadata  
-4. Extract DIP Features  
-5. Build Feature Vectors  
-6. Normalize Features  
-7. Train Models  
-8. Validate and Tune Models  
-9. Evaluate Final Models  
-
 This structure emphasizes reproducibility, modularity, and clear separation of responsibilities.
 
 ## Dataset
