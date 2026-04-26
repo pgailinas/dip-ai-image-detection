@@ -39,4 +39,5 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 ## 👤 Author
 
 Phil Gailinas  
-M.S. Computer Engineering (AI/ML) candidate at University of New Mexico
+M.S. Computer Engineering (AI/ML) candidate
+University of New Mexico
