@@ -21,13 +21,38 @@ These features provide a compact, interpretable representation of image structur
 
 ## Pipeline Overview
 
-The project is organized as a modular pipeline that transforms raw images into evaluated classifiers:
-
 <p align="center">
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-This structure emphasizes reproducibility, modularity, and clear separation of responsibilities.
+The pipeline consists of nine sequential stages:
+
+1. **Build Dataset**  
+   Assemble balanced datasets from real and AI-generated image sources.
+
+2. **Preprocess Images**  
+   Standardize image size, format, and quality.
+
+3. **Combine and Split Metadata**  
+   Construct balanced train/test splits using metadata-driven control.
+
+4. **Extract DIP Features**  
+   Compute gradient, spatial, and frequency-domain descriptors.
+
+5. **Build Feature Vectors**  
+   Assemble per-image feature representations.
+
+6. **Normalize Features**  
+   Apply scaling to prepare inputs for classifiers.
+
+7. **Train Models**  
+   Train candidate classifiers using the training dataset.
+
+8. **Validate and Tune Models**  
+   Perform cross-validation and hyperparameter tuning.
+
+9. **Evaluate Final Models**  
+   Assess performance on the held-out test dataset.
 
 ## Dataset
 
