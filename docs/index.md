@@ -25,42 +25,9 @@ These features are used as input to classical machine learning classifiers, incl
 
 The project is organized as a modular pipeline that transforms raw images into evaluated models:
 
-## Pipeline Overview
 
-```mermaid
-flowchart TB
 
-A[Dataset] --> B[Preprocessing]
-B --> C[Feature Extraction]
-C --> D[Feature Vectors]
 
-D --> E[Normalization]
-E --> F[Model Optimization]
-F --> G[Testing]
-G --> H[Fine-Tuning]
-H --> I[Evaluation & Analysis]
-```
-
-```mermaid
-flowchart LR
-
-%% Left column (vertical)
-subgraph LEFT
-direction TB
-A[Dataset] --> B[Preprocessing] --> C[Feature Extraction] --> D[Feature Vectors] --> E[Normalization]
-end
-
-%% Right column (vertical)
-subgraph RIGHT
-direction TB
-F[Model Optimization] --> G[Testing] --> H[Fine-Tuning] --> I[Evaluation & Analysis]
-end
-
-%% Dogleg connector
-E --> X(( ))
-X --> Y(( ))
-Y --> F
-```
 
 This structure supports reproducibility, modular development, and clear separation of responsibilities across stages.
 
