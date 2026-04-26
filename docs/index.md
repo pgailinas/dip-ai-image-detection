@@ -25,10 +25,6 @@ These features provide a compact, interpretable representation of image structur
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-## Pipeline Overview
-
-[diagram here]
-
 ## 🚀 Start Here
 
 Begin the tutorial with the first step in the pipeline:
