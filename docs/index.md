@@ -25,11 +25,9 @@ These features provide a compact, interpretable representation of image structur
   <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-The diagram above illustrates the full pipeline.
+The diagram above illustrates the full pipeline. To begin implementation:
 
-To begin implementation:
-
-👉 **Start with [Notebook 01 — Build Dataset](notebook_01.md)**
+👉 **Start with [1. Dataset Tutorial](1. Dataset Tutorial.md)**
 
 ## Pipeline Stages
 
