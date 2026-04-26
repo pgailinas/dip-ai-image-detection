@@ -27,7 +27,7 @@ These features provide a compact, interpretable representation of image structur
 
 Begin the tutorial with the first step in the pipeline:
 
-👉 **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.md)**
+👉 **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.html)**
 
 This page provides an overview of dataset construction and links directly to the Colab notebook for execution.
 
