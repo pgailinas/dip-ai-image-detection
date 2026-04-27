@@ -1,6 +1,6 @@
 ---
 title: Project Directory Structure
-nav_order: 1.5
+nav_order: 1
 ---
 
 # Project Directory Structure
