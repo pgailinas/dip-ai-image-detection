@@ -101,6 +101,14 @@ Performance is assessed using:
 - ROC Curve  
 - Area Under the Curve (AUC)  
 
+## Expected Results
+
+This tutorial demonstrates that engineered Digital Image Processing (DIP) features can effectively distinguish between real and AI-generated images using classical machine learning models.
+
+The final evaluation, presented in the *Full Training Tutorial*, shows that the approach achieves strong classification performance on a balanced, multi-source dataset, indicating that the feature-based representation captures meaningful and generalizable differences between real and synthetic images.
+
+Detailed performance metrics, model comparisons, and analysis are provided in the final stages of the tutorial.
+
 ## How to Use This Tutorial
 
 Navigate through the documentation using the left-hand menu.
