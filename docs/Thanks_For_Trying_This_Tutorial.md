@@ -1,6 +1,6 @@
 ---
 title: Thanks For Trying This Tutorial
-nav_order: 7
+nav_order: 8
 ---
 
 # Thanks For Trying This Tutorial
