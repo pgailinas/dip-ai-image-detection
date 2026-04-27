@@ -78,6 +78,8 @@ The dataset contains **18,000 images**, balanced across real and AI-generated cl
 
 Data is split into **training and test sets**, with **k-fold cross-validation applied to the training data**. Class and source balance are maintained to avoid bias and data leakage.
 
+For a complete overview of how datasets, metadata, and outputs are organized, see the [Project Directory Structure](Project_Directory_Structure.md).
+
 ## Models
 
 Two classifiers are evaluated:
