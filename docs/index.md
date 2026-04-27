@@ -22,7 +22,7 @@ These features provide a compact, interpretable representation of image structur
 ## Pipeline Overview
 
 <p align="center">
-  <img src="images/pipeline_overview.png" alt="Pipeline Overview" width="700"/>
+  <img src="images/overview-pipeline.png" alt="Pipeline Overview" width="700"/>
 </p>
 
 Begin the tutorial with the first step in the pipeline:
