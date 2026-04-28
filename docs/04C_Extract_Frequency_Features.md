@@ -26,7 +26,7 @@ Extract frequency-domain features from preprocessed images to capture spectral e
 
 ## Outputs
 
-- `train_frequency_features.csv`, `test_frequency_features.csv` — frequency feature datasets (N samples × 8 features)  
+- `train_frequency_features.csv`, `test_frequency_features.csv` — frequency feature datasets (N samples × 9 features)  
 
 ## Processing Summary
 
