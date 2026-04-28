@@ -23,7 +23,7 @@ Evaluate the predictive contribution of individual DIP features and feature grou
 
 ## Inputs
 
-- `train_feature_vectors_normalized.csv`, `test_feature_vectors_normalized.csv` — normalized feature vectors (N samples × 25 features)
+- `train_feature_vectors_normalized.csv`, `test_feature_vectors_normalized.csv` — normalized feature vectors (N samples × 26 features)
 
 ---
 
@@ -60,8 +60,7 @@ Evaluate the predictive contribution of individual DIP features and feature grou
 - Single-feature models isolate the contribution of each feature  
 - Feature-group models evaluate the contribution of feature domains  
 - The full feature model consistently outperforms individual features and feature groups  
-- Results demonstrate that combining complementary DIP features improves classification performance  
-- The current implementation uses 25 features; `Mid Frequency Energy Ratio` is not included and is planned for future restoration  
+- Results demonstrate that combining complementary DIP features improves classification performance    
 
 ---
 
