@@ -21,7 +21,7 @@ Evaluate trained classifiers on the held-out test dataset using normalized DIP f
 
 ## Inputs
 
-- `test_feature_vectors_normalized.csv` — normalized test feature vectors (N samples × 25 features)  
+- `test_feature_vectors_normalized.csv` — normalized test feature vectors (N samples × 26 features)  
 - `final_rbf_svm_model.pkl`, `final_mlp_model.pkl` — trained classifier models  
 
 ## Outputs
