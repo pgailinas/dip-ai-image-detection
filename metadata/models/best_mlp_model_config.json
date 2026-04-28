@@ -9,10 +9,10 @@
         "learning_rate_init": 0.001,
         "batch_size": 32
     },
-    "num_features": 25,
+    "num_features": 26,
     "k_folds": 5,
     "train_samples": 14400,
     "selected_metric": "roc_auc",
-    "roc_auc_mean": 0.8439400077160494,
+    "roc_auc_mean": 0.8442699652777776,
     "model_path": "/content/dip-ai-image-detection/metadata/models/final_mlp_model.pkl"
 }

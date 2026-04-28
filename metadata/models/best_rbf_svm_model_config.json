@@ -4,10 +4,10 @@
         "C": 100,
         "gamma": 0.01
     },
-    "num_features": 25,
+    "num_features": 26,
     "k_folds": 5,
     "train_samples": 14400,
     "selected_metric": "roc_auc",
-    "roc_auc_mean": 0.8792286844135802,
+    "roc_auc_mean": 0.8794067322530864,
     "model_path": "/content/dip-ai-image-detection/metadata/models/final_rbf_svm_model.pkl"
 }
