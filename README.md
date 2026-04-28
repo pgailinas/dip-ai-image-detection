@@ -6,7 +6,7 @@ Instead of end-to-end deep learning, the method uses **interpretable DIP feature
 
 ## 🚀 Project Summary
 
-- Each image is represented by a **25-dimensional DIP feature vector**
+- Each image is represented by a **26-dimensional DIP feature vector**
 - Classification is performed using:
   - **RBF Support Vector Machine (SVM)**
   - **Multi-Layer Perceptron (MLP)**
