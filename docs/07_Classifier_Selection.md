@@ -21,7 +21,7 @@ Evaluate candidate classifiers using normalized DIP feature vectors and select t
 
 ## Inputs
 
-- `train_feature_vectors_normalized.csv` — normalized training feature vectors (N samples × 25 features)
+- `train_feature_vectors_normalized.csv` — normalized training feature vectors (N samples × 26 features)
 
 ## Outputs
 
