@@ -21,7 +21,7 @@ Evaluate baseline model performance using DIP feature vectors on the test datase
 
 ## Inputs
 
-- `train_feature_vectors.csv`, `test_feature_vectors.csv` — feature vectors (N samples × 25 features)
+- `train_feature_vectors.csv`, `test_feature_vectors.csv` — feature vectors (N samples × 26 features)
 
 ## Outputs
 
