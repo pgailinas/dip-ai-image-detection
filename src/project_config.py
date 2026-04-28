@@ -219,13 +219,13 @@ PREPROCESSED_METADATA_COLUMNS = [
 # Feature extraction
 # ------------------------------------------------------------
 
-NUM_FEATURES = 25
-
 FEATURE_GROUPS = {
     "gradient": 8,
     "spatial": 9,
-    "frequency": 8,
+    "frequency": 9,
 }
+
+NUM_FEATURES = sum(FEATURE_GROUPS.values())     # 8+9+9=26
 
 # ------------------------------------------------------------
 # Repo-local extracted image directories
