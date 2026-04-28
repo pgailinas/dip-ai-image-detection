@@ -11,7 +11,7 @@ Instead of relying on end-to-end deep learning or generator-specific artifacts, 
 
 ## Overview
 
-Each image is represented by a fixed **25-dimensional DIP feature vector**, composed of:
+Each image is represented by a fixed **26-dimensional DIP feature vector**, composed of:
 
 - **Gradient-based features** (edge strength and orientation structure)
 - **Spatial features** (intensity and texture statistics)
