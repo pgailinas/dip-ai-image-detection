@@ -23,11 +23,11 @@ Normalize feature vectors and prepare final classifier input datasets.
 
 ## Inputs
 
-- `train_feature_vectors.csv`, `test_feature_vectors.csv` — combined feature vectors (N samples × 25 features)
+- `train_feature_vectors.csv`, `test_feature_vectors.csv` — combined feature vectors (N samples × 26 features)
 
 ## Outputs
 
-- `train_feature_vectors_normalized.csv`, `test_feature_vectors_normalized.csv` — normalized feature vectors (N samples × 25 features)
+- `train_feature_vectors_normalized.csv`, `test_feature_vectors_normalized.csv` — normalized feature vectors (N samples × 26 features)
 - `scaler.pkl` — fitted normalization model
 
 ## Processing Summary
