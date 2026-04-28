@@ -25,7 +25,7 @@ Validate and compare the selected classifiers using normalized DIP feature vecto
 
 ## Outputs
 
-- `cross_validation_results.csv` — full cross-validation performance summary  
+- `cross_validation_tuned_results.csv` — full cross-validation performance summary  
 - `classifier_comparison_tuned.csv` — condensed comparison of key performance metrics  
 
 ## Processing Summary
