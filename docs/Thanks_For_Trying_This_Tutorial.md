@@ -76,7 +76,7 @@ If this tutorial helped you learn something new or gave you ideas for your own w
 
 ## 📁 Project Repository
 
-👉 https://github.com/pgailinas/dip-ai-image-detection
+👉 <a href="https://github.com/pgailinas/dip-ai-image-detection" target="_blank">dip-ai-image-detection</a>
 
 ## 👤 Author
 
