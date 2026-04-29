@@ -19,7 +19,7 @@ This tutorial walked through a complete, end-to-end machine learning pipeline:
 - Metadata-driven data management (no file duplication or restructuring)
 - Image preprocessing and standardization
 - Extraction of **gradient**, **spatial**, and **frequency-domain** features
-- Construction of a **25-dimensional DIP feature vector**
+- Construction of a **26-dimensional DIP feature vector**
 - Feature normalization and preparation for machine learning
 - Classifier selection using cross-validation
 - Training and comparison of **RBF SVM** and **MLP** models
