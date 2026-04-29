@@ -60,7 +60,7 @@ If you are interested in extending this work, possible next steps include:
 
 ## Acknowledgment
 
-This project was developed as part of a graduate-level study in Digital Image Processing and Machine Learning. It reflects an emphasis on practical implementation, reproducibility, and clear documentation.
+This project was developed as part of a graduate-level study in Digital Image Processing. It reflects an emphasis on practical implementation, reproducibility, and clear documentation.
 
 ## Closing
 
