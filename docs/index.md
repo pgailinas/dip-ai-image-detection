@@ -32,7 +32,7 @@ Begin the tutorial with the first step in the pipeline:
 This page provides an overview of dataset construction and links directly to the Colab notebook for execution. Follow the notebooks sequentially as each step builds on the outputs of the previous step.
 
 ---
-**IMPORTANT NOTE:** The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
+IMPORTANT NOTE: The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
 ---
 
 ## Pipeline Stages
