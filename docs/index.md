@@ -110,7 +110,7 @@ Performance is assessed using:
 
 This tutorial demonstrates that engineered Digital Image Processing (DIP) features can effectively distinguish between real and AI-generated images using classical machine learning models.
 
-The final evaluation, presented in the [*Results & Insights*](7.%20Results%20&%20Insights.md), shows that the approach achieves strong classification performance on a balanced, multi-source dataset, indicating that the feature-based representation captures meaningful and generalizable differences between real and synthetic images.
+The final evaluation, presented in the [*Results & Insights*](7.%20Results%20&%20Insights.html), shows that the approach achieves strong classification performance on a balanced, multi-source dataset, indicating that the feature-based representation captures meaningful and generalizable differences between real and synthetic images.
 
 Detailed performance metrics, model comparisons, and analysis are provided in the final stages of the tutorial.
 
