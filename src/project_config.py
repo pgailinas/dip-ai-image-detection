@@ -265,6 +265,10 @@ PUBLIC_RAW_ZIP_SIZES_GB = {
     "midjourney": 3.80,
 }
 
+PUBLIC_PREPROCESSED_ZIP_FILE_IDS = {
+    "all_sources": "16lqzkKAqOH6bOq98zF-bSQzq6kIdYXQn",
+}
+
 # ------------------------------------------------------------
 # Google Drive raw ZIP archive paths
 # ------------------------------------------------------------
