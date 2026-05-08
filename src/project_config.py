@@ -242,6 +242,30 @@ PREPROCESSED_DIRS = {
 }
 
 # ------------------------------------------------------------
+# Public Google Drive ZIP file IDs
+# ------------------------------------------------------------
+
+PUBLIC_RAW_ZIP_FILE_IDS = {
+    "imagenet": "1ctpQS6GN4uo4OtqJWoOML00MXg6QIVeL",
+    "coco": "1n3U8MoBdVc8MkrqMEu7vBQXSnwt4_2Vp",
+    "diffusiondb": "1XjZOaNhCw8DTOyW-C-cZYYxnwD6eoyQT",
+    "sdxl": "1m5Ih0geJdOPADolII4h99uHrG2SItJZJ",
+    "midjourney": "1hofiORgazENEY8SjDE5QLjt1vN_kLJPd",
+}
+
+# ------------------------------------------------------------
+# Public ZIP file sizes (GB)
+# ------------------------------------------------------------
+
+PUBLIC_RAW_ZIP_SIZES_GB = {
+    "imagenet": 0.33,
+    "coco": 1.50,
+    "diffusiondb": 1.80,
+    "sdxl": 3.70,
+    "midjourney": 3.80,
+}
+
+# ------------------------------------------------------------
 # Google Drive raw ZIP archive paths
 # ------------------------------------------------------------
 
