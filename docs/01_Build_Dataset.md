@@ -14,8 +14,7 @@ nav_order: 1
 </p>
 
 ---
-**IMPORTANT NOTE:** The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
----
+**IMPORTANT NOTE: The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.**
 
 ## Purpose
 
