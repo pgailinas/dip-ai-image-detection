@@ -41,7 +41,7 @@ Build a raw image dataset from a selected source, including validation, deduplic
 
 ## Notes
 
-- This notebook is optional if datasets are already available  
+- **This notebook is optional since all datasets are already available**  
 - Only one dataset source is processed per run  
 - Hash-based deduplication ensures uniqueness across datasets  
 - A reset option enables clean rebuilding of a dataset source  
