@@ -21,6 +21,9 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 
 👉 https://pgailinas.github.io/dip-ai-image-detection/
 
+---
+**IMPORTANT NOTE: The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.**
+
 ## 📂 Repository Structure
 
 - `docs/` — GitHub Pages tutorial and documentation  
