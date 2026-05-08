@@ -14,6 +14,8 @@ nav_order: 1
 </p>
 
 ---
+**IMPORTANT NOTE:** The notebooks are publicly accessible through GitHub and can be viewed without an account. Running notebooks in Google Colab requires a Google account for runtime allocation and notebook execution. Users may also clone or download the repository and run the notebooks locally using Jupyter.
+---
 
 ## Purpose
 
