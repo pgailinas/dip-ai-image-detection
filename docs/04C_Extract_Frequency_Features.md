@@ -13,6 +13,8 @@ nav_order: 3
   </a>
 </p>
 
+> **Note:** Running notebooks in Google Colab requires a Google account. The preprocessed image archive is downloaded automatically from public Google Drive during execution if needed.
+
 ---
 
 ## Purpose
@@ -22,7 +24,8 @@ Extract frequency-domain features from preprocessed images to capture spectral e
 ## Inputs
 
 - `train_metadata.csv`, `test_metadata.csv` — dataset metadata  
-- Preprocessed images — accessed using metadata filenames  
+- Public Google Drive preprocessed image archive — `All_Sources_preprocessed.zip`  
+- Shared project configuration — `src/project_config.py`
 
 ## Outputs
 
@@ -31,7 +34,8 @@ Extract frequency-domain features from preprocessed images to capture spectral e
 ## Processing Summary
 
 - Load subset metadata  
-- Access preprocessed images using metadata  
+- Download and extract preprocessed image archive if needed  
+- Access preprocessed images using metadata filenames  
 - Transform images to frequency domain  
 - Extract spectral and radial descriptors  
 - Combine features with metadata  
@@ -42,7 +46,7 @@ Extract frequency-domain features from preprocessed images to capture spectral e
 - Processing is performed separately for training and test subsets  
 - Image access is metadata-driven using filenames  
 - Frequency features capture spectral energy and structural patterns  
-- Output files are written to the Colab runtime environment  
+- Feature extraction operates on locally extracted images within the Colab runtime environment  
 
 ## Next Notebook
 
