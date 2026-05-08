@@ -36,7 +36,6 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 - The tutorial notebooks are publicly available through GitHub and can be viewed without an account.
 - Uses a **metadata-driven pipeline** (no need to store full datasets locally)
 - Notebooks are modular and follow a structured pipeline
-- The tutorial notebooks are publicly available through GitHub and can be viewed without an account.
 
 ## 👤 Author
 
