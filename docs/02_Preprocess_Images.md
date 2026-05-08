@@ -13,7 +13,7 @@ nav_order: 2
   </a>
 </p>
 
-> **Note:** Running notebooks in Google Colab requires a Google account. Dataset ZIP archives are downloaded automatically from publicly shared Google Drive links during execution.
+**Note: Running notebooks in Google Colab requires a Google account. Dataset ZIP archives, when selected, are automatically downloaded from publicly shared Google Drive links during execution.**
 
 ---
 
