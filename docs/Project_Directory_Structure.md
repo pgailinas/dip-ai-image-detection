@@ -134,30 +134,22 @@ dip-ai-image-detection/
 
 ## Google Drive Structure
 
-All datasets are stored externally in Google Drive and accessed by the notebooks.
+Due to GitHub file size limitations, all image datasets are stored externally in Google Drive as ZIP files. When needed, the specific file is expanded by the notebooks into local storage for access.
 
 ```text
 releases/
 ├── raw/
-│   ├── DiffusionDB.zip
-│   ├── ImageNet_1K_256.zip
-│   ├── Midjourney.zip
-│   ├── MS_COCO_2017.zip
-│   ├── OpenImages.zip (+ split archives)
-│   └── SDXL_Generated_10K.zip
+│   ├── DiffusionDB.zip (3000 images; 1.83 GB)
+│   ├── ImageNet_1K_256.zip (3000 images; 332 MB)
+│   ├── Midjourney.zip (3000 images; 3.79 GB)
+│   ├── MS_COCO_2017.zip (3000 images; 1.47 GB)
+│   ├── OpenImages.zip (3000 images; 22.23 GB)
+│   └── SDXL_Generated_10K.zip (3000 images; 3.71 GB)
 │
 └── preprocessed/
-    ├── All_Sources_preprocessed.zip
-    ├── DiffusionDB_preprocessed.zip
-    ├── ImageNet_1K_256_preprocessed.zip
-    ├── Midjourney_preprocessed.zip
-    ├── MS_COCO_2017_preprocessed.zip
-    ├── OpenImages_preprocessed.zip
-    └── SDXL_Generated_10K_preprocessed.zip
+    └── All_Sources_preprocessed.zip (18,000 images; 678 MB)
 ```
-
 ---
-
 ## Important Notes
 
 - Image datasets are not duplicated; all processing is metadata-driven  
