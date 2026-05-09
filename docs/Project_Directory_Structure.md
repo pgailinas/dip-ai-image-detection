@@ -98,7 +98,7 @@ dip-ai-image-detection/
 │   └── images/
 │       ├── basic-fine-tuning-tutorial-pipeline.png
 │       ├── basic-testing-tutorial-pipeline.png
-│       ├── classifier-comprison.png
+│       ├── classifier-comparison.png
 │       ├── dataset-tutorial-pipeline.png
 │       ├── feature-group-vs-full-model.png
 │       ├── full-training-tutorial-pipeline.png
