@@ -134,8 +134,7 @@ Each section provides:
 - `docs/` — tutorial documentation (this site)  
 - `notebooks/` — Google Colab notebooks  
 - `src/` — reusable Python modules and configuration  
-- `metadata/` — dataset, feature, and model artifacts  
-- `data/` — dataset guidance and references  
+- `metadata/` — dataset, feature, and model artifacts   
 
 Large datasets are not stored directly in the repository.
 
