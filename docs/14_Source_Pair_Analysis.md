@@ -17,7 +17,7 @@ nav_order: 3
 
 ## Purpose
 
-Evaluate model generalization across dataset combinations by comparing performance on real vs AI source pairings. This analysis provides insight into how well DIP-based features generalize across different image sources and generative models.
+Evaluate model generalization across dataset combinations by comparing performance on real vs AI source pairings and a combined real-vs-AI experiment. This analysis provides insight into how well DIP-based features generalize across different image sources and generative models.
 
 ---
 
@@ -29,10 +29,15 @@ Evaluate model generalization across dataset combinations by comparing performan
 
 ## Outputs
 
-- Source-pair performance metrics (Accuracy, Precision, Recall, F1, ROC AUC)  
-- ROC curve data (FPR, TPR, thresholds) for each source-pair model  
-- Comparative results table sorted by ROC AUC  
-- ROC curve comparison plot across all source-pair experiments  
+- Source-pair and combined-model performance metrics:
+  - Accuracy
+  - Precision
+  - Recall
+  - F1 Score
+  - ROC AUC
+- ROC curve data (FPR, TPR, thresholds) for all evaluated models
+- Comparative results table sorted by ROC AUC
+- ROC curve comparison plot across all experiments
 - Saved outputs:
   - `source_pair_results.csv`
   - `source_pair_roc_curves.png`
@@ -41,24 +46,26 @@ Evaluate model generalization across dataset combinations by comparing performan
 
 ## Processing Summary
 
-- Load normalized feature vectors and validate dataset structure  
-- Define source-pair experiments across all dataset permutations (3 real × 3 AI = 9 combinations)  
-- Construct balanced datasets for each source pair  
-- Train a classifier using the fixed tuned MLP configuration for each pairing  
-- Evaluate model performance using standard metrics and ROC curves  
-- Aggregate and sort results by ROC AUC  
-- Visualize ROC curves to compare classification behavior across thresholds  
-- Save results and plots for downstream use  
+- Load normalized feature vectors and validate dataset structure
+- Define source-pair experiments across all configured real and AI dataset combinations
+- Construct balanced datasets for each source-pair experiment
+- Train one classifier per source pair using the fixed tuned MLP configuration
+- Construct and train a combined real-vs-AI classifier using all configured sources
+- Evaluate all trained models using standard classification metrics and ROC analysis
+- Aggregate and sort results by ROC AUC
+- Visualize ROC curves to compare classification behavior across thresholds
+- Save results and plots for downstream use
 
 ---
 
 ## Notes
 
-- Experiments evaluate sensitivity to dataset selection and source variability  
-- Each source pair maintains strict class balance (real vs AI)  
-- The same tuned model configuration is used for all experiments to isolate dataset effects  
-- Results highlight which source combinations are easier or harder to distinguish  
-- ROC curves provide deeper insight into classification performance beyond single-value metrics  
+- Experiments evaluate sensitivity to dataset selection and source variability
+- Each source pair maintains strict class balance (real vs AI)
+- The same tuned model configuration is used for all experiments to isolate dataset effects
+- The combined model provides a broader measure of overall generalization capability
+- Results highlight which source combinations are easier or harder to distinguish
+- ROC curves provide deeper insight into classification performance beyond single-value metrics
 
 ---
 
