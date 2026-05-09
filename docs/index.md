@@ -129,15 +129,6 @@ Each section provides:
 - Implementation details  
 - Direct notebook access  
 
-## Repository Structure
-
-- `docs/` — tutorial documentation (this site)  
-- `notebooks/` — Google Colab notebooks  
-- `src/` — reusable Python modules and configuration  
-- `metadata/` — dataset, feature, and model artifacts   
-
-Large datasets are not stored directly in the repository.
-
 ## Author
 
 **Phil Gailinas**  
