@@ -136,6 +136,7 @@ dip-ai-image-detection/
 
 All datasets are stored externally in Google Drive and accessed by the notebooks.
 
+```text
 releases/
 ├── raw/
 │   ├── DiffusionDB.zip
@@ -153,6 +154,7 @@ releases/
     ├── MS_COCO_2017_preprocessed.zip
     ├── OpenImages_preprocessed.zip
     └── SDXL_Generated_10K_preprocessed.zip
+```
 
 ---
 
