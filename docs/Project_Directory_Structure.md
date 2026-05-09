@@ -13,6 +13,37 @@ All processing steps operate on metadata and stored artifacts rather than duplic
 
 ---
 
+## Key Directories
+
+### notebooks/
+Contains all Google Colab notebooks implementing each step of the pipeline, from dataset construction through final evaluation and analysis.
+
+### docs/
+Contains the tutorial documentation pages associated with each notebook, forming the structured learning guide.
+
+- `images/` contains PNG images for inclusion within tutorial documentation pages  
+
+### src/
+Contains reusable Python modules and configuration files.
+
+- **project_config.py** — single file for all path and constant declarations  
+- **datasets/** — contains dataset-specific handlers (one for each source of images)  
+
+### metadata/
+
+This is the **core working directory** of the project. It stores all intermediate and final artifacts.
+
+- **original/** — raw dataset metadata  
+- **hashes/** — dataset integrity and duplicate tracking  
+- **preprocessed/** — metadata after preprocessing  
+- **splits/** — train/test dataset definitions  
+- **features/** — extracted DIP feature values  
+- **vectors/** — assembled feature vectors (raw and normalized)  
+- **models/** — trained models and scaler  
+- **results/** — evaluation outputs and metrics  
+
+---
+
 ## Repository Structure
 
 ```text
@@ -98,35 +129,6 @@ dip-ai-image-detection/
     ├── models/
     └── results/
 ```
-
----
-
-## Key Directories
-
-### notebooks/
-Contains all Google Colab notebooks implementing each step of the pipeline, from dataset construction through final evaluation and analysis.
-
-### docs/
-Contains the tutorial documentation pages associated with each notebook, forming the structured learning guide.
-
-### src/
-Contains reusable Python modules and configuration files.
-
-- `project_config.py` centralizes all paths and constants  
-- `datasets/` contains dataset-specific handlers  
-
-### metadata/
-
-This is the **core working directory** of the project. It stores all intermediate and final artifacts.
-
-- **original/** — raw dataset metadata  
-- **hashes/** — dataset integrity and duplicate tracking  
-- **preprocessed/** — metadata after preprocessing  
-- **splits/** — train/test dataset definitions  
-- **features/** — extracted DIP feature values  
-- **vectors/** — assembled feature vectors (raw and normalized)  
-- **models/** — trained models and scaler  
-- **results/** — evaluation outputs and metrics  
 
 ---
 
