@@ -63,7 +63,14 @@ dip-ai-image-detection/
 │   ├── 13_Feature_Level_Analysis.md
 │   ├── 14_Source_Pair_Analysis.md
 │   ├── Project_Directory_Structure.md
-│   └── Thanks_For_Trying_This_Tutorial.md
+│   ├── Thanks_For_Trying_This_Tutorial.md
+│   └── images/
+│       ├── coco_target.py
+│       ├── diffusiondb_target.py
+│       ├── imagenet_target.py
+│       ├── midjourney_target.py
+│       ├── openimages_target.py
+│       └── sdxl_target.py
 │
 ├── src/
 │   ├── project_config.py
