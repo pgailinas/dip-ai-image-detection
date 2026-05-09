@@ -27,8 +27,6 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 - `notebooks/` — Google Colab notebooks for each pipeline stage  
 - `src/` — reusable Python code and configuration  
 - `metadata/` — CSV-based pipeline artifacts (features, splits, models)  
-- `data/` — dataset structure guidance  
-- `releases/` — large downloadable assets via GitHub Releases  
 
 ## ⚙️ Execution Notes
 
@@ -39,6 +37,7 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 
 ## 👤 Author
 
-Phil Gailinas  
-M.S. Computer Engineering (IoT focus) candidate
-University of New Mexico
+- Phil Gailinas  
+- M.S. Computer Engineering (IoT focus) candidate
+- University of New Mexico
+
