@@ -21,7 +21,7 @@ Contains all Google Colab notebooks implementing each step of the pipeline, from
 ### docs/
 Contains the tutorial documentation pages associated with each notebook, forming the structured learning guide.
 
-- `images/` contains PNG images for inclusion within tutorial documentation pages  
+- **images/** — contains PNG images for inclusion within tutorial documentation pages  
 
 ### src/
 Contains reusable Python modules and configuration files.
