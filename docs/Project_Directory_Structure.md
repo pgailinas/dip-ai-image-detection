@@ -48,8 +48,22 @@ dip-ai-image-detection/
 │   ├── 6. Full Training Tutorial.md
 │   ├── 01_Build_Dataset.md
 │   ├── 02_Preprocess_Images.md
-│   ├── ...
-│   └── 14_Source_Pair_Analysis.md
+│   ├── 03_Combine_and_Split.md
+│   ├── 04A_Extract_Gradient_Features.md
+│   ├── 04B_Extract_Spatial_Features.md
+│   ├── 04C_Extract_Frequency_Features.md
+│   ├── 05_Build_Feature_Vectors.md
+│   ├── 06_Normalize_and_Prepare_Inputs.md
+│   ├── 07_Classifier_Selection.md
+│   ├── 08_Train_Two_Classifiers.md
+│   ├── 09_Validate_and_Tune_Two_Models.md
+│   ├── 10_Basic_Testing.md
+│   ├── 11_Basic_Fine-Tuning.md
+│   ├── 12_Evaluate_Two_Models.md
+│   ├── 13_Feature_Level_Analysis.md
+│   ├── 14_Source_Pair_Analysis.md
+│   ├── Project_Directory_Structure.md
+│   └── Thanks_For_Trying_This_Tutorial.md
 │
 ├── src/
 │   ├── project_config.py
@@ -61,17 +75,15 @@ dip-ai-image-detection/
 │       ├── openimages_target.py
 │       └── sdxl_target.py
 │
-├── metadata/
-│   ├── original/
-│   ├── hashes/
-│   ├── preprocessed/
-│   ├── splits/
-│   ├── features/
-│   ├── vectors/
-│   ├── models/
-│   └── results/
-│
-└── data/
+└── metadata/
+    ├── original/
+    ├── hashes/
+    ├── preprocessed/
+    ├── splits/
+    ├── features/
+    ├── vectors/
+    ├── models/
+    └── results/
 ```
 
 ---
@@ -90,8 +102,6 @@ Contains reusable Python modules and configuration files.
 - `project_config.py` centralizes all paths and constants  
 - `datasets/` contains dataset-specific handlers  
 
----
-
 ### metadata/
 
 This is the **core working directory** of the project. It stores all intermediate and final artifacts.
@@ -104,12 +114,6 @@ This is the **core working directory** of the project. It stores all intermediat
 - **vectors/** — assembled feature vectors (raw and normalized)  
 - **models/** — trained models and scaler  
 - **results/** — evaluation outputs and metrics  
-
----
-
-### data/
-
-Contains dataset references and guidance. Large datasets are not stored directly in the repository.
 
 ---
 
