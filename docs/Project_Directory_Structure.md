@@ -65,12 +65,18 @@ dip-ai-image-detection/
 │   ├── Project_Directory_Structure.md
 │   ├── Thanks_For_Trying_This_Tutorial.md
 │   └── images/
-│       ├── coco_target.py
-│       ├── diffusiondb_target.py
-│       ├── imagenet_target.py
-│       ├── midjourney_target.py
-│       ├── openimages_target.py
-│       └── sdxl_target.py
+│       ├── basic-fine-tuning-tutorial-pipeline.png
+│       ├── basic-testing-tutorial-pipeline.png
+│       ├── classifier-comprison.png
+│       ├── dataset-tutorial-pipeline.png
+│       ├── feature-group-vs-full-model.png
+│       ├── full-training-tutorial-pipeline.png
+│       ├── model-description-tutorial-pipeline.png
+│       ├── model-optimization-tutorial-pipeline.png
+│       ├── overview-pipeline.png
+│       ├── roc-curve-comparison.png
+│       ├── single-feature-barchart.png
+│       └── source-pair-roc-curves.png
 │
 ├── src/
 │   ├── project_config.py
