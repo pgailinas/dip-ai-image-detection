@@ -155,7 +155,7 @@ releases/
 
 The project uses a shared configuration file located at:
 
-[`src/project_config.py`](src/project_config.py)
+[`src/project_config.py`](./docs/src/project_config.py)
 
 This file contains the centralized constants and shared settings used throughout the notebook pipeline, including dataset identifiers, feature configuration, directory paths, metadata filenames, and public download information.
 
