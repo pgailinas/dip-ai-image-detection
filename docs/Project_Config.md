@@ -1,3 +1,9 @@
+---
+layout: default
+title: Project Config
+nav_exclude: true
+---
+
 ## Project Constants Declaration
 
 The file `src/project_config.py` contains the shared configuration constants used throughout the DIP pipeline. This file is included in all Colab notebooks after the GitHub repository has been clone to the local Colab environment.
