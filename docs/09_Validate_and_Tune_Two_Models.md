@@ -46,5 +46,5 @@ Validate and compare the 2 selected classifiers using normalized DIP feature vec
 
 ## Next Notebook
 
-➡️ [10 Basic Testing](10_Basic_Testing.md)
+➡️ [10 Basic Training](10_Basic_Training.md)
 
