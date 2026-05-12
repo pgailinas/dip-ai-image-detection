@@ -17,7 +17,7 @@ nav_order: 3
 
 ## Purpose
 
-Validate and compare the selected classifiers using normalized DIP feature vectors prior to final testing.
+Validate and compare the 2 selected classifiers using normalized DIP feature vectors prior to final testing.
 
 ## Inputs
 
