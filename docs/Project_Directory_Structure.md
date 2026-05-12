@@ -150,6 +150,19 @@ releases/
     └── All_Sources_preprocessed.zip (18,000 images; 678 MB)
 ```
 ---
+
+## Centralized Configuration
+
+The project uses a shared configuration file located at:
+
+[`src/project_config.py`](src/project_config.py)
+
+This file contains the centralized constants and shared settings used throughout the notebook pipeline, including dataset identifiers, feature configuration, directory paths, metadata filenames, and public download information.
+
+All notebooks import configuration values directly from this file to maintain consistency and reproducibility across the project.
+
+---
+
 ## Important Notes
 
 - Image datasets are not duplicated; all processing is metadata-driven  
