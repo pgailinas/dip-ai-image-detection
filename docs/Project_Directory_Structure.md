@@ -155,9 +155,7 @@ releases/
 
 The project uses a shared configuration file located at:
 
-[`src/project_config.py`](./docs/src/project_config.py)
-
-[project_config.py](https://github.com/pgailinas/dip-ai-image-detection/blob/main/src/project_config.py)
+[Project Configuration](Project_Config.html)
 
 This file contains the centralized constants and shared settings used throughout the notebook pipeline, including dataset identifiers, feature configuration, directory paths, metadata filenames, and public download information.
 
