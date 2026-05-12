@@ -1,6 +1,6 @@
 ---
-title: 10 Basic Testing
-parent: 4. Basic Testing Tutorial
+title: 10 Basic Training
+parent: 4. Basic Training Tutorial
 nav_order: 1
 ---
 
