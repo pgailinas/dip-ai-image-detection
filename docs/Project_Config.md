@@ -1,12 +1,12 @@
-# Centralized Configuration
+## Project Constants Declaration
 
-The file `src/project_config.py` contains the shared configuration constants used throughout the DIP pipeline.
+The file `src/project_config.py` contains the shared configuration constants used throughout the DIP pipeline. This file is included in all Colab notebooks after the GitHub repository has been clone to the local Colab environment.
 
 This page displays the exact configuration used by the validated notebook workflow.
 
 ---
 
-## Displayed Configuration
+## project_config.py File Contents
 
 ```python
 # ============================================================
