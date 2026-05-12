@@ -53,7 +53,7 @@ If this tutorial helped you learn something new or gave you ideas for your own w
 ## 👤 Author
 
 **Phil Gailinas**
-MS Computer Engineering (AI/ML focus) candidate at University of New Mexico
+MS Computer Engineering (IoT) candidate at University of New Mexico
 
 ---
 
