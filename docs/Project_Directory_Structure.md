@@ -151,11 +151,11 @@ releases/
 ```
 ---
 
-## Centralized Configuration
+## Project Constants Declaration
 
 The project uses a shared configuration file located at:
 
-[Project Configuration](Project_Config.html)
+[Project Constants Declaration](Project_Config.html)
 
 This file contains the centralized constants and shared settings used throughout the notebook pipeline, including dataset identifiers, feature configuration, directory paths, metadata filenames, and public download information.
 
