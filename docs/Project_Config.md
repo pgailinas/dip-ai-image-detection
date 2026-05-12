@@ -6,14 +6,6 @@ This page displays the configuration used by the validated notebook workflow.
 
 ---
 
-## Source File
-
-The authoritative source file is available in the GitHub repository:
-
-[View `src/project_config.py` on GitHub](https://github.com/pgailinas/dip-ai-image-detection/blob/main/src/project_config.py)
-
----
-
 ## Displayed Configuration
 
 ```python
