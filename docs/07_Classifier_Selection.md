@@ -17,7 +17,7 @@ nav_order: 1
 
 ## Purpose
 
-Evaluate candidate classifiers using normalized DIP feature vectors and select the top two classifiers for continued training and evaluation.
+Evaluate 9 candidate classifiers using normalized DIP feature vectors and select the top two classifiers for continued training and evaluation.
 
 ## Inputs
 
