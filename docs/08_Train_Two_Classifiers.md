@@ -17,7 +17,7 @@ nav_order: 2
 
 ## Purpose
 
-Train the selected classifiers using normalized DIP feature vectors and prepare final models for evaluation.
+Train the 2 selected classifiers using normalized DIP feature vectors and prepare final models for evaluation.
 
 ## Inputs
 
