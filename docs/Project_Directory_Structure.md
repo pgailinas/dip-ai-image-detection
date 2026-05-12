@@ -63,7 +63,7 @@ dip-ai-image-detection/
 │   ├── 07_Classifier_Selection.ipynb
 │   ├── 08_Train_Two_Classifiers.ipynb
 │   ├── 09_Validate_and_Tune_Two_Models.ipynb
-│   ├── 10_Basic_Training.ipynb
+│   ├── 10_Basic_Testing.ipynb
 │   ├── 11_Basic_Fine-Tuning.ipynb
 │   ├── 12_Evaluate_Two_Models.ipynb
 │   ├── 13_Feature_Level_Analysis.ipynb
@@ -88,7 +88,7 @@ dip-ai-image-detection/
 │   ├── 07_Classifier_Selection.md
 │   ├── 08_Train_Two_Classifiers.md
 │   ├── 09_Validate_and_Tune_Two_Models.md
-│   ├── 10_Basic_Training.md
+│   ├── 10_Basic_Testing.md
 │   ├── 11_Basic_Fine-Tuning.md
 │   ├── 12_Evaluate_Two_Models.md
 │   ├── 13_Feature_Level_Analysis.md
@@ -97,7 +97,7 @@ dip-ai-image-detection/
 │   ├── Thanks_For_Trying_This_Tutorial.md
 │   └── images/
 │       ├── basic-fine-tuning-tutorial-pipeline.png
-│       ├── basic-training-tutorial-pipeline.png
+│       ├── basic-testing-tutorial-pipeline.png
 │       ├── classifier-comparison.png
 │       ├── dataset-tutorial-pipeline.png
 │       ├── feature-group-vs-full-model.png
