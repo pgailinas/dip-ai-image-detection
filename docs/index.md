@@ -28,7 +28,7 @@ The tutorial follows a sequential notebook-based workflow covering:
 - DIP feature extraction
 - Feature vector generation
 - Model training and evaluation
-- Feature analysis and source-pair robustness experiments
+- Feature analysis and robustness experiments
 
 The complete workflow is illustrated below.
 
@@ -136,7 +136,7 @@ This project emphasizes:
 - CPU-friendly execution
 - Cross-source generalization analysis
 
-Rather than treating AI-image detection as a black-box deep learning problem, the tutorial explores how traditional image statistics can provide meaningful and explainable detection signals.
+Rather than relying entirely on black-box deep learning methods, the tutorial explores how engineered image statistics can provide meaningful, interpretable, and generalizable detection signals.
 
 ## Author
 
