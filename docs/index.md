@@ -101,18 +101,45 @@ The workflow includes:
 
 The final stages focus not only on overall model performance, but also on understanding how feature behavior and dataset composition influence generalization.
 
-## Evaluation Metrics
+## Evaluation and Results
 
-Performance evaluation includes:
+<table>
+<tr>
+<td valign="top">
 
-- Accuracy
-- Precision
-- Recall
-- F1 Score
-- ROC Curve
-- Area Under the Curve (AUC)
-- Confusion Matrix
-- Source-pair comparison metrics
+<strong>Evaluation Metrics</strong>
+
+<ul>
+  <li>Accuracy</li>
+  <li>Precision</li>
+  <li>Recall</li>
+  <li>F1 Score</li>
+  <li>ROC Curve</li>
+  <li>Area Under the Curve (AUC)</li>
+  <li>Confusion Matrix</li>
+</ul>
+
+</td>
+
+<td style="width:80px;"></td>
+
+<td valign="top">
+
+<strong>Final Analysis Includes</strong>
+
+<ul>
+  <li>Classifier comparison</li>
+  <li>Final model performance</li>
+  <li>Feature-level analysis</li>
+  <li>Feature-group behavior</li>
+  <li>Source-pair robustness</li>
+  <li>Generalization trends</li>
+  <li>Implementation observations</li>
+</ul>
+
+</td>
+</tr>
+</table>
 
 ## Results and Insights
 
