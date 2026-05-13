@@ -2,9 +2,7 @@
 
 This project presents a complete **Digital Image Processing (DIP) and machine learning framework** for detecting AI-generated images using engineered image statistics and classical machine learning.
 
-Rather than relying entirely on end-to-end deep learning, the project investigates whether interpretable handcrafted DIP features can capture meaningful and generalizable differences between real and synthetic images.
-
-Instead of end-to-end deep learning, the method uses **interpretable DIP features** derived from gradient, spatial, and frequency-domain analysis to capture statistical differences between real and synthetic images.
+Rather than relying entirely on end-to-end deep learning, the project uses interpretable handcrafted DIP features derived from gradient, spatial, and frequency-domain analysis to capture meaningful and generalizable differences between real and synthetic images.
 
 ## 🚀 Project Summary
 
