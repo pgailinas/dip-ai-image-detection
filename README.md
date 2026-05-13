@@ -1,19 +1,38 @@
 # DIP-Based AI Image Detection
 
-This project presents a **feature-driven Digital Image Processing (DIP)** approach for detecting AI-generated images using engineered image statistics and classical machine learning.
+This project presents a complete **Digital Image Processing (DIP) and machine learning framework** for detecting AI-generated images using engineered image statistics and classical machine learning.
+
+Rather than relying entirely on end-to-end deep learning, the project investigates whether interpretable handcrafted DIP features can capture meaningful and generalizable differences between real and synthetic images.
 
 Instead of end-to-end deep learning, the method uses **interpretable DIP features** derived from gradient, spatial, and frequency-domain analysis to capture statistical differences between real and synthetic images.
 
 ## 🚀 Project Summary
 
 - Each image is represented by a **26-dimensional DIP feature vector**
-- Classification is performed using:
-  - **RBF Support Vector Machine (SVM)**
-  - **Multi-Layer Perceptron (MLP)**
-- Designed to be:
-  - Generator-independent  
-  - Reproducible  
-  - Interpretable  
+- Features are extracted from:
+  - Gradient-domain statistics
+  - Spatial-domain statistics
+  - Frequency-domain statistics
+- Multiple classical machine learning models are evaluated
+- Final experiments include:
+  - Classifier comparison
+  - Hyperparameter tuning
+  - Feature-level analysis
+  - Feature-group analysis
+  - Cross-source robustness experiments
+  - Final ROC/AUC evaluation
+
+The project emphasizes:
+
+- Interpretability
+- Reproducibility
+- Modular notebook-based execution
+- CPU-friendly processing
+- Generator-independent evaluation
+
+<p align="center">
+  <img src="docs/images/overview-pipeline.png" width="900">
+</p>
 
 ## 📘 Full Tutorial and Documentation
 
@@ -30,10 +49,12 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 
 ## ⚙️ Execution Notes
 
-- Designed for **Google Colab execution**
-- The tutorial notebooks are publicly available through GitHub and can be viewed without an account.
-- Uses a **metadata-driven pipeline** (no need to store full datasets locally)
-- Notebooks are modular and follow a structured pipeline
+- Designed primarily for **Google Colab execution**
+- Tutorial notebooks can be viewed directly through GitHub without an account
+- Public dataset download support is integrated into the workflow
+- Uses a metadata-driven modular pipeline architecture
+- Intermediate CSV artifacts enable reproducible staged execution
+- Notebooks are structured sequentially and can be executed independently once prerequisites are generated
 
 ## 👤 Author
 
