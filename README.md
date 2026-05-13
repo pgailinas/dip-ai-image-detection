@@ -20,14 +20,6 @@ Rather than relying entirely on end-to-end deep learning, the project uses inter
   - Cross-source robustness experiments
   - Final ROC/AUC evaluation
 
-The project emphasizes:
-
-- Interpretability
-- Reproducibility
-- Modular notebook-based execution
-- CPU-friendly processing
-- Generator-independent evaluation
-
 <p align="center">
   <img src="docs/images/overview-pipeline.png" width="900">
 </p>
