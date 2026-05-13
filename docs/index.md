@@ -85,22 +85,6 @@ The project dataset contains **18,000 images**, balanced across real and AI-gene
 
 The dataset is organized using metadata-driven control to preserve class balance, source identity, reproducibility, and separation between training and final evaluation data.
 
-## Models and Experiments
-
-The tutorial evaluates multiple classical machine learning models using the normalized 26-feature DIP representation.
-
-The workflow includes:
-
-- Baseline classifier comparison
-- Cross-validation evaluation
-- Hyperparameter tuning
-- Independent test-set evaluation
-- ROC and AUC analysis
-- Feature-level experiments
-- Source-pair robustness analysis
-
-The final stages focus not only on overall model performance, but also on understanding how feature behavior and dataset composition influence generalization.
-
 ## Evaluation and Results
 
 <table>
