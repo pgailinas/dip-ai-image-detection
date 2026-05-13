@@ -5,19 +5,19 @@ nav_order: 0
 
 # DIP-Based AI Image Detection
 
-This tutorial presents a **feature-driven Digital Image Processing (DIP)** approach for detecting AI-generated images using engineered image statistics and machine learning.
+This tutorial presents a complete **Digital Image Processing (DIP) and machine learning pipeline** for detecting AI-generated images using engineered image statistics rather than end-to-end deep learning.
 
-Instead of relying on end-to-end deep learning or generator-specific artifacts, the method focuses on **generalizable statistical differences** between real and synthetic images.
+The project investigates whether compact, interpretable DIP features can capture meaningful differences between real and synthetic images across multiple image sources and AI generators.
 
-## Overview
+## Project Overview
 
-Each image is represented by a fixed **26-dimensional DIP feature vector**, composed of:
+Each image is represented by a fixed **26-dimensional DIP feature vector** composed of:
 
-- **Gradient-based features** (edge strength and orientation structure)
-- **Spatial features** (intensity and texture statistics)
-- **Frequency-domain features** (spectral energy and distribution)
+- **Gradient-based features** — edge strength, gradient variation, and orientation structure
+- **Spatial features** — intensity statistics, entropy, texture, and local variation
+- **Frequency-domain features** — spectral energy distribution and radial frequency behavior
 
-These features provide a compact, interpretable representation of image structure suitable for classical machine learning models.
+These handcrafted features are used with classical machine learning models to evaluate AI-image detection performance in a transparent and CPU-friendly workflow.
 
 ## Pipeline Overview
 
@@ -25,114 +25,121 @@ These features provide a compact, interpretable representation of image structur
   <img src="images/overview-pipeline.png" alt="Pipeline Overview" width="700"/>
 </p>
 
-Begin the tutorial with the first step in the pipeline:
-
-👉 **Start with [1. Dataset Tutorial](1.%20Dataset%20Tutorial.html)**
-
-This page provides an overview of dataset construction and links directly to the Colab notebook for execution. Follow the notebooks sequentially as each step builds on the outputs of the previous step.
+The tutorial is organized as a sequential notebook-based workflow progressing from dataset construction through preprocessing, feature extraction, model training, evaluation, and extended analysis experiments.
 
 ---
-**IMPORTANT NOTE: The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.**
+
+**IMPORTANT NOTE:**  
+The tutorial notebooks are publicly available through GitHub and can be viewed without an account. Running them in Google Colab requires a Google account. Users may also clone or download the repository and run the notebooks locally using Jupyter.
+
+## Tutorial Scope
+
+In addition to the core training pipeline, the project includes extended experiments and analysis for evaluating:
+
+- Feature-level discriminative strength
+- Gradient, spatial, and frequency-domain feature groups
+- Cross-source robustness
+- Model generalization across multiple AI generators
+- Final classifier comparison and ROC analysis
+
+The workflow emphasizes interpretability, reproducibility, modularity, and CPU-friendly execution.
 
 ## Pipeline Stages
 
-The pipeline consists of nine sequential stages:
+The tutorial consists of the following major stages:
 
-1. **Build Dataset**  
-   Assemble balanced datasets from real and AI-generated image sources.
-
-2. **Preprocess Images**  
-   Standardize image size, format, and quality.
-
-3. **Combine and Split Metadata**  
-   Construct balanced train/test splits using metadata-driven control.
-
-4. **Extract DIP Features**  
-   Compute gradient, spatial, and frequency-domain descriptors.
-
-5. **Build Feature Vectors**  
-   Assemble per-image feature representations.
-
-6. **Normalize Features**  
-   Apply scaling to prepare inputs for classifiers.
-
-7. **Train Models**  
-   Train candidate classifiers using the training dataset.
-
-8. **Validate and Tune Models**  
-   Perform cross-validation and hyperparameter tuning.
-
-9. **Evaluate Final Models**  
-   Assess performance on the held-out test dataset.
+1. Dataset Construction  
+2. Image Preprocessing  
+3. Metadata Combination and Splitting  
+4. DIP Feature Extraction  
+5. Feature Vector Construction  
+6. Feature Normalization  
+7. Classifier Selection  
+8. Model Training and Tuning  
+9. Final Model Evaluation  
+10. Feature-Level Analysis  
+11. Group-Level Analysis  
+12. Source-Pair Analysis  
+13. Results and Insights  
 
 ## Dataset
 
-The dataset contains **18,000 images**, balanced across real and AI-generated classes.
+The project dataset contains **18,000 images**, balanced across real and AI-generated image classes.
 
-**Real images (9,000):**
-- ImageNet  
-- MS COCO  
-- OpenImages  
+### Real-Image Sources
 
-**AI-generated images (9,000):**
-- DiffusionDB  
-- SDXL  
-- MidJourney  
+- ImageNet
+- MS COCO
+- OpenImages
 
-Data is split into **training and test sets**, with **k-fold cross-validation applied to the training data**. Class and source balance are maintained to avoid bias and data leakage.
+### AI-Generated Sources
 
-For a complete overview of how datasets, metadata, and outputs are organized, see the [Project Directory Structure](Project_Directory_Structure.md).
+- DiffusionDB
+- SDXL
+- MidJourney
 
-## Models
+The dataset is organized using metadata-driven control to preserve class balance, source identity, reproducibility, and separation between training and final evaluation data.
 
-Two classifiers are evaluated:
+## Models and Experiments
 
-- **RBF SVM (Final Model)**  
-  Kernel: RBF  
-  C = 100, gamma = 0.01  
+The tutorial evaluates multiple classical machine learning models using the normalized 26-feature DIP representation.
 
-- **MLP (Comparison Model)**  
-  Architecture: (128, 64, 32)  
-  Alpha = 0.001  
+The workflow includes:
+
+- Baseline classifier comparison
+- Cross-validation evaluation
+- Hyperparameter tuning
+- Independent test-set evaluation
+- ROC and AUC analysis
+- Feature-level experiments
+- Source-pair robustness analysis
+
+The final stages focus not only on overall model performance, but also on understanding how feature behavior and dataset composition influence generalization.
 
 ## Evaluation Metrics
 
-Performance is assessed using:
+Performance evaluation includes:
 
-- Accuracy  
-- Precision  
-- Recall  
-- F1 Score  
-- ROC Curve  
-- Area Under the Curve (AUC)  
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC Curve
+- Area Under the Curve (AUC)
+- Confusion Matrix
+- Source-pair comparison metrics
 
-## Expected Results
+## Results and Insights
 
-This tutorial demonstrates that engineered Digital Image Processing (DIP) features can effectively distinguish between real and AI-generated images using classical machine learning models.
+The completed experiments demonstrate that engineered DIP features can effectively distinguish between real and AI-generated images using lightweight classical machine learning models.
 
-The final evaluation, presented in the [*Results & Insights*](7.%20Results%20&%20Insights.html), shows that the approach achieves strong classification performance on a balanced, multi-source dataset, indicating that the feature-based representation captures meaningful and generalizable differences between real and synthetic images.
+The final analysis includes:
 
-Detailed performance metrics, model comparisons, and analysis are provided in the final stages of the tutorial.
+- Classifier comparison results
+- Final model performance
+- Feature-level analysis
+- Feature-group behavior
+- Source-pair generalization trends
+- Practical implementation observations
 
-## How to Use This Tutorial
+## Project Design Philosophy
 
-Navigate through the documentation using the left-hand menu.
+This project emphasizes:
 
-Recommended workflow:
+- Interpretability through handcrafted DIP features
+- Reproducibility through metadata-driven processing
+- Modular notebook-based pipeline stages
+- Public Colab accessibility
+- CPU-friendly execution
+- Cross-source generalization analysis
 
-1. Start with **[1. Dataset Tutorial](1.%20Dataset%20Tutorial.html)** 
-3. Proceed sequentially through each pipeline stage  
-4. Use notebook descriptions and Colab links to execute each step  
-
-Each section provides:
-- Conceptual explanations  
-- Implementation details  
-- Direct notebook access  
+Rather than treating AI-image detection as a black-box deep learning problem, the tutorial explores how traditional image statistics can provide meaningful and explainable detection signals.
 
 ## Author
 
 **Phil Gailinas**  
-M.S. Computer Engineering (IoT focus) candidate at University of New Mexico  
+M.S. Computer Engineering candidate  
+University of New Mexico
 
 ## License
 
