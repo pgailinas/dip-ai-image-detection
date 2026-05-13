@@ -18,7 +18,7 @@ Rather than relying entirely on end-to-end deep learning, the project uses inter
   - Feature-level analysis
   - Feature-group analysis
   - Cross-source robustness experiments
-  - Final ROC/AUC evaluation
+  - ROC/AUC evaluation
 
 <p align="center">
   <img src="docs/images/overview-pipeline.png" width="900">
@@ -44,11 +44,11 @@ The complete step-by-step pipeline, including notebook walkthroughs and explanat
 - Public dataset download support is integrated into the workflow
 - Uses a metadata-driven modular pipeline architecture
 - Intermediate CSV artifacts enable reproducible staged execution
-- Notebooks are structured sequentially and can be executed independently once prerequisites are generated
+- All notebooks can be executed independently using provided repository artifacts and metadata files
 
 ## 👤 Author
 
-- Phil Gailinas  
-- M.S. Computer Engineering (IoT focus) candidate
-- University of New Mexico
+Phil Gailinas  
+M.S. Computer Engineering candidate  
+University of New Mexico
 
