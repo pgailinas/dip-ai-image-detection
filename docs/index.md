@@ -63,9 +63,9 @@ The project dataset contains **18,000 images**, balanced across real and AI-gene
 
 <strong>Real-Image Datasets</strong>
 <ul>
-  <li>ImageNet (imgn)</li>
-  <li>MS COCO (coco)</li>
-  <li>OpenImages (open)</li>
+  <li>ImageNet 1K 256</li>
+  <li>MS COCO 2017</li>
+  <li>OpenImages</li>
 </ul>
 
 </td>
@@ -74,9 +74,9 @@ The project dataset contains **18,000 images**, balanced across real and AI-gene
 
 <strong>AI-Generated Datasets</strong>
 <ul>
-  <li>DiffusionDB (diff)</li>
-  <li>Midjourney (midj)</li>
-  <li>SDXL (sdxl)</li>
+  <li>DiffusionDB</li>
+  <li>Midjourney</li>
+  <li>SDXL Generated 10K</li>
 </ul>
 
 </td>
