@@ -19,13 +19,22 @@ Each image is represented by a fixed **26-dimensional DIP feature vector** compo
 
 These handcrafted features are used with classical machine learning models to evaluate AI-image detection performance in a transparent and CPU-friendly workflow.
 
-## Pipeline Overview
+## Pipeline Structure
+
+The tutorial follows a sequential notebook-based workflow covering:
+
+- Dataset construction
+- Image preprocessing
+- DIP feature extraction
+- Feature vector generation
+- Model training and evaluation
+- Feature analysis and source-pair robustness experiments
+
+The complete workflow is illustrated below.
 
 <p align="center">
-  <img src="images/overview-pipeline.png" alt="Pipeline Overview" width="700"/>
+  <img src="images/overview-pipeline.png" alt="Pipeline Overview" width="850"/>
 </p>
-
-The tutorial is organized as a sequential notebook-based workflow progressing from dataset construction through preprocessing, feature extraction, model training, evaluation, and extended analysis experiments.
 
 ---
 
@@ -43,24 +52,6 @@ In addition to the core training pipeline, the project includes extended experim
 - Final classifier comparison and ROC analysis
 
 The workflow emphasizes interpretability, reproducibility, modularity, and CPU-friendly execution.
-
-## Pipeline Stages
-
-The tutorial consists of the following major stages:
-
-1. Dataset Construction  
-2. Image Preprocessing  
-3. Metadata Combination and Splitting  
-4. DIP Feature Extraction  
-5. Feature Vector Construction  
-6. Feature Normalization  
-7. Classifier Selection  
-8. Model Training and Tuning  
-9. Final Model Evaluation  
-10. Feature-Level Analysis  
-11. Group-Level Analysis  
-12. Source-Pair Analysis  
-13. Results and Insights  
 
 ## Dataset
 
