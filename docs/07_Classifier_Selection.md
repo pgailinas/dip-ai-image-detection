@@ -14,10 +14,16 @@ nav_order: 1
 </p>
 
 ---
-
 ## Purpose
 
-Evaluate 9 candidate classifiers using normalized DIP feature vectors and select the top two classifiers for continued training and evaluation.
+Evaluate candidate classifiers using normalized DIP feature vectors and select the top-performing models for continued training and evaluation.
+
+The final evaluation pipeline intentionally includes two fundamentally different classifier families:
+
+- RBF Support Vector Machine (kernel-based statistical classifier)
+- Multi-Layer Perceptron (neural-network classifier)
+
+These models require substantially different optimization and tuning strategies. Evaluating both models helps determine whether the engineered DIP feature representation generalizes across classifier architectures rather than favoring a single modeling approach.
 
 ## Inputs
 
