@@ -141,19 +141,6 @@ The final stages focus not only on overall model performance, but also on unders
 </tr>
 </table>
 
-## Results and Insights
-
-The completed experiments demonstrate that engineered DIP features can effectively distinguish between real and AI-generated images using lightweight classical machine learning models.
-
-The final analysis includes:
-
-- Classifier comparison results
-- Final model performance
-- Feature-level analysis
-- Feature-group behavior
-- Source-pair generalization trends
-- Practical implementation observations
-
 ## Project Design Philosophy
 
 This project emphasizes:
