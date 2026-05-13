@@ -19,6 +19,8 @@ nav_order: 3
 
 Validate and compare the 2 selected classifiers using normalized DIP feature vectors prior to final testing.
 
+Although both classifiers operate on the same normalized DIP feature vectors, their optimization behavior differs substantially. The RBF SVM relies on kernel-space margin optimization, while the MLP learns nonlinear feature interactions through neural-network training and regularization. Including both models provides a stronger evaluation of the engineered DIP representation.
+
 ## Inputs
 
 - `train_feature_vectors_normalized.csv` — normalized training feature vectors (N samples × 26 features)
