@@ -57,17 +57,31 @@ The workflow emphasizes interpretability, reproducibility, modularity, and CPU-f
 
 The project dataset contains **18,000 images**, balanced across real and AI-generated image classes.
 
-### Real-Image Sources
+<table>
+<tr>
+<td valign="top">
 
-- ImageNet
-- MS COCO
-- OpenImages
+<strong>Real-Image Datasets</strong>
+<ul>
+  <li>ImageNet (imgn)</li>
+  <li>MS COCO (coco)</li>
+  <li>OpenImages (open)</li>
+</ul>
 
-### AI-Generated Sources
+</td>
+<td style="width:80px;"></td>
+<td valign="top">
 
-- DiffusionDB
-- SDXL
-- MidJourney
+<strong>AI-Generated Datasets</strong>
+<ul>
+  <li>DiffusionDB (diff)</li>
+  <li>Midjourney (midj)</li>
+  <li>SDXL (sdxl)</li>
+</ul>
+
+</td>
+</tr>
+</table>
 
 The dataset is organized using metadata-driven control to preserve class balance, source identity, reproducibility, and separation between training and final evaluation data.
 
