@@ -1,3 +1,4 @@
+{% include analytics.html %}
 ---
 title: Home
 nav_order: 0
