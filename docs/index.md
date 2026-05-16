@@ -143,6 +143,7 @@ Rather than relying entirely on black-box deep learning methods, the tutorial ex
 **Phil Gailinas**  
 M.S. Computer Engineering candidate  
 University of New Mexico
+Presented 05-14-2026
 
 ## License
 
